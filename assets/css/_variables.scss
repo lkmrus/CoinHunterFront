@@ -1,0 +1,86 @@
+@import './vendor/colors.scss';
+
+:root{
+    // Text
+    --text-color: #{$white};
+    --text-gray: #{$gray-two};
+    --text-gray-dark: #{$gray};
+    --text-gray-light: #{$light-gray};
+    --text-gray-purple: #{$purple-gray};
+    --text-white-blue: #{$white-blue};
+    --text-dark-blue: #{$dark-blue-two};
+    --text-inactive: #{$medium-blue};
+    --link: #{$blue-two};
+    --error: #{$red};
+
+    // Fonts
+    --font-weight-extrabold: 900;
+    --font-weight-bold: 700;
+    --font-weight-semibold: 600;
+    --font-weight-medium: 500;
+    --font-weight-regular: 400;
+
+    --font-size: 20px;
+    --font-size-xs: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 24px;
+    --font-size-lg-extra: 32px;
+    --font-size-lg-extra-two: 40px;
+    --font-size-extra: 64px;
+    --font-size-extra-xxl: 100px;
+
+    --line-height: 28px;
+    --line-height-xs: 19.6px;
+    --line-height-md: 22.4px;
+    --line-height-extra-xxl: 110px;
+
+    --font-family: 'Inter', sans-serif;
+
+    // Background
+    --bg-color: #{$black-blue};
+    --box-color: #{$dark-blue};
+    --bg-white: #{$white};
+    --bg-table: #{$blue-three};
+    // --box-color-light: #{$dark-blue-three};
+    --bg-blue: #{$blue};
+    --bg-blue-light: #{$light-blue};
+    --bg-dark-blue: #{$dark-blue-two};
+
+
+    // Additional elemets
+    // --additional-bg: #{$dark-gray};
+    // --additional-box: #{$dark-light-blue};
+}
+
+@media (max-width: 1360px) {
+    :root{
+        --font-size-extra-xxl: 72px;
+        --font-size-extra: 44px;
+        --font-size-lg-extra: 28px;
+        --font-size-lg: 20px;
+    }
+}
+
+@media (max-width: 920px) {
+    :root{
+        --font-size-extra-xxl: 54px;
+        --font-size-extra: 34px;
+        --font-size-lg: 18px;
+    }
+}
+
+@media (max-width: 720px) {
+    :root{
+        --font-size-extra-xxl: 42px;
+        --font-size-extra: 28px;
+        --font-size-lg-extra: 22px;
+    }
+}
+
+@media (max-width: 520px) {
+    :root{
+        --font-size-extra-xxl: 32px;
+        --font-size-extra: 24px;
+        --font-size-lg: 16px;
+    }
+}

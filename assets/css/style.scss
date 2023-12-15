@@ -1,0 +1,92 @@
+// Vendor
+@import "./vendor/_colors.scss";
+@import "./vendor/_fonts.scss";
+@import "./vendor/_reset.scss";
+
+// Themes
+@import "./variables.scss";
+
+* {
+  scroll-behavior: smooth;
+}
+
+* ::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background: transparent;
+}
+
+* ::-webkit-scrollbar-thumb {
+  position: relative;
+  border-radius: 20px;
+  border: 3px solid var(--bg-blue);
+  background-color: var(--bg-blue);
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--bg-color);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: var(--link);
+}
+
+.default-wrapper {
+  height: 100vh;
+  width: 100vw;
+}
+
+section, header, footer {
+    padding: 0 calc(50% - 600px);
+}
+
+p.big-text{
+    @include h0-mixin;
+}
+
+h1{
+    @include h1-mixin;
+}
+
+h2{
+    @include h2-mixin;
+}
+
+h3{
+    @include h3-mixin;
+}
+
+h4{
+    @include h4-mixin;
+}
+
+h5{
+  @include h5-mixin;
+}
+
+@media (max-width: 1360px) {
+    section, header, footer {
+        padding: 0 calc(50% - 432px);
+    }
+}
+
+@media (max-width: 920px) {
+    section, header, footer {
+        padding: 0 calc(50% - 322px);
+    }
+}
+
+@media (max-width: 720px) {
+    section, header, footer {
+        padding: 0 16px;
+    }
+}
