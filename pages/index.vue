@@ -462,6 +462,7 @@
                         dark-blue
                         class="big-h"
                         value="Начать пользоваться"
+                        @click="startUsing()"
                     />
                     <img
                         class="star"
@@ -598,6 +599,16 @@ const switchPopup = (show) => {
         popup.style.display = 'none'
       }, 200)
     }
+  }
+}
+
+const startUsing = () => {
+  const token = useCookie('coinht')
+  console.log(token.value)
+  if (token.value) {
+    navigateTo('/arbitrage', { replace: true })
+  } else {
+    navigateTo('/auth?type=registration', { replace: true })
   }
 }
 

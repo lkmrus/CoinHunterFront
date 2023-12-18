@@ -60,6 +60,12 @@
                 Подписка премиум активна до {{ editableUser.paidUpToDate }}
             </div>
             <div
+                v-else-if="!editableUser.paidUpToDate && editableUser.chats[0].paidUpToDate"
+                class="status status_active"
+            >
+                Подписка премиум активна до {{ editableUser.chats[0].paidUpToDate }}
+            </div>
+            <div
                 v-else
                 class="status"
             >

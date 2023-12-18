@@ -69,7 +69,7 @@ export const useAuthStore = defineStore('auth', {
       }
       const { currentRoute } = useRouter()
       const routeName = currentRoute.value.name
-      if (routeName === 'account') { return navigateTo('/', { replace: true }) }
+      if (routeName === 'account') { return location.reload() }
     }
   }
 })
