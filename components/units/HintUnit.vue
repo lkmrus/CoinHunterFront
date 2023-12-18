@@ -1,5 +1,8 @@
 <template>
-    <div class="hint-unit">
+    <div
+        class="hint-unit"
+        @click="goToUrl(`https://t.me/CurrencyScanner3000Bot`)"
+    >
         <div class="hint-unit__text">
             Арбитражные связки с задержкой всего 2 секунды уже в нашем Telegram боте
         </div>
@@ -15,12 +18,24 @@
     </div>
 </template>
 
-<script setup lang="ts">
-
+<script setup>
+const goToUrl = async (url) => {
+  await navigateTo(url, {
+    external: true,
+    open: {
+      target: '_blank',
+      windowFeatures: {
+        width: 500,
+        height: 500
+      }
+    }
+  })
+}
 </script>
 
 <style lang="scss" scoped>
 .hint-unit{
+    cursor: pointer;
     position: sticky;
     top: 0;
     display: flex;

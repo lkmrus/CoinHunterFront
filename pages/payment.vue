@@ -65,6 +65,10 @@
 
 <script setup>
 
+definePageMeta({
+  layout: 'no-footer-layout'
+})
+
 const switchPopup = () => {
   const popup = document.getElementById('popup-notification')
   if (popup) {
@@ -76,9 +80,10 @@ const switchPopup = () => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .payment-page{
     min-height: 970px;
+    height: 100vh;
     overflow: hidden;
     position: relative;
     padding: 0 calc(50% - 600px);
@@ -157,10 +162,6 @@ const switchPopup = () => {
         top: 100px;
         right: 0px;
     }
-}
-
-footer{
-    display: none;
 }
 
 @media (max-width: 1360px) {

@@ -35,23 +35,14 @@
                 @change="v$.password.$touch"
             />
         </div>
-        <div class="registration__input registration__input_telegram">
+        <div class="registration__input">
             <input-custom
                 v-model="regitrationForm.login"
                 title="Telegram ID"
                 placeholder="@example"
-            />
-            <button-custom
-                class="big-h"
-                value="Привязать"
-                @click="goToUrl(`https://t.me/CurrencyScanner3000Bot?start=${regitrationForm.login}`)"
-            />
-        </div>
-        <div class="registration__button registration__button_mobile">
-            <button-custom
-                class="big-h"
-                value="Привязать Telegram"
-                @click="goToUrl(`https://t.me/CurrencyScanner3000Bot?start=${regitrationForm.login}`)"
+                :i-error="v$.login.$error"
+                :i-error-name="v$.login.minLength.$message"
+                @change="v$.login.$touch"
             />
         </div>
         <div class="registration__button">
@@ -113,23 +104,10 @@ const regitrationForm = reactive({
   login: ''
 })
 
-const goToUrl = async (url) => {
-  await navigateTo(url, {
-    external: true,
-    open: {
-      target: '_blank',
-      windowFeatures: {
-        width: 500,
-        height: 500
-      }
-    }
-  })
-}
-
 const notificationSettings = reactive({
   isOpen: false,
   title: 'Неверные данные',
-  description: 'Такая почта уже существует.'
+  description: 'Проверьте введенные данные.'
 })
 
 const rules = computed(() => {
@@ -143,7 +121,8 @@ const rules = computed(() => {
       minLength: helpers.withMessage('Пароль должен содердать не менее 6 символов', minLength(6))
     },
     login: {
-      minLength: helpers.withMessage('Имя должено содердать не менее 2 символов', minLength(2))
+      required: helpers.withMessage('Введите ваш telegram ID', required),
+      minLength: helpers.withMessage('Telegram должен содердать не менее 3 символов', minLength(3))
     }
   }
 })
@@ -195,14 +174,6 @@ const authRegister = async () => {
             bottom: 0;
             z-index: 10;
         }
-        &_telegram{
-            .input-custom{
-                .input{
-                    border-top-right-radius: 32px;
-                    border-bottom-right-radius: 32px;
-                }
-            }
-        }
     }
     &__button_mobile{
       display: none;
@@ -221,17 +192,6 @@ const authRegister = async () => {
 }
 
 @media (max-width: 920px) {
-    .registration{
-        &__input{
-            &_telegram{
-                .button{
-                    border-radius: 100px;
-                    bottom: 8px;
-                    right: 8px;
-                }
-            }
-        }
-    }
 }
 
 @media (max-width: 720px) {
@@ -240,11 +200,6 @@ const authRegister = async () => {
             width: 100%;
             .input-custom{
                 width: 100%;
-            }
-            &_telegram{
-                .button{
-                    display: none;
-                }
             }
         }
         &__button_mobile{

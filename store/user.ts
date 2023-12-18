@@ -38,24 +38,22 @@ export const useUserStore = defineStore('user', {
       const store = useUserStore()
       let success = true
       if (password) {
-        const { data, pending }: any = await useFetch('/api/users/change_password', {
+        const { pending, error }: any = await useFetch('/api/users/change_password', {
           method: 'post',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
           body: JSON.stringify({ password })
         })
         store.loading = pending
-        if (!data.value) { success = false }
+        if (error.value) { success = false }
       }
       if (email || login || fullname) {
-        const { data, pending, error }: any = await useFetch('/api/users/change_profile', {
+        const { pending, error }: any = await useFetch('/api/users/change_profile', {
           method: 'post',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
           body: JSON.stringify({ email, login, fullname })
         })
-        console.log(data)
-        console.log(error)
         store.loading = pending
-        if (!data.value) { success = false }
+        if (error.value) { success = false }
       }
       return success
     },

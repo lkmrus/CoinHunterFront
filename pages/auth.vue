@@ -21,6 +21,13 @@
 </template>
 
 <script setup>
+
+let activePageLayout = 'no-footer-layout'
+
+definePageMeta({
+  layout: 'no-footer-layout'
+})
+
 const route = useRoute()
 let queryValue = route.query.type
 watch(
@@ -33,6 +40,26 @@ watch(
     }
   }
 )
+
+onMounted(() => {
+  if (process.client) {
+    if (window.innerWidth <= 920) {
+      setPageLayout('default')
+      activePageLayout = 'default'
+    }
+    window.addEventListener('resize', (e) => {
+      const width = e.target.innerWidth
+      if (width <= 920 && activePageLayout !== 'default') {
+        setPageLayout('default')
+        activePageLayout = 'default'
+      } else if (activePageLayout !== 'no-footer-layout') {
+        setPageLayout('no-footer-layout')
+        activePageLayout = 'no-footer-layout'
+      }
+    })
+  }
+})
+
 </script>
 <style lang="scss">
 .auth-page{
@@ -55,10 +82,6 @@ watch(
     }
 }
 
-footer{
-  display: none;
-}
-
 @media (max-width: 920px) {
   .auth-page{
       padding: 0 calc(50% - 322px);
@@ -72,10 +95,10 @@ footer{
         padding-left: 10px;
       }
   }
-
-  footer{
-    display: block;
+  .login, .registration, .forget-password{
+    margin-top: 152px;
   }
+
 }
 
 @media (max-width: 720px) {
@@ -84,7 +107,6 @@ footer{
   }
   .login, .registration, .forget-password{
     width: 100%;
-    margin-top: 152px;
     &__info{
         width: 100%;
         .title{

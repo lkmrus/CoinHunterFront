@@ -556,6 +556,9 @@
         </section>
         <popup-sending
             id="popup-sending"
+            title="Данные успешно отправлены"
+            description="Мы уже получили их и передали нашим экспертам.
+                Они свяжутся с вами, чтобы помочь ответить на все ваши вопросы. До скорой встречи!"
             @close="switchPopup(false)"
         />
         <notification-unit

@@ -68,6 +68,7 @@
                     <button-custom
                         class="big-h"
                         value="Оплатить"
+                        @click="goToPage('/payment')"
                     />
                 </div>
             </div>
@@ -82,6 +83,7 @@
                 <button-custom
                     class="big-h"
                     value="Оплатить"
+                    @click="goToPage('/payment')"
                 />
             </div>
             <div class="save">
@@ -97,6 +99,18 @@
             src="@/assets/img/bitcoin.png"
             alt="bitcoin"
         >
+        <popup-sending
+            id="popup-sending"
+            title="Данные успешно изменены"
+            @close="switchPopup(false)"
+        />
+        <notification-unit
+            v-if="notificationSettings.isOpen"
+            error
+            :title="notificationSettings.title"
+            :description="notificationSettings.description"
+            @close="notificationSettings.isOpen = false"
+        />
     </div>
 </template>
 
@@ -108,9 +122,34 @@ import { useUserStore } from '~/store/user'
 const { userSettings, userTelegramAttach, getUser } = useUserStore()
 const token = useCookie('coinht')
 
+const switchPopup = (show) => {
+  const popup = document.getElementById('popup-sending')
+  if (popup) {
+    if (show) {
+      popup.style.display = 'flex'
+      setTimeout(() => {
+        popup.style.opacity = '1'
+      }, 200)
+    } else {
+      popup.style.opacity = '0'
+      setTimeout(() => {
+        popup.style.display = 'none'
+      }, 200)
+    }
+  }
+}
+
+const notificationSettings = reactive({
+  isOpen: false,
+  title: 'Не удалось изменить данные',
+  description: `Непридвиденные обстоятельства могут подкарауливать нас всех.
+                Пожалуйста, попробуйте отправить запрос на изменение данных ещё раз и проверьте
+                свое интернет-соединение.`
+})
+
 const user = await getUser({ token: token.value })
 
-const editableUser = { ...user }
+const editableUser = reactive({ ...user })
 
 const passwordForm = reactive({
   password: ''
@@ -140,12 +179,17 @@ const passwordv$ = useVuelidate(passwordRules, passwordForm)
 const saveSettings = async () => {
   userv$.value.$validate()
   if (!userv$.value.$error) {
-    await userSettings({
+    const save = await userSettings({
       email: editableUser.email,
       login: editableUser.login,
       fullname: editableUser.fullname,
       token: token.value
     })
+    if (save) {
+      switchPopup(true)
+    } else {
+      notificationSettings.isOpen = true
+    }
   }
   if (passwordForm.password) {
     passwordv$.value.$validate()
@@ -170,6 +214,13 @@ const goToUrl = async (url) => {
         height: 500
       }
     }
+  })
+}
+
+const goToPage = async (page, query = {}) => {
+  await navigateTo({
+    path: page,
+    query
   })
 }
 

@@ -14,19 +14,37 @@
         >
             <nav class="nav">
                 <ol class="nav__items">
-                    <li>
-                        Компания
+                    <li
+                        v-for="(nav, navIndex) in navs"
+                        :key="`nav-item-${navIndex}`"
+                        @mouseenter="nav.isActive = true"
+                        @mouseleave="nav.isActive = false"
+                    >
+                        <div
+                            class="name"
+                            :class="{'active': nav.isActive}"
+                        >
+                            {{ nav.name }}
+                        </div>
                         <svg-icon
+                            class="down-arrow"
+                            :class="{'down-arrow_active': nav.isActive}"
                             icon="down-arrow"
-                            fill="#8C8FA8"
+                            :fill="getArrowColor(nav.isActive)"
                         />
-                    </li>
-                    <li>
-                        Инструменты арбитража
-                        <svg-icon
-                            icon="down-arrow"
-                            fill="#8C8FA8"
-                        />
+                        <div
+                            class="menu"
+                            :class="{'menu_open': nav.isActive}"
+                        >
+                            <NuxtLink
+                                v-for="(menu, menuIndex) in nav.menu"
+                                :key="`nav-menu-item-${menuIndex}`"
+                                class="menu__item"
+                                :to="menu.link"
+                            >
+                                {{ menu.name }}
+                            </NuxtLink>
+                        </div>
                     </li>
                 </ol>
             </nav>
@@ -69,17 +87,17 @@
                         </div>
                     </div>
                     <div
-                        class="account__menu"
-                        :class="{'account__menu_open' : accountMenuOpen}"
+                        class="menu"
+                        :class="{'menu_open' : accountMenuOpen}"
                     >
                         <div
-                            class="item"
+                            class="menu__item"
                             @click="goToAuthPage('/account')"
                         >
                             Личный кабинет
                         </div>
                         <div
-                            class="item"
+                            class="menu__item"
                             @click="logout()"
                         >
                             Выйти
@@ -112,6 +130,26 @@ const headerKey = ref(0)
 
 const hamburgerOpen = ref(false)
 
+const navs = reactive([
+  {
+    name: 'Компания',
+    menu: [
+      { name: 'Преимущества', link: '#' },
+      { name: 'Сообщество', link: '#' }
+    ],
+    isActive: false
+  },
+  {
+    name: 'Инструменты арбитража',
+    menu: [
+      { name: 'Межбиржевой арбитраж', link: '#' },
+      { name: 'Внутрибиржевой арбитраж', link: '#' },
+      { name: 'Биржи и коммиссии', link: '#' }
+    ],
+    isActive: false
+  }
+])
+
 const goToAuthPage = async (page, query = {}) => {
   await navigateTo({
     path: page,
@@ -119,7 +157,11 @@ const goToAuthPage = async (page, query = {}) => {
   })
 }
 
-// TODO: Разобраться с сессиями. Ошибка из-за загрузки сессии только на стороне клиента
+const getArrowColor = (isActive) => {
+  if (isActive) { return '#FFFFFF' }
+  return '#8C8FA8'
+}
+
 watch(() => authenticated, (newval) => {
   isAuthenticated.value = toRaw(newval).value
 }, { immediate: true, deep: true })
@@ -174,6 +216,7 @@ const logout = async () => {
             align-items: center;
             gap: 37px;
             li{
+                position: relative;
                 @include text-md-mixin;
                 cursor: pointer;
                 color: var(--text-gray-dark);
@@ -181,8 +224,17 @@ const logout = async () => {
                 align-items: center;
                 gap: 8px;
                 text-wrap: nowrap;
-                &:hover{
-                    color: var(--text-color);
+                .name{
+                    &:hover, &.active{
+                        color: var(--text-color);
+                    }
+                }
+                .down-arrow{
+                    transition: 0.3s;
+                    &_active{
+                        transition: 0.3s;
+                        transform: rotate(180deg);
+                    }
                 }
             }
         }
@@ -230,28 +282,37 @@ const logout = async () => {
                 }
             }
         }
-        &__menu{
-            user-select: none;
-            display: none;
-            width: fit-content;
-            position: absolute;
+        .menu{
             right: -50%;
-            padding: 6px 0;
-            border-radius: 16px;
-            overflow: hidden;
-            z-index: 2000;
-            background-color: var(--bg-dark-blue);
-            .item{
-                cursor: pointer;
-                padding: 8px 16px;
-                text-wrap: nowrap;
-                &:hover{
-                    background-color: var(--bg-blue);
-                }
+            left: auto;
+            top: 44px;
+        }
+    }
+    .menu{
+        user-select: none;
+        display: none;
+        width: fit-content;
+        position: absolute;
+        left: -5px;
+        top: 23px;
+        padding: 6px 0;
+        border-radius: 16px;
+        overflow: hidden;
+        z-index: 2000;
+        background-color: var(--bg-dark-blue);
+        &__item{
+            display: block;
+            cursor: pointer;
+            padding: 8px 16px;
+            text-wrap: nowrap;
+            color: var(--text-gray-dark);
+            &:hover{
+                background-color: var(--bg-blue);
+                color: var(--text-color);
             }
-            &_open{
-                display: block;
-            }
+        }
+        &_open{
+            display: block;
         }
     }
 }

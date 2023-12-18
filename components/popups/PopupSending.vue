@@ -17,17 +17,17 @@
                 />
             </div>
             <h4 class="title">
-                Данные успешно отправлены
+                {{ title }}
             </h4>
             <div class="description">
-                Мы уже получили их и передали нашим экспертам.
-                Они свяжутся с вами, чтобы помочь ответить на все ваши вопросы. До скорой встречи!
+                {{ description }}
             </div>
             <div
                 class="button"
             >
                 <button-custom
                     value="Вернуться в CoinHunter"
+                    @click="emit('close')"
                 />
             </div>
         </div>
@@ -36,6 +36,12 @@
 
 <script setup>
 const emit = defineEmits(['close'])
+
+defineProps({
+  // Default Input Props
+  title: { type: String, required: true },
+  description: { type: String, default: null }
+})
 </script>
 
 <style lang="scss" scoped>

@@ -42,22 +42,21 @@ export const useAuthStore = defineStore('auth', {
     },
     async userRegistration ({ email, password, login = '', fullname = '' }: UserRegistrationPayloadInterface) {
       const store = useAuthStore()
-      const { data, pending, error }: any = await useFetch('/api/auth/sign_up', {
+      const { data, pending }: any = await useFetch('/api/auth/sign_up', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password, login, fullname })
       })
       store.loading = pending
-      console.log(error)
       if (data.value) {
         const token = useCookie('coinht')
         token.value = data?.value
         store.authenticated = true
       }
     },
-    logUserOut () {
+    async logUserOut () {
       const store = useAuthStore()
-      const token = useCookie('coinht')
+      const token = await useCookie('coinht')
       if (token.value) {
         store.authenticated = false
         token.value = null
@@ -68,6 +67,9 @@ export const useAuthStore = defineStore('auth', {
           sessionStorage.removeItem('coinht')
         }
       }
+      const { currentRoute } = useRouter()
+      const routeName = currentRoute.value.name
+      if (routeName === 'account') { return navigateTo('/', { replace: true }) }
     }
   }
 })
