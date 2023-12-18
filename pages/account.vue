@@ -54,16 +54,10 @@
                 Премиум подписка
             </h5>
             <div
-                v-if="editableUser.paidUpToDate"
+                v-if="subscription"
                 class="status status_active"
             >
-                Подписка премиум активна до {{ editableUser.paidUpToDate }}
-            </div>
-            <div
-                v-else-if="!editableUser.paidUpToDate && editableUser.chats[0].paidUpToDate"
-                class="status status_active"
-            >
-                Подписка премиум активна до {{ editableUser.chats[0].paidUpToDate }}
+                Подписка премиум активна до {{ new Date(subscription).toLocaleDateString() }}
             </div>
             <div
                 v-else
@@ -156,6 +150,14 @@ const notificationSettings = reactive({
 const user = await getUser({ token: token.value })
 
 const editableUser = reactive({ ...user })
+
+let subscription = null
+
+for (const chat of editableUser.chats) {
+  if (chat.paidUpToDate) {
+    subscription = chat.paidUpToDate
+  }
+}
 
 const passwordForm = reactive({
   password: ''

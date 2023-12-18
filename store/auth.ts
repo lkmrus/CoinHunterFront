@@ -67,9 +67,7 @@ export const useAuthStore = defineStore('auth', {
           sessionStorage.removeItem('coinht')
         }
       }
-      const { currentRoute } = useRouter()
-      const routeName = currentRoute.value.name
-      if (routeName === 'account') { return location.reload() }
+      return location.reload()
     }
   }
 })
