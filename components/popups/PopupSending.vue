@@ -26,7 +26,7 @@
                 class="button"
             >
                 <button-custom
-                    value="Вернуться в CoinHunter"
+                    :value="$t('popup_sending_button')"
                     @click="emit('close')"
                 />
             </div>

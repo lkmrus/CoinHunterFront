@@ -2,9 +2,9 @@
     <div class="forget-password">
         <div class="forget-password__info">
             <h2 class="title">
-                Восстановление пароля
+                {{ $t('auth_forget_password_title') }}
             </h2>
-            <span class="subtitle">Отправим вам код из 4-х знаков на почту</span>
+            <span class="subtitle">{{ $t('auth_forget_password_subtitle') }}</span>
         </div>
         <div class="forget-password__input">
             <input-custom
@@ -14,14 +14,14 @@
         </div>
         <div class="forget-password__input">
             <input-custom
-                title="Код из 4-х знаков"
+                :title="$t('auth_forget_form_code_title')"
                 placeholder="1234"
             />
         </div>
         <div class="forget-password__button">
             <button-custom
                 class="big-h"
-                value="Войти"
+                :value="$t('auth_forget_button')"
             />
         </div>
     </div>

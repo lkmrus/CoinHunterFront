@@ -7,7 +7,7 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       htmlAttrs: {
-        lang: 'en'
+        lang: 'ru'
       },
       meta: [{
         name: 'Content-Security-Policy',
@@ -24,8 +24,26 @@ export default defineNuxtConfig({
     '@nuxtjs/eslint-module',
     'nuxt-security',
     '@pinia/nuxt',
-    'nuxt-swiper'
+    'nuxt-swiper',
+    '@nuxtjs/i18n'
   ],
+  i18n: {
+    lazy: true,
+    langDir: './locales',
+    defaultLocale: 'ru',
+    strategy: 'no_prefix',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+      alwaysRedirect: true,
+      cookieCrossOrigin: true
+    },
+    locales: [
+      { code: 'ru', name: 'Русский', file: 'ru-RU.json' },
+      { code: 'en', name: 'English', file: 'en-US.json' }
+    ]
+  },
   css: ['@/assets/css/style.scss'],
   plugins: [],
   alias: {
@@ -47,7 +65,7 @@ export default defineNuxtConfig({
     }
   },
   routeRules: {
-    '/api/**': { proxy: { to: 'http://78.140.137.106:3000/**' } }
+    '/api/**': { proxy: { to: process.env.BASE_API_URL } }
   },
   security: {
     headers: {

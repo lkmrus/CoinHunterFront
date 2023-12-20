@@ -4,15 +4,20 @@
     >
         <div class="registration__info">
             <h2 class="title">
-                Регистрация
+                {{ $t('auth_registration_title') }}
             </h2>
-            <span class="subtitle">У меня уже есть аккаунт, <nuxt-link to="?type=login">Войти</nuxt-link></span>
+            <span class="subtitle">
+                {{ $t('auth_registration_subtitle_text') }}
+                <nuxt-link to="?type=login">
+                    {{ $t('auth_registration_subtitle_link') }}
+                </nuxt-link>
+            </span>
         </div>
         <div class="registration__input">
             <input-custom
                 v-model="regitrationForm.fullname"
-                title="Имя"
-                placeholder="Как к вам обращаться"
+                :title="$t('form_name_title')"
+                :placeholder="$t('form_name_placeholder')"
             />
         </div>
         <div class="registration__input">
@@ -28,7 +33,8 @@
         <div class="registration__input">
             <input-custom
                 v-model="regitrationForm.password"
-                title="Создайте пароль"
+                password-type
+                :title="$t('auth_registration_create_password_title')"
                 placeholder="example_password"
                 :i-error="v$.password.$error"
                 :i-error-name="v$.password.minLength.$message"
@@ -48,12 +54,15 @@
         <div class="registration__button">
             <button-custom
                 class="big-h"
-                value="Зарегистрироваться"
+                :value="$t('auth_registration_button')"
                 @click="authRegister()"
             />
         </div>
         <span class="registration__privacy-policy">
-            Регистрируясь, вы принимаете нашу <nuxt-link to="#">политику конфиденциальности</nuxt-link>
+            {{ $t('auth_registration_privacy_policy_text') }}
+            <nuxt-link to="#">
+                {{ $t('auth_registration_privacy_policy_link') }}
+            </nuxt-link>
         </span>
     </div>
     <notification-unit
@@ -66,8 +75,8 @@
     <popup-notification
         id="popup-notification"
         type="success"
-        title="Вы успешно создали аккаунт"
-        description="Через 5 секунд вы будете автоматически перенаправлены в личный кабинет"
+        :title="$t('auth_registration_popup_success_title')"
+        :description="$t('auth_registration_popup_success_description')"
     />
 </template>
 
@@ -77,6 +86,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '~/store/auth'
 import { useUserStore } from '~/store/user'
+const { t } = useI18n({ useScope: 'global' })
 
 const { userRegistration } = useAuthStore()
 
@@ -106,23 +116,23 @@ const regitrationForm = reactive({
 
 const notificationSettings = reactive({
   isOpen: false,
-  title: 'Неверные данные',
-  description: 'Проверьте введенные данные.'
+  title: t('auth_registration_notification_error_title'),
+  description: t('auth_registration_notification_error_description')
 })
 
 const rules = computed(() => {
   return {
     email: {
-      required: helpers.withMessage('Введите email', required),
-      email: helpers.withMessage('Неверный формат почты', email)
+      required: helpers.withMessage(t('form_email_helper_required_text'), required),
+      email: helpers.withMessage(t('form_email_helper_text'), email)
     },
     password: {
-      required: helpers.withMessage('Введите пароль', required),
-      minLength: helpers.withMessage('Пароль должен содердать не менее 6 символов', minLength(6))
+      required: helpers.withMessage(t('form_password_helper_required_text'), required),
+      minLength: helpers.withMessage(t('form_password_helper_text'), minLength(6))
     },
     login: {
-      required: helpers.withMessage('Введите ваш telegram ID', required),
-      minLength: helpers.withMessage('Telegram должен содердать не менее 3 символов', minLength(3))
+      required: helpers.withMessage(t('form_login_helper_required_text'), required),
+      minLength: helpers.withMessage(t('form_login_helper_text'), minLength(3))
     }
   }
 })

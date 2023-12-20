@@ -8,13 +8,13 @@
             </div>
         </div>
         <h2 class="account-page__title">
-            Личный кабинет
+            {{ $t('account_title') }}
         </h2>
         <div class="account-page__input">
             <input-custom
                 v-model="editableUser.fullname"
-                title="Имя"
-                placeholder="Как к вам обращаться"
+                :title="$t('form_name_title')"
+                :placeholder="$t('form_name_placeholder')"
             />
         </div>
         <div class="account-page__input">
@@ -30,13 +30,28 @@
         <div class="account-page__input">
             <input-custom
                 v-model="passwordForm.password"
-                title="Пароль"
+                password-type
+                :title="$t('form_password_title')"
                 placeholder="example_password"
                 :i-error="passwordv$.password.$error"
                 :i-error-name="passwordv$.password.minLength.$message"
                 @change="passwordv$.password.$touch"
             />
         </div>
+        <div class="account-page__input">
+            <input-custom
+                v-model="passwordForm.repeatPassword"
+                password-type
+                :title="$t('form_repeat_password_title')"
+                placeholder="example_password"
+                :i-error="passwordv$.repeatPassword.$error"
+                :i-error-name="
+                    passwordv$.repeatPassword.$errors[0] ? passwordv$.repeatPassword.$errors[0].$message : ''
+                "
+                @change="passwordv$.repeatPassword.$touch"
+            />
+        </div>
+        <!-- {{ passwordv$.repeatPassword.$errors[0].$message }} -->
         <div class="account-page__input account-page__input_telegram">
             <input-custom
                 v-model="editableUser.login"
@@ -44,30 +59,29 @@
                 placeholder="@example"
             />
             <button-custom
-                class="big-h"
-                value="Привязать"
+                :value="$t('account_add_telegram_button_name')"
                 @click="goToUrl(`https://t.me/CurrencyScanner3000Bot?start=${editableUser.login}`)"
             />
         </div>
         <div class="account-page__subscription">
             <h5 class="title">
-                Премиум подписка
+                {{ $t('account_subscription_title') }}
             </h5>
             <div
                 v-if="subscription"
                 class="status status_active"
             >
-                Подписка премиум активна до {{ new Date(subscription).toLocaleDateString() }}
+                {{ $t('account_subscription_active_text') }} {{ new Date(subscription).toLocaleDateString() }}
             </div>
             <div
                 v-else
                 class="status"
             >
-                Подписка не активна
+                {{ $t('account_subscription_inactive_text') }}
                 <div class="status__pay">
                     <button-custom
                         class="big-h"
-                        value="Оплатить"
+                        :value="$t('account_subscription_inactive_button')"
                         @click="goToPage('/payment')"
                     />
                 </div>
@@ -77,19 +91,18 @@
             <div class="pay-mobile">
                 <button-custom
                     class="big-h"
-                    value="Привязать Telegram"
+                    :value="$t('account_connect_telegram_button')"
                     @click="goToUrl(`https://t.me/CurrencyScanner3000Bot?start=${editableUser.login}`)"
                 />
                 <button-custom
                     class="big-h"
-                    value="Оплатить"
+                    :value="$t('account_subscription_inactive_button')"
                     @click="goToPage('/payment')"
                 />
             </div>
             <div class="save">
                 <button-custom
-                    class="big-h"
-                    value="Сохранить изменения"
+                    :value="$t('account_save_settings')"
                     @click="saveSettings()"
                 />
             </div>
@@ -101,7 +114,7 @@
         >
         <popup-sending
             id="popup-sending"
-            title="Данные успешно изменены"
+            :title="$t('account_popup_success_title')"
             @close="switchPopup(false)"
         />
         <notification-unit
@@ -115,12 +128,38 @@
 </template>
 
 <script setup>
-import { required, email, minLength, helpers } from '@vuelidate/validators'
+import { required, email, minLength, helpers, sameAs } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
 import { useUserStore } from '~/store/user'
+const { t } = useI18n({ useScope: 'global' })
 
 const { userSettings, userTelegramAttach, getUser } = useUserStore()
 const token = useCookie('coinht')
+
+let activePageLayout = 'no-footer-layout'
+
+definePageMeta({
+  layout: 'no-footer-layout'
+})
+
+onMounted(() => {
+  if (process.client) {
+    if (window.innerWidth <= 920) {
+      setPageLayout('default')
+      activePageLayout = 'default'
+    }
+    window.addEventListener('resize', (e) => {
+      const width = e.target.innerWidth
+      if (width <= 920 && activePageLayout !== 'default') {
+        setPageLayout('default')
+        activePageLayout = 'default'
+      } else if (activePageLayout !== 'no-footer-layout') {
+        setPageLayout('no-footer-layout')
+        activePageLayout = 'no-footer-layout'
+      }
+    })
+  }
+})
 
 const switchPopup = (show) => {
   const popup = document.getElementById('popup-sending')
@@ -141,33 +180,31 @@ const switchPopup = (show) => {
 
 const notificationSettings = reactive({
   isOpen: false,
-  title: 'Не удалось изменить данные',
-  description: `Непридвиденные обстоятельства могут подкарауливать нас всех.
-                Пожалуйста, попробуйте отправить запрос на изменение данных ещё раз и проверьте
-                свое интернет-соединение.`
+  title: t('account_notification_error_title'),
+  description: t('account_notification_error_description')
 })
 
 const user = await getUser({ token: token.value })
 
 const editableUser = reactive({ ...user })
 
-let subscription = null
+const passwordForm = reactive({
+  password: '',
+  repeatPassword: ''
+})
 
+let subscription = null
 for (const chat of editableUser.chats) {
   if (chat.paidUpToDate) {
     subscription = chat.paidUpToDate
   }
 }
 
-const passwordForm = reactive({
-  password: ''
-})
-
 const userRules = computed(() => {
   return {
     email: {
-      required: helpers.withMessage('Введите email', required),
-      email: helpers.withMessage('Неверный формат почты', email)
+      required: helpers.withMessage(t('form_email_helper_required_text'), required),
+      email: helpers.withMessage(t('form_email_helper_text'), email)
     }
   }
 })
@@ -175,8 +212,13 @@ const userRules = computed(() => {
 const passwordRules = computed(() => {
   return {
     password: {
-      required: helpers.withMessage('Введите пароль', required),
-      minLength: helpers.withMessage('Пароль должен содердать не менее 6 символов', minLength(6))
+      required: helpers.withMessage(t('form_password_helper_required_text'), required),
+      minLength: helpers.withMessage(t('form_password_helper_text'), minLength(6))
+    },
+    repeatPassword: {
+      required: helpers.withMessage(t('form_password_helper_required_text'), required),
+      minLength: helpers.withMessage(t('form_password_helper_text'), minLength(6)),
+      sameAs: helpers.withMessage(t('form_password_helper_same_as_text'), sameAs(passwordForm.password))
     }
   }
 })
@@ -185,30 +227,54 @@ const userv$ = useVuelidate(userRules, editableUser)
 const passwordv$ = useVuelidate(passwordRules, passwordForm)
 
 const saveSettings = async () => {
+  let isSavedData = null
+  let isSavedPassword = null
   userv$.value.$validate()
-  if (!userv$.value.$error) {
-    const save = await userSettings({
+  if (passwordForm.password) { passwordv$.value.$validate() }
+  if (
+    !userv$.value.$error &&
+    (editableUser.email !== user.email ||
+    editableUser.login !== user.login ||
+    editableUser.fullname !== user.fullname) &&
+    ((passwordForm.password && !passwordv$.value.$error) || !passwordForm.password)
+  ) {
+    isSavedData = await userSettings({
       email: editableUser.email,
       login: editableUser.login,
       fullname: editableUser.fullname,
       token: token.value
     })
-    if (save) {
-      switchPopup(true)
-    } else {
-      notificationSettings.isOpen = true
-    }
   }
-  if (passwordForm.password) {
-    passwordv$.value.$validate()
+  if (
+    passwordForm.password &&
+    ((
+      (editableUser.email !== user.email ||
+      editableUser.login !== user.login ||
+      editableUser.fullname !== user.fullname) &&
+      !userv$.value.$error
+    ) || (
+      editableUser.email === user.email &&
+      editableUser.login === user.login &&
+      editableUser.fullname === user.fullname
+    ))
+  ) {
     if (!passwordv$.value.$error) {
-      await userSettings({
+      isSavedPassword = await userSettings({
         password: passwordForm.password, token: token.value
       })
     }
   }
   if (editableUser.telegram) {
     await userTelegramAttach({ nick: editableUser.telegram, token: token.value })
+  }
+  if (
+    (isSavedData && isSavedPassword) ||
+    (isSavedData && isSavedPassword === null) ||
+    (isSavedPassword && isSavedData === null)
+  ) {
+    switchPopup(true)
+  } else {
+    notificationSettings.isOpen = true
   }
 }
 
@@ -234,15 +300,15 @@ const goToPage = async (page, query = {}) => {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .account-page{
-    margin-top: 182px;
+    margin-top: 130px;
     position: relative;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     padding: 0 calc(50% - 600px);
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 20px;
     .blurs{
         width: 100%;
         position: absolute;
@@ -288,7 +354,7 @@ const goToPage = async (page, query = {}) => {
             justify-content: space-between;
             align-items: center;
             width: 548px;
-            height: 60px;
+            height: 50px;
             border-radius: 16px 32px 32px 16px;
             background: var(--bg-dark-blue);
             padding:16px 16px;
@@ -297,6 +363,9 @@ const goToPage = async (page, query = {}) => {
             &_active{
                 border-radius: 16px;
                 color: #32D583
+            }
+            .button{
+              height: 50px;
             }
         }
     }
@@ -327,6 +396,7 @@ const goToPage = async (page, query = {}) => {
             right: 0;
             bottom: 0;
             z-index: 10;
+            height: 50px;
         }
         &_telegram{
             .input-custom{
@@ -337,10 +407,6 @@ const goToPage = async (page, query = {}) => {
             }
         }
     }
-}
-
-footer{
-    display: none;
 }
 
 @media (max-width: 1360px) {
@@ -402,10 +468,6 @@ footer{
                 }
             }
         }
-    }
-
-    footer{
-        display: block;
     }
 }
 

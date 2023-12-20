@@ -1,24 +1,27 @@
 <template>
     <div
+        v-if="token"
         class="hint-unit"
         @click="goToUrl(`https://t.me/CurrencyScanner3000Bot`)"
     >
         <div class="hint-unit__text">
-            Арбитражные связки с задержкой всего 2 секунды уже в нашем Telegram боте
+            {{ $t('hint_unit_text') }}
         </div>
         <div class="hint-unit__telegram">
             <svg-icon icon="telegram" />
             <div class="desktop">
-                Перейти
+                {{ $t('hint_unit_tg_desktop') }}
             </div>
             <div class="mobile">
-                Перейти в Telegram бота
+                {{ $t('hint_unit_tg_mobile') }}
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
+const token = useCookie('coinht')
+
 const goToUrl = async (url) => {
   await navigateTo(url, {
     external: true,

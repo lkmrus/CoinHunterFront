@@ -1,7 +1,7 @@
 <template>
     <div class="arbitrage-page">
         <section class="arbitrage-page__content">
-            <h2>Межбиржевой арбитраж</h2>
+            <h2>{{ $t('arbitrage_title') }}</h2>
             <div
                 class="filter"
                 :class="{'inactive': !authenticated}"
@@ -10,7 +10,7 @@
                     <div class="filter-elements">
                         <div class="filter-cryptocouple filter-item">
                             <div class="filter-item__name">
-                                Криптопара
+                                {{ $t('arbitrage_filter_element_1_name') }}
                             </div>
                             <div class="selections">
                                 <selection-custom
@@ -18,7 +18,7 @@
                                     :inactive="!authenticated"
                                     :class="{'selected-tab_small': !isOpen}"
                                     :options="[
-                                        { name: 'Любая'},
+                                        { name: $t('arbitrage_filter_element_1_selection_placeholder') },
                                         { name: 'ETH'},
                                         { name: 'BTC'},
                                         { name: 'LTC'},
@@ -32,7 +32,7 @@
                                         { name: 'BNB'},
                                         { name: 'BCH'},
                                     ]"
-                                    placeholder="Любая"
+                                    :placeholder="$t('arbitrage_filter_element_1_selection_placeholder')"
                                     :active-options="[]"
                                 />
                                 <selection-custom
@@ -40,38 +40,38 @@
                                     :inactive="!authenticated"
                                     :class="{'selected-tab_small': !isOpen}"
                                     :options="[
-                                        { name: 'Любая'},
+                                        { name: $t('arbitrage_filter_element_1_selection_placeholder') },
                                         { name: 'USDT'},
                                     ]"
-                                    placeholder="Любая"
+                                    :placeholder="$t('arbitrage_filter_element_1_selection_placeholder')"
                                     :active-options="[]"
                                 />
                             </div>
                         </div>
                         <div class="filter-cryptoexchanges filter-item">
                             <div class="filter-item__name">
-                                Криптобиржи
+                                {{ $t('arbitrage_filter_element_2_name') }}
                             </div>
                             <selection-custom
                                 :class="{'selected-tab_small': !isOpen}"
                                 :inactive="!authenticated"
                                 :multiple-type="true"
                                 :options="[
-                                    { name: 'Все биржи', is_active: false},
+                                    { name: $t('arbitrage_filter_element_2_selection_placeholder'), is_active: false},
                                     { name: 'Binance', is_active: false},
                                     { name: 'Bybit', is_active: false},
                                     { name: 'Hitbtc', is_active: false},
                                     { name: 'KuCoin', is_active: false},
                                     { name: 'Huobi', is_active: false},
                                 ]"
-                                placeholder="Все биржи"
+                                :placeholder="$t('arbitrage_filter_element_2_selection_placeholder')"
                                 :active-options="[]"
                             />
                         </div>
                         <div class="filter-income-and-notifications">
                             <div class="profit-no-less filter-item">
                                 <div class="filter-item__name">
-                                    Прибыль не менее
+                                    {{ $t('arbitrage_filter_element_3_input_name') }}
                                 </div>
                                 <input-custom
                                     :disabled="!authenticated"
@@ -80,20 +80,20 @@
                             </div>
                             <div class="notification-frequency filter-item">
                                 <div class="filter-item__name">
-                                    Частота уведомлений
+                                    {{ $t('arbitrage_filter_element_3_input_selection_name') }}
                                 </div>
                                 <selection-custom
                                     :class="{'selected-tab_small': !isOpen}"
                                     :inactive="!authenticated"
                                     :options="[
-                                        { name: 'Любая'},
+                                        { name: $t('arbitrage_filter_element_1_selection_placeholder') },
                                         { name: 'BTC'},
                                         { name: 'USDT'},
                                         { name: 'ETH'},
                                         { name: 'USDC'},
                                         { name: 'TRX'},
                                     ]"
-                                    placeholder="Любая"
+                                    :placeholder="$t('arbitrage_filter_element_1_selection_placeholder')"
                                     :active-options="[]"
                                 />
                             </div>
@@ -112,8 +112,15 @@
                     <checkbox-custom
                         default-type
                         :checked="telegramNotifications"
-                        text="Telegram уведомления"
+                        :text="$t('arbitrage_filter_checkbox')"
                         @click="telegramNotifications = !telegramNotifications"
+                    />
+
+                    <checkbox-custom
+                        default-type
+                        :checked="pushNotifications"
+                        :text="$t('arbitrage_filter_checkbox_push')"
+                        @click="pushNotifications = !pushNotifications"
                     />
                 </div>
                 <div
@@ -123,8 +130,15 @@
                     <checkbox-custom
                         default-type
                         :checked="telegramNotifications"
-                        text="TG уведомления"
+                        :text="$t('arbitrage_filter_checkbox_mobile')"
                         @click="telegramNotifications = !telegramNotifications"
+                    />
+
+                    <checkbox-custom
+                        default-type
+                        :checked="pushNotifications"
+                        :text="$t('arbitrage_filter_checkbox_push')"
+                        @click="pushNotifications = !pushNotifications"
                     />
                 </div>
             </div>
@@ -161,43 +175,45 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '~/store/auth'
+const { t } = useI18n({ useScope: 'global' })
 
 const { authenticated } = storeToRefs(useAuthStore())
 
 const telegramNotifications = ref(false)
+const pushNotifications = ref(false)
 const haveFilter = ref(false)
 const filterButtonText = reactive({
-  name: 'Добавить',
+  name: t('arbitrage_filter_button_text_name'),
   icon: ''
 })
 
 const pageText = reactive({
-  heading: 'Оформите подписку, чтобы отслеживать больше криптопар',
-  text: 'До 30 пар онлайн, настройка уведомлений в Telegram, внутрибиржевой и межбиржевой арбитраж',
-  button_text: 'Оформить подписку',
+  heading: t('arbitrage_auth_text_heading'),
+  text: t('arbitrage_auth_text_description'),
+  button_text: t('arbitrage_auth_text_button'),
   button_method: { page: '/payment', query: {} }
 })
 
 watch(() => haveFilter, (newval) => {
   if (newval.value === true) {
-    filterButtonText.name = 'Сброс'
+    filterButtonText.name = t('arbitrage_filter_button_reset_text_name')
     filterButtonText.icon = 'close'
   } else {
-    filterButtonText.name = 'Добавить'
+    filterButtonText.name = t('arbitrage_filter_button_text_name')
     filterButtonText.icon = ''
   }
 }, { immediate: true, deep: true })
 
 watchEffect(() => {
   if (authenticated.value) {
-    pageText.heading = 'Оформите подписку, чтобы отслеживать больше криптопар'
-    pageText.heading = 'До 30 пар онлайн, настройка уведомлений в Telegram, внутрибиржевой и межбиржевой арбитраж'
-    pageText.heading = 'Оформить подписку'
+    pageText.heading = t('arbitrage_auth_text_heading')
+    pageText.text = t('arbitrage_auth_text_description')
+    pageText.button_text = t('arbitrage_auth_text_button')
     pageText.button_method = { page: '/payment', query: {} }
   } else {
-    pageText.heading = 'Зарегистрируйтесь чтобы отслеживать криптопары'
-    pageText.heading = 'После регистрации вам будет доступно до пяти криптопар в режиме онлайн'
-    pageText.heading = 'Зарегистрироваться'
+    pageText.heading = t('arbitrage_inactive_text_heading')
+    pageText.text = t('arbitrage_inactive_text_description')
+    pageText.button_text = t('arbitrage_inactive_text_button')
     pageText.button_method = { page: '/auth', query: { type: 'registration' } }
   }
 })
@@ -304,6 +320,7 @@ const goToPage = async (page, query = {}) => {
         &__checkbox{
             display: flex;
             justify-content: flex-end;
+            gap: 15px;
             &_mobile{
                 display: none;
             }
@@ -381,7 +398,7 @@ const goToPage = async (page, query = {}) => {
 @media (max-width: 920px) {
     .arbitrage-page{
         .filter{
-            margin-bottom: 135px;
+            margin-bottom: 175px;
             position: relative;
             &__content{
                 width: 100%;
@@ -437,17 +454,18 @@ const goToPage = async (page, query = {}) => {
                 button{
                     @include text-md-mixin;
                     position: absolute;
-                    bottom: -100px;
+                    bottom: -140px;
                     width: 100%;
                 }
             }
             &__checkbox{
                 position: absolute;
                 left: 12px;
-                bottom: -40px;
+                bottom: -80px;
                 display: none;
                 &_mobile{
                     display: flex;
+                    flex-direction: column;
                 }
             }
         }

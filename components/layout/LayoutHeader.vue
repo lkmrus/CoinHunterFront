@@ -49,21 +49,48 @@
                 </ol>
             </nav>
             <div class="right-content">
-                <div class="lang">
-                    Русский
-                    <svg-icon icon="down-arrow" />
+                <div
+                    class="lang"
+                    @mouseleave="langOpen = false"
+                >
+                    <div
+                        class="lang__name"
+                        @click="langOpen = !langOpen"
+                    >
+                        {{ activeLocaleName.name }}
+                        <div
+                            class="lang-drop-down"
+                            :class="{'lang-drop-down_open': langOpen}"
+                        >
+                            <svg-icon icon="down-arrow" />
+                        </div>
+                    </div>
+                    <div
+                        class="menu"
+                        :class="{'menu_open' : langOpen}"
+                    >
+                        <div
+                            v-for="lang in locales"
+                            :key="lang.code"
+                            class="menu__item"
+                            :class="{'menu__item_active': activeLocaleName.code === lang.code}"
+                            @click="setLang(lang.code)"
+                        >
+                            {{ lang.name }}
+                        </div>
+                    </div>
                 </div>
                 <div
                     v-if="!isAuthenticated"
                     class="buttons"
                 >
                     <button-custom
-                        value="Регистрация"
+                        :value="$t('layout_header_registration')"
                         @click="goToAuthPage('/auth', {type: 'registration'})"
                     />
                     <button-custom
                         dark-blue
-                        value="Вход"
+                        :value="$t('layout_header_login')"
                         @click="goToAuthPage('/auth')"
                     />
                 </div>
@@ -94,13 +121,13 @@
                             class="menu__item"
                             @click="goToAuthPage('/account')"
                         >
-                            Личный кабинет
+                            {{ $t('layout_header_account_menu_lk') }}
                         </div>
                         <div
                             class="menu__item"
                             @click="logout()"
                         >
-                            Выйти
+                            {{ $t('layout_header_account_menu_logout') }}
                         </div>
                     </div>
                 </div>
@@ -121,30 +148,36 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '~/store/auth'
+const { t } = useI18n({ useScope: 'global' })
 const { authenticated } = await storeToRefs(useAuthStore())
 const { logUserOut } = useAuthStore()
+const { locale, locales } = useI18n()
+const activeLocaleName = computed(() => {
+  return (locales.value).find(i => i.code === locale.value)
+})
 
 const isAuthenticated = ref(authenticated.value)
 const accountMenuOpen = ref(false)
 const headerKey = ref(0)
+const langOpen = ref(false)
 
 const hamburgerOpen = ref(false)
 
 const navs = reactive([
+//   {
+//     name: t('layout_header_nav_1_name'),
+//     menu: [
+//       { name: t('layout_nav_1_menu_1'), link: '#' },
+//       { name: t('layout_nav_1_menu_2'), link: '#' }
+//     ],
+//     isActive: false
+//   },
   {
-    name: 'Компания',
+    name: t('layout_header_nav_2_name'),
     menu: [
-      { name: 'Преимущества', link: '#' },
-      { name: 'Сообщество', link: '#' }
-    ],
-    isActive: false
-  },
-  {
-    name: 'Инструменты арбитража',
-    menu: [
-      { name: 'Межбиржевой арбитраж', link: '#' },
-      { name: 'Внутрибиржевой арбитраж', link: '#' },
-      { name: 'Биржи и коммиссии', link: '#' }
+      { name: t('layout_nav_2_menu_1'), link: '/arbitrage' }
+    //   { name: t('layout_nav_2_menu_2'), link: '#' },
+    //   { name: t('layout_nav_2_menu_3'), link: '#' }
     ],
     isActive: false
   }
@@ -155,6 +188,12 @@ const goToAuthPage = async (page, query = {}) => {
     path: page,
     query
   })
+}
+
+const setLang = async (langCode) => {
+  const siteLang = await useCookie('i18n_redirected')
+  siteLang.value = langCode
+  location.reload()
 }
 
 const getArrowColor = (isActive) => {
@@ -240,14 +279,24 @@ const logout = async () => {
         }
     }
     .lang{
-        @include text-md-mixin;
-        margin-right: 24px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        cursor: pointer;
-        &:hover{
-            opacity: 0.8;
+        position: relative;
+        &__name{
+            @include text-md-mixin;
+            margin-right: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            &:hover{
+                opacity: 0.8;
+            }
+            .lang-drop-down{
+                transition: 0.3s;
+                &_open{
+                    transition: 0.3s;
+                    transform: rotate(180deg);
+                }
+            }
         }
     }
     .buttons{
@@ -286,33 +335,6 @@ const logout = async () => {
             right: -50%;
             left: auto;
             top: 44px;
-        }
-    }
-    .menu{
-        user-select: none;
-        display: none;
-        width: fit-content;
-        position: absolute;
-        left: -5px;
-        top: 23px;
-        padding: 6px 0;
-        border-radius: 16px;
-        overflow: hidden;
-        z-index: 2000;
-        background-color: var(--bg-dark-blue);
-        &__item{
-            display: block;
-            cursor: pointer;
-            padding: 8px 16px;
-            text-wrap: nowrap;
-            color: var(--text-gray-dark);
-            &:hover{
-                background-color: var(--bg-blue);
-                color: var(--text-color);
-            }
-        }
-        &_open{
-            display: block;
         }
     }
 }

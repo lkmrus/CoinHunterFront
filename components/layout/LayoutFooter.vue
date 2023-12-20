@@ -6,33 +6,50 @@
                     class="logo"
                     icon="logo"
                 />
-                <div class="lang">
-                    Русский
-                    <svg-icon icon="down-arrow" />
+                <div
+                    class="lang"
+                    @mouseleave="langOpen = false"
+                >
+                    <div
+                        class="lang__name"
+                        @click="langOpen = !langOpen"
+                    >
+                        {{ activeLocaleName.name }}
+                        <div class="down-arrow">
+                            <svg-icon
+                                :class="{'down-arrow_open': langOpen}"
+                                icon="down-arrow"
+                            />
+                        </div>
+                    </div>
+                    <div
+                        class="menu"
+                        :class="{'menu_open' : langOpen}"
+                    >
+                        <div
+                            v-for="lang in locales"
+                            :key="lang.code"
+                            class="menu__item"
+                            :class="{'menu__item_active': activeLocaleName.code === lang.code}"
+                            @click="setLang(lang.code)"
+                        >
+                            {{ lang.name }}
+                        </div>
+                    </div>
                 </div>
             </div>
             <nav class="navigation">
                 <ol class="navigation__items">
-                    <li class="nav-1">
-                        Межбиржевой арбитраж
-                    </li>
-                    <li class="nav-2">
-                        Преимущества
-                    </li>
-                    <li class="nav-3">
-                        Гайды
-                    </li>
-                    <li class="nav-4">
-                        Внутрибиржевой арбитраж
-                    </li>
-                    <li class="nav-5">
-                        Сообщество
-                    </li>
-                    <li class="nav-6">
-                        Обучающие видео
-                    </li>
-                    <li class="nav-7">
-                        Биржи и коммиссии
+                    <li
+                        v-for="(navItem, itemIndex) in navItems"
+                        :key="`footer-item-${itemIndex}`"
+                    >
+                        <NuxtLink
+                            :class="`nav-${itemIndex + 1}`"
+                            :to="navItem.link"
+                        >
+                            {{ navItem.name }}
+                        </NuxtLink>
                     </li>
                 </ol>
             </nav>
@@ -41,6 +58,22 @@
 </template>
 
 <script setup>
+const { t } = useI18n({ useScope: 'global' })
+const { locale, locales } = useI18n()
+const activeLocaleName = computed(() => {
+  return (locales.value).find(i => i.code === locale.value)
+})
+const langOpen = ref(false)
+
+const navItems = reactive([
+  { name: t('layout_nav_2_menu_1'), link: '/arbitrage' }
+//   { name: t('layout_nav_1_menu_1'), link: '#' },
+//   { name: t('layout_nav_3_menu_1'), link: '#' },
+//   { name: t('layout_nav_2_menu_2'), link: '#' },
+//   { name: t('layout_nav_1_menu_2'), link: '#' },
+//   { name: t('layout_nav_3_menu_2'), link: '#' },
+//   { name: t('layout_nav_2_menu_3'), link: '#' }
+])
 </script>
 
 <style lang="scss" scoped>
@@ -56,22 +89,35 @@
             display: flex;
             gap: 30px;
             flex-direction: column;
-            justify-content: center;
         }
         .logo{
             cursor: pointer;
             margin-right: 32px;
         }
         .lang{
-            @include text-md-mixin;
-            color: var(--text-gray-light);
-            padding-left: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            &:hover{
-                opacity: 0.8;
+            padding-left: 12px;
+            position: relative;
+            &__name{
+                @include text-md-mixin;
+                margin-right: 24px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                cursor: pointer;
+                &:hover{
+                    opacity: 0.8;
+                }
+                .down-arrow{
+                    transition: 0.3s;
+                    &_open{
+                        transition: 0.3s;
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+            .menu{
+                bottom: auto;
+                top: -100px
             }
         }
         .navigation{
@@ -83,6 +129,9 @@
                 grid-row-gap: 16px;
                 li{
                     cursor: pointer;
+                    a {
+                        color: #EBEBED
+                    }
                 }
             }
         }

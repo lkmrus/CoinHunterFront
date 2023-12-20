@@ -73,6 +73,37 @@ h5{
   @include h5-mixin;
 }
 
+.menu{
+  user-select: none;
+  display: none;
+  width: fit-content;
+  position: absolute;
+  left: -5px;
+  top: 23px;
+  padding: 6px 0;
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 2000;
+  background-color: var(--bg-dark-blue);
+  &__item{
+      display: block;
+      cursor: pointer;
+      padding: 8px 16px;
+      text-wrap: nowrap;
+      color: var(--text-gray-dark);
+      &:hover{
+          background-color: var(--bg-blue);
+          color: var(--text-color);
+      }
+      &_active{
+          color: var(--text-white-blue);
+      }
+  }
+  &_open{
+      display: block;
+  }
+}
+
 @media (max-width: 1360px) {
     section, header, footer {
         padding: 0 calc(50% - 432px);

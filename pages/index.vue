@@ -8,12 +8,12 @@
                     <div class="blur blur-3" />
                 </div>
             </div>
-            <h1>Сервис подбора арбитражных сделок</h1>
-            <h2>на рынке криптовалют</h2>
+            <h1>{{ $t('index_service_title') }}</h1>
+            <h2>{{ $t('index_service_subtitle') }}</h2>
             <nuxt-link to="/payment">
                 <button-custom
                     class="big-h"
-                    value="Выбрать тариф"
+                    :value="$t('index_service_tariff_btn')"
                 />
             </nuxt-link>
             <div class="progress">
@@ -22,7 +22,7 @@
                         30
                     </p>
                     <p class="description">
-                        арбитражных пар прямо сейчас с прибылью 1-25%
+                        {{ $t('index_service_progress_item_1_description_1') }}
                     </p>
                 </div>
                 <div class="progress__item">
@@ -30,7 +30,8 @@
                         10
                     </p>
                     <p class="description">
-                        бирж уже подключено <br> к сервису
+                        {{ $t('index_service_progress_item_2_description_1') }} <br>
+                        {{ $t('index_service_progress_item_2_description_2') }}
                     </p>
                 </div>
             </div>
@@ -41,8 +42,11 @@
             >
         </section>
         <section class="about-arbitration">
-            <h1>Про арбитраж <br> криптовалют</h1>
-            <h2>коротко</h2>
+            <h1>
+                {{ $t('index_arbitration_title_1') }} <br>
+                {{ $t('index_arbitration_title_2') }}
+            </h1>
+            <h2>{{ $t('index_arbitration_subtitle') }}</h2>
             <div class="why-us">
                 <div class="why-us__cripto">
                     <div class="cripto-item">
@@ -108,22 +112,19 @@
                 </div>
                 <div class="why-us__text">
                     <h4>
-                        Все мы знаем, что рынки волатильны, <br> и на одной бирже курс токена может
-                        расти быстрее, чем на другой и разница между биржами достигает 50% в круг
+                        {{ $t('index_arbitration_why_us_title_1') }} <br>
+                        {{ $t('index_arbitration_why_us_title_2') }}
                     </h4>
                     <p>
-                        Самим руками отслеживать тяжело разницу, и поэтому мы
-                        разработали арбитражный бот CoinHunterBot - для экономии вашего времени.
+                        {{ $t('index_arbitration_why_us_description') }}
                     </p>
                 </div>
             </div>
             <div class="key-benefits">
-                <h2>Основные преимущества</h2>
+                <h2>{{ $t('index_arbitration_key_benefits_title') }}</h2>
                 <p>
-                    Это самый простой способ для поиска выгодных связок между биржами
-                    в режиме реального времени. <br> Так же у вас есть уникальная возможность
-                    получать уведомления в формате JSON на нужный вам адрес - это
-                    позволит настроить собственный бот для торговли!
+                    {{ $t('index_arbitration_key_benefits_description_1') }} <br>
+                    {{ $t('index_arbitration_key_benefits_description_2') }}
                 </p>
                 <img
                     class="robot"
@@ -140,16 +141,15 @@
                     <div class="blur blur-3" />
                 </div>
             </div>
-            <h1>И все это в Telegram</h1>
-            <h2>бот с межбиржевыми связками</h2>
+            <h1>{{ $t('index_all_in_telegram_title') }}</h1>
+            <h2>{{ $t('index_all_in_telegram_subtitle') }}</h2>
             <div class="grid">
                 <div class="grid-item exchanges">
                     <div class="grid-item__name">
-                        Биржи
+                        {{ $t('index_all_in_telegram_exchanges_title') }}
                     </div>
                     <div class="grid-item__description">
-                        Настройка бирж прямо в боте: Binance, Bybit, Bittrex,
-                        Hitbtc, Poloniex, KuCoin, Gate.io, OKX, Huobi, Exmo
+                        {{ $t('index_all_in_telegram_exchanges_subtitle') }}
                     </div>
                     <div class="exchanges__items">
                         <svg-icon
@@ -163,10 +163,11 @@
                 </div>
                 <div class="grid-item grid-item_blue filters">
                     <div class="grid-item__name">
-                        Фильтры
+                        {{ $t('index_all_in_telegram_card_1_title') }}
                     </div>
                     <div class="grid-item__description">
-                        Фильтры по размеру профита <br> и максимальному объему в связках
+                        {{ $t('index_all_in_telegram_card_1_subtitle_1') }} <br>
+                        {{ $t('index_all_in_telegram_card_1_subtitle_2') }}
                     </div>
                     <img
                         src="@/assets/img/setting-iso.png"
@@ -175,10 +176,10 @@
                 </div>
                 <div class="grid-item speed">
                     <div class="grid-item__name">
-                        Скорость
+                        {{ $t('index_all_in_telegram_card_2_title') }}
                     </div>
                     <div class="grid-item__description">
-                        Поступление арбитражных связок в ваш Telegram с задержкой всего 2 секунды
+                        {{ $t('index_all_in_telegram_card_2_subtitle_1') }}
                     </div>
                     <img
                         src="@/assets/img/speed-all-on-telegram.png"
@@ -187,10 +188,11 @@
                 </div>
                 <div class="grid-item adaptability">
                     <div class="grid-item__name">
-                        Адаптивность
+                        {{ $t('index_all_in_telegram_card_3_title') }}
                     </div>
                     <div class="grid-item__description">
-                        Возможность заниматься арбитражем <br> с мобильного устройства
+                        {{ $t('index_all_in_telegram_card_3_subtitle_1') }} <br>
+                        {{ $t('index_all_in_telegram_card_3_subtitle_2') }}
                     </div>
                     <div class="adaptability__items">
                         <img
@@ -205,10 +207,10 @@
                 </div>
                 <div class="grid-item guide">
                     <div class="grid-item__name">
-                        Гайд
+                        {{ $t('index_all_in_telegram_card_4_title') }}
                     </div>
                     <div class="grid-item__description">
-                        Удобный гайд по арбитражной торговле
+                        {{ $t('index_all_in_telegram_card_4_subtitle_1') }}
                     </div>
                     <img
                         src="@/assets/img/guide-all-on-telegram.png"
@@ -217,11 +219,11 @@
                 </div>
                 <div class="grid-item grid-item_blue connection">
                     <div class="grid-item__name">
-                        Подключение
+                        {{ $t('index_all_in_telegram_card_5_title') }}
                     </div>
                     <div class="grid-item__description">
-                        Подключение к боту в личном кабинете на сайте после оформления подписки.
-                        <br> Можете пользоваться ботом сразу после регистрации
+                        {{ $t('index_all_in_telegram_card_5_subtitle_1') }} <br>
+                        {{ $t('index_all_in_telegram_card_5_subtitle_2') }}
                     </div>
                 </div>
             </div>
@@ -255,75 +257,77 @@
                     <div class="blur blur-3" />
                 </div>
             </div>
-            <h1>Доступ к арбитражным инструментам</h1>
-            <h2>на месяц</h2>
+            <h1>{{ $t('index_access_arbitrage_title') }}</h1>
+            <h2>{{ $t('index_access_arbitrage_subtitle') }}</h2>
             <div class="tarifs">
                 <div class="tarif start-tarif">
                     <div class="tarif__heading">
                         <div class="tarif__name">
-                            Стартовый
+                            {{ $t('index_access_arbitrage_tarif_1_name') }}
                         </div>
                     </div>
                     <div class="tarif__price">
-                        Бесплатно
+                        {{ $t('index_access_arbitrage_tarif_1_price') }}
                     </div>
                     <div class="tarif__provides">
                         <div class="include-item provide-item">
                             <svg-icon icon="approve" />
-                            Отслеживание до <span>30</span> 5 криптопар онлайн
+                            {{ $t('index_access_arbitrage_tarif_1_provide_1_1') }}
+                            <span>30</span>
+                            {{ $t('index_access_arbitrage_tarif_1_provide_1_2') }}
                         </div>
                         <div class="include-item provide-item">
                             <svg-icon icon="approve" />
-                            Межбиржевой арбитраж
+                            {{ $t('index_access_arbitrage_tarif_provide_2') }}
                         </div>
                         <div class="include-item provide-item">
                             <svg-icon icon="approve" />
-                            Внутрибиржевой арбитраж
+                            {{ $t('index_access_arbitrage_tarif_provide_3') }}
                         </div>
                         <div class="include-item provide-item">
                             <svg-icon icon="approve" />
-                            Фильтры
+                            {{ $t('index_access_arbitrage_tarif_provide_4') }}
                         </div>
                         <div class="include-item provide-item">
                             <svg-icon icon="approve" />
-                            Установка времени оповещения
+                            {{ $t('index_access_arbitrage_tarif_provide_5') }}
                         </div>
                         <div class="exclude-item provide-item">
                             <svg-icon icon="exclude" />
-                            Уведомления в Telegram
+                            {{ $t('index_access_arbitrage_tarif_provide_6') }}
                         </div>
                         <div class="exclude-item provide-item">
                             <svg-icon icon="exclude" />
-                            Уведомления о доступных выгодных связках для межбиржевого арбитража
+                            {{ $t('index_access_arbitrage_tarif_provide_7') }}
                         </div>
                         <div class="exclude-item provide-item">
                             <svg-icon icon="exclude" />
-                            Цены бирж для каждой пары
+                            {{ $t('index_access_arbitrage_tarif_provide_8') }}
                         </div>
                         <div class="exclude-item provide-item">
                             <svg-icon icon="exclude" />
-                            Получение спредов в формате JSON для вашего бота
+                            {{ $t('index_access_arbitrage_tarif_provide_9') }}
                         </div>
                     </div>
                     <nuxt-link to="/auth?type=registration">
                         <button-custom
                             class="big-h"
-                            value="Зарегистрироваться"
+                            :value="$t('index_access_arbitrage_tarif_1_button')"
                         />
                     </nuxt-link>
                 </div>
                 <div class="tarif premium-tarif">
                     <div class="tarif__heading">
                         <div class="tarif__name">
-                            Премиум
+                            {{ $t('index_access_arbitrage_tarif_2_name') }}
                         </div>
                         <div class="tarif__badge">
-                            Самый популярный
+                            {{ $t('index_access_arbitrage_tarif_2_badge') }}
                         </div>
                     </div>
                     <div class="tarif__price">
                         <span class="big">$20</span>
-                        <span class="small"> в месяц</span>
+                        <span class="small"> {{ $t('index_access_arbitrage_tarif_2_price') }}</span>
                     </div>
                     <div class="tarif__provides">
                         <div class="include-item provide-item provide-item_blue">
@@ -331,70 +335,70 @@
                                 icon="approve"
                                 fill="#0065FF"
                             />
-                            Отслеживание до 30 криптопар онлайн
+                            {{ $t('index_access_arbitrage_tarif_2_provide_1') }}
                         </div>
                         <div class="include-item provide-item">
                             <svg-icon
                                 icon="approve"
                                 fill="#101127"
                             />
-                            Межбиржевой арбитраж
+                            {{ $t('index_access_arbitrage_tarif_provide_2') }}
                         </div>
                         <div class="include-item provide-item">
                             <svg-icon
                                 icon="approve"
                                 fill="#101127"
                             />
-                            Внутрибиржевой арбитраж
+                            {{ $t('index_access_arbitrage_tarif_provide_3') }}
                         </div>
                         <div class="include-item provide-item">
                             <svg-icon
                                 icon="approve"
                                 fill="#101127"
                             />
-                            Фильтры
+                            {{ $t('index_access_arbitrage_tarif_provide_4') }}
                         </div>
                         <div class="include-item provide-item">
                             <svg-icon
                                 icon="approve"
                                 fill="#101127"
                             />
-                            Установка времени оповещения
+                            {{ $t('index_access_arbitrage_tarif_provide_5') }}
                         </div>
                         <div class="include-item provide-item">
                             <svg-icon
                                 icon="approve"
                                 fill="#101127"
                             />
-                            Уведомления в Telegram
+                            {{ $t('index_access_arbitrage_tarif_provide_6') }}
                         </div>
                         <div class="include-item provide-item">
                             <svg-icon
                                 icon="approve"
                                 fill="#101127"
                             />
-                            Уведомления о доступных выгодных связках для межбиржевого арбитража
+                            {{ $t('index_access_arbitrage_tarif_provide_7') }}
                         </div>
                         <div class="include-item provide-item">
                             <svg-icon
                                 icon="approve"
                                 fill="#101127"
                             />
-                            Цены бирж для каждой пары
+                            {{ $t('index_access_arbitrage_tarif_provide_8') }}
                         </div>
                         <div class="include-item provide-item">
                             <svg-icon
                                 icon="approve"
                                 fill="#101127"
                             />
-                            Получение спредов в формате JSON для вашего бота
+                            {{ $t('index_access_arbitrage_tarif_provide_9') }}
                         </div>
                     </div>
                     <nuxt-link to="/payment">
                         <button-custom
                             dark-blue
                             class="big-h"
-                            value="Выбрать тариф"
+                            :value="$t('index_access_arbitrage_tarif_2_button')"
                         />
                     </nuxt-link>
                 </div>
@@ -408,32 +412,26 @@
                     <div class="blur blur-3" />
                 </div>
             </div>
-            <h1>Как работает бот</h1>
-            <h2>объясняем с примерами</h2>
+            <h1>{{ $t('index_how_bot_works_title') }}</h1>
+            <h2>{{ $t('index_how_bot_works_subtitle') }}</h2>
             <div class="grid">
                 <div class="grid-item grid-item_blue security">
                     <div class="grid-item__name">
-                        Безопасность
+                        {{ $t('index_how_bot_works_card_1_title') }}
                     </div>
                     <div class="grid-item__description">
-                        CoinHunter не работает с Вашими деньгами, мы не подключаемся по API <br>
-                        к балансам ваших бирж, Вы нигде не подключаете свои кошельки.
-                        Полностью ручной бот, который работает в облаке, для безопасности ваших денег.
+                        {{ $t('index_how_bot_works_card_1_description_1') }} <br>
+                        {{ $t('index_how_bot_works_card_1_description_2') }}
                     </div>
                 </div>
                 <div class="grid-item example">
                     <div class="grid-item__name">
-                        Пример
+                        {{ $t('index_how_bot_works_card_2_title') }}
                     </div>
                     <div class="grid-item__description">
-                        Например, Вы купили LTC по 72$, его стоимость начала расти.
-                        Предположим, Вы его хотите держать до 77$. Пока монета растет,
-                        вы добавляете ее в бот для отслеживания разницы между биржами,
-                        и можете в любой момент добавить и удалить любую монету, которые
-                        торгуются на биржах.
+                        {{ $t('index_how_bot_works_card_2_description_1') }}
                         <br><br>
-                        Далее, вы выбираете процент спреда. Как только разница достигнет
-                        установленного процента  вы получите уведомление в  в Telegram.
+                        {{ $t('index_how_bot_works_card_2_description_2') }}
                     </div>
                     <img
                         src="@/assets/img/example-change.png"
@@ -442,26 +440,23 @@
                 </div>
                 <div class="grid-item opportunities">
                     <div class="grid-item__name">
-                        Возможности
+                        {{ $t('index_how_bot_works_card_3_title') }}
                     </div>
                     <div class="grid-item__description">
-                        Вы мечтали о пассивном доходе? Наши инструменты помогут вам наслаждаться
-                        отдыхом, в то время, пока бот ищет выгодные спреды.
-                        И как приятный бонус - у нас, действительно, самое выгодное предложение на рынке
+                        {{ $t('index_how_bot_works_card_3_description_1') }}
                     </div>
                 </div>
                 <div class="grid-item grid-item_blue advantages">
                     <div class="grid-item__name">
-                        Преимущества
+                        {{ $t('index_how_bot_works_card_4_title') }}
                     </div>
                     <div class="grid-item__description">
-                        Вы экономите время для поиска спредов и получаете выгодные предложения
-                        в соответствии с заданными фильтрами в удобном для вас формате в онлайн режиме.
+                        {{ $t('index_how_bot_works_card_4_description_1') }}
                     </div>
                     <button-custom
                         dark-blue
                         class="big-h"
-                        value="Начать пользоваться"
+                        :value="$t('index_how_bot_works_card_4_button')"
                         @click="startUsing()"
                     />
                     <img
@@ -490,37 +485,49 @@
                     <div class="blur blur-3" />
                 </div>
             </div>
-            <h1>Остались вопросы?</h1>
-            <h2>ответим с удовольствием </h2>
+            <h1>{{ $t('index_any_questions_title') }}</h1>
+            <h2>{{ $t('index_any_questions_subtitle') }}</h2>
             <form
                 class="form"
             >
                 <div class="form-item">
                     <input-custom
-                        v-model="name"
-                        title="Имя"
-                        placeholder="Как к вам обращаться"
+                        v-model="questionForm.name"
+                        :title="$t('index_any_questions_name')"
+                        :placeholder="$t('index_any_questions_name_placeholder')"
+                        :i-error="v$.name.$error"
+                        :i-error-name="v$.name.minLength.$message"
                     />
                 </div>
                 <div class="form-item">
                     <input-custom
-                        v-model="email"
+                        v-model="questionForm.email"
                         title="Email"
                         placeholder="name@example.com"
+                        :i-error="v$.email.$error"
+                        :i-error-name="v$.email.email.$message"
+                        @change="v$.email.$touch"
                     />
                 </div>
                 <div class="textarea form-item">
                     <div class="textarea__title">
-                        Ваш вопрос
+                        {{ $t('index_any_questions_question') }}
                     </div>
                     <textarea
-                        v-model="question"
-                        placeholder="Напишите, что непонятно"
+                        v-model="questionForm.question"
+                        :class="{'error': v$.question.$error }"
+                        :placeholder="$t('index_any_questions_question_placeholder')"
                     />
+                    <div
+                        v-if="v$.question.$error"
+                        class="input-error"
+                    >
+                        {{ v$.question.required.$message }}
+                    </div>
                 </div>
                 <button-custom
                     class="big-h"
-                    value="Отправить"
+                    :value="$t('index_any_questions_button')"
                     @click="sendMail()"
                 />
             </form>
@@ -538,9 +545,14 @@
                     <div class="blur blur-3" />
                 </div>
             </div>
-            <h1>Что о нас говорят клиенты</h1>
-            <h2>отзывы</h2>
+            <h1>{{ $t('index_review_title') }}</h1>
+            <h2>{{ $t('index_review_subtitle') }}</h2>
             <swiper
+                :modules="[SwiperAutoplay, SwiperEffectCreative]"
+                :autoplay="{
+                    delay: 4000,
+                    disableOnInteraction: true,
+                }"
                 class="reviews"
                 slides-per-view="auto"
                 :loop="true"
@@ -557,9 +569,8 @@
         </section>
         <popup-sending
             id="popup-sending"
-            title="Данные успешно отправлены"
-            description="Мы уже получили их и передали нашим экспертам.
-                Они свяжутся с вами, чтобы помочь ответить на все ваши вопросы. До скорой встречи!"
+            :title="$t('index_success_form_title')"
+            :description="$t('index_success_form_description')"
             @close="switchPopup(false)"
         />
         <notification-unit
@@ -573,15 +584,51 @@
 </template>
 
 <script setup>
-const name = ref('')
-const email = ref('')
-const question = ref('')
+import { required, email, minLength, helpers } from '@vuelidate/validators'
+import { useVuelidate } from '@vuelidate/core'
+const { t } = useI18n({ useScope: 'global' })
 
-const sendMail = () => {
-  if (name.value && email.value && question.value) {
-    switchPopup(true)
-  } else {
-    notificationSettings.isOpen = true
+const questionForm = reactive({
+  name: '',
+  email: '',
+  question: ''
+})
+
+const questionRules = computed(() => {
+  return {
+    name: {
+      required: helpers.withMessage(t('form_email_helper_required_text'), required),
+      minLength: helpers.withMessage(t('form_name_helper_text'), minLength(3))
+    },
+    email: {
+      required: helpers.withMessage(t('form_email_helper_required_text'), required),
+      email: helpers.withMessage(t('form_email_helper_text'), email)
+    },
+    question: {
+      required: helpers.withMessage(t('form_question_helper_required_text'), required)
+    }
+  }
+})
+
+const v$ = useVuelidate(questionRules, questionForm)
+
+const sendMail = async () => {
+  v$.value.$validate()
+  if (!v$.value.$error) {
+    const { error } = await useFetch('/api/users/question', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: questionForm.email,
+        name: questionForm.name,
+        text: questionForm.question
+      })
+    })
+    if (error.value) {
+      notificationSettings.isOpen = true
+    } else {
+      switchPopup(true)
+    }
   }
 }
 
@@ -604,7 +651,6 @@ const switchPopup = (show) => {
 
 const startUsing = () => {
   const token = useCookie('coinht')
-  console.log(token.value)
   if (token.value) {
     navigateTo('/arbitrage', { replace: true })
   } else {
@@ -614,10 +660,8 @@ const startUsing = () => {
 
 const notificationSettings = reactive({
   isOpen: false,
-  title: 'Не удалось отправить ваши контакты',
-  description: `Непридвиденные обстоятельства могут подкарауливать нас всех.
-                Пожалуйста, попробуйте отправить свой вопрос ещё раз и проверьте
-                свое интернет-соединение.`
+  title: t('index_notification_settings_error_title'),
+  description: t('index_notification_settings_error_description')
 })
 
 const exchangesItems = reactive([

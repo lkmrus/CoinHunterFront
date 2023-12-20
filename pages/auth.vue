@@ -63,7 +63,7 @@ onMounted(() => {
 </script>
 <style lang="scss">
 .auth-page{
-  padding-top: 112px;
+  padding-top: 68px;
   position: relative;
     display: flex;
     &__left-content{

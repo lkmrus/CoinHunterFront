@@ -1,32 +1,18 @@
 <template>
     <section class="table">
         <h2 class="table__title">
-            Таблица
+            {{ $t('table_unit_title') }}
         </h2>
         <div class="table__content">
             <table>
                 <thead>
                     <tr>
-                        <th>
-                            Пара
-                        </th>
-                        <th class="wide">
-                            Биржи
-                        </th>
-                        <th>
-                            Прибыль
-                        </th>
-                        <th>
-                            Цена покупки
-                        </th>
-                        <th>
-                            Цена продажи
-                        </th>
-                        <th class="wide">
-                            Время обновления (GMT+3)
-                        </th>
-                        <th>
-                            TG уведомления
+                        <th
+                            v-for="(item, itemIndex) in tableHeader"
+                            :key="`header-item-${itemIndex}`"
+                            :class="{'wide': item.is_wide}"
+                        >
+                            {{ item.name }}
                         </th>
                     </tr>
                 </thead>
@@ -50,6 +36,18 @@
 </template>
 
 <script setup>
+const { t } = useI18n({ useScope: 'global' })
+
+const tableHeader = reactive([
+  { name: t('table_unit_h1'), is_wide: false },
+  { name: t('table_unit_h2'), is_wide: true },
+  { name: t('table_unit_h3'), is_wide: false },
+  { name: t('table_unit_h4'), is_wide: false },
+  { name: t('table_unit_h5'), is_wide: false },
+  { name: t('table_unit_h6'), is_wide: true },
+  { name: t('table_unit_h7'), is_wide: false }
+])
+
 const infoRows = [
   {
     pair: 'USDT/BTC',

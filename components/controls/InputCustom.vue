@@ -29,13 +29,21 @@
             :required="required"
             :size="size"
             :step="step"
-            :type="type"
+            :type="localType"
 
             @input="onInput($event)"
             @change="onChange($event)"
             @focus="focused = true"
             @blur="focused = false"
         >
+        <svg-icon
+            v-if="passwordType"
+            class="password-icon"
+            :icon="localType === 'password' ? 'eye-hide' : 'eye-show'"
+            width="32"
+            height="32"
+            @click="localType === 'password' ? localType = 'text' : localType = 'password'"
+        />
     </div>
     <div
         v-if="iError"
@@ -72,6 +80,7 @@ const props = defineProps({
       'number' |
       'password' |
       'search' |
+      'text' |
       undefined),
     default: null
   },
@@ -84,8 +93,11 @@ const props = defineProps({
   bIcon: { type: String, default: null },
 
   // Input Types
-  default: { type: Boolean, default: false }
+  default: { type: Boolean, default: false },
+  passwordType: { type: Boolean, default: false }
 })
+
+const localType = props.passwordType ? ref('password') : ref(props.type)
 
 const emit = defineEmits(['input', 'focus', 'change', 'update:modelValue'])
 

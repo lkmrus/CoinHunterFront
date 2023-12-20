@@ -14,14 +14,14 @@
                     height="56"
                     icon="usdt"
                 />
-                <h2>Оплата подписки</h2>
+                <h2>{{ $t('payment_title') }}</h2>
             </div>
             <h2 class="subtitle">
                 $20 USDT TRC20
             </h2>
         </div>
         <div class="payment-page__description">
-            Видео-инструкция по оплате в USDT с любой биржи или кошелька в пару кликов
+            {{ $t('payment_description') }}
         </div>
         <div class="payment-page__player">
             <iframe
@@ -38,14 +38,14 @@
         <div class="payment-page__button">
             <button-custom
                 class="big-h"
-                value="Оплатить"
+                :value="$t('payment_button')"
                 b-icon="usdt"
                 b-icon-size="24"
                 @click="switchPopup()"
             />
         </div>
         <div class="payment-page__vpn">
-            При оплате может понадобиться VPN
+            {{ $t('payment_vpn') }}
         </div>
         <img
             class="bitcoin"
@@ -55,9 +55,9 @@
         <popup-notification
             id="popup-notification"
             type="success"
-            title="Ваш заказ успешно оплачен"
-            description="Ваша премиум подписка на месяц активна! Спасибо за ваше доверие! 😊"
-            b-name="Перейти в мой кабинет"
+            :title="$t('payment_success_notification_title')"
+            :description="`${$t('payment_success_notification_description')} 😊`"
+            :b-name="$t('payment_success_notification_button_name')"
             b-link="/account"
         />
     </div>

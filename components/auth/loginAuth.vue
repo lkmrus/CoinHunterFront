@@ -2,9 +2,14 @@
     <div class="login">
         <div class="login__info">
             <h2 class="title">
-                Вход в аккаунт
+                {{ $t('auth_login_title') }}
             </h2>
-            <span class="subtitle">Я новенький, <nuxt-link to="?type=registration">Регистрация</nuxt-link></span>
+            <span class="subtitle">
+                {{ $t('auth_login_subtitle_text') }}
+                <nuxt-link to="?type=registration">
+                    {{ $t('auth_login_subtitle_link') }}
+                </nuxt-link>
+            </span>
         </div>
         <div class="login__input">
             <input-custom
@@ -19,7 +24,8 @@
         <div class="login__input">
             <input-custom
                 v-model="loginForm.password"
-                title="Пароль"
+                password-type
+                :title="$t('form_password_title')"
                 placeholder="example_password"
                 :i-error="v$.password.$error"
                 :i-error-name="v$.password.minLength.$message"
@@ -29,7 +35,7 @@
         <div class="login__options">
             <checkbox-custom
                 default-type
-                text="Запомнить меня"
+                :text="$t('auth_login_form_checkbox')"
                 :checked="isRememberMe"
                 @click="isRememberSwitch()"
             />
@@ -38,13 +44,13 @@
                 class="forget-password-link"
                 to="?type=forget-password"
             >
-                Забыли пароль?
+                {{ $t('auth_login_form_forget_passsword') }}
             </nuxt-link>
         </div>
         <div class="login__button">
             <button-custom
                 class="big-h"
-                value="Войти"
+                :value="$t('auth_login_form_button')"
                 @click="authLogin()"
             />
         </div>
@@ -63,6 +69,7 @@ import { required, email, minLength, helpers } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '~/store/auth'
+const { t } = useI18n({ useScope: 'global' })
 
 const { authenticateUser } = useAuthStore()
 const { authenticated } = storeToRefs(useAuthStore())
@@ -78,19 +85,19 @@ const loginForm = reactive({
 
 const notificationSettings = reactive({
   isOpen: false,
-  title: 'Неверные данные',
-  description: 'Такого аккаунта не существует. Проверьте email и пароль.'
+  title: t('auth_login_notification_error_title'),
+  description: t('auth_login_notification_error_description')
 })
 
 const rules = computed(() => {
   return {
     email: {
-      required: helpers.withMessage('Введите email', required),
-      email: helpers.withMessage('Неверный формат почты', email)
+      required: helpers.withMessage(t('form_email_helper_required_text'), required),
+      email: helpers.withMessage(t('form_email_helper_text'), email)
     },
     password: {
-      required: helpers.withMessage('Введите пароль', required),
-      minLength: helpers.withMessage('Пароль должен содердать не менее 6 символов', minLength(6))
+      required: helpers.withMessage(t('form_password_helper_required_text'), required),
+      minLength: helpers.withMessage(t('form_password_helper_text'), minLength(6))
     }
   }
 })
@@ -142,6 +149,9 @@ const authLogin = async () => {
         button{
             width: 384px;
         }
+    }
+    &__input{
+      position: relative;
     }
 }
 
