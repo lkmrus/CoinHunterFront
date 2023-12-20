@@ -550,7 +550,7 @@
             <swiper
                 :modules="[SwiperAutoplay, SwiperEffectCreative]"
                 :autoplay="{
-                    delay: 4000,
+                    delay: 1500,
                     disableOnInteraction: true,
                 }"
                 class="reviews"
