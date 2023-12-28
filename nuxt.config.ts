@@ -2,6 +2,9 @@ import { fileURLToPath } from 'url'
 import svgLoader from 'vite-svg-loader'
 
 export default defineNuxtConfig({
+  devServer: {
+    port: 8080
+  },
   app: {
     head: {
       charset: 'utf-8',

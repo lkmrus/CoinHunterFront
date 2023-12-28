@@ -1,8 +1,8 @@
 {
-    "index_service_title": "Service of selection of arbitrage deals",
+    "index_service_title": "Arbitration benefit search service",
     "index_service_subtitle": "on the cryptocurrency market",
     "index_service_tariff_btn": "Select a tariff",
-    "index_service_progress_item_1_description_1": "arbitrage pairs right now with a profit of 1-25%",
+    "index_service_progress_item_1_description_1": "arbitrage pairs right now with a profit up to 1-25%",
     "index_service_progress_item_2_description_1": "exchanges are already connected",
     "index_service_progress_item_2_description_2": "to the service",
 
@@ -11,7 +11,7 @@
     "index_arbitration_subtitle": "in brief",
     "index_arbitration_why_us_title_1": "We all know that markets are volatile",
     "index_arbitration_why_us_title_2": "and on one exchange the token rate can rise faster than on another and the difference between exchanges can reach 50% in a circle",
-    "index_arbitration_why_us_description": "It's hard to track the difference by hand, and that's why we've developed the CoinHunterBot arbitrage bot - to save you time.",
+    "index_arbitration_why_us_description": "It's hard to track the difference by hand, and that's why we've developed the Coin-Hunter bot - to save your time",
     "index_arbitration_key_benefits_title": "Key benefits",
     "index_arbitration_key_benefits_description_1": "This is the easiest way to find profitable bundles between exchanges in real time.",
     "index_arbitration_key_benefits_description_2": "Also you have a unique opportunity to receive notifications in JSON format to the address you need - this will allow you to customize your own bot for trading!",
@@ -53,7 +53,7 @@
     "index_access_arbitrage_tarif_2_badge": "Most popular",
     "index_access_arbitrage_tarif_2_price": "per month",
     "index_access_arbitrage_tarif_2_provide_1": "Tracking up to 30 cryptocurrencies online",
-    "index_access_arbitrage_tarif_2_button": "Choose tariff",
+    "index_access_arbitrage_tarif_2_button": "Choose plan",
 
     "index_how_bot_works_title": "How the bot works",
     "index_how_bot_works_subtitle": "explained with examples",
@@ -95,10 +95,10 @@
     "layout_nav_2_menu_3": "Exchanges and commissions",
     "layout_nav_3_menu_1": "Guides",
     "layout_nav_3_menu_2": "Tutorial videos",
-    "layout_header_account_menu_lk": "Account",
-    "layout_header_account_menu_logout": "Logout",
-    "layout_header_registration": "Registration",
-    "layout_header_login": "Login",
+    "layout_header_account_menu_lk": "Profile",
+    "layout_header_account_menu_logout": "Log out",
+    "layout_header_registration": "Sign up",
+    "layout_header_login": "Sign in",
 
     "hint_unit_text": "Arbitrage bundles with a delay of only 2 seconds are already in our Telegram bot",
     "hint_unit_tg_desktop": "Visit",
