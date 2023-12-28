@@ -5,7 +5,7 @@ COPY ["package.json", "package-lock.json*", "./"]
 RUN npm i
 COPY . .
 ENV NODE_ENV=production
-ENV NUXT_HOST=0.0.0.0
-ENV NUXT_PORT=3000
+ENV HOST=0
+ENV PORT=3000
 CMD ["npm", "run", "build"]
 CMD ["npm", "run", "start"]
