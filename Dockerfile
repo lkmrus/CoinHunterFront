@@ -6,5 +6,5 @@ RUN npm install -g pnpm --prod
 RUN pnpm i
 COPY . .
 ENV NODE_ENV=production
-CMD ["npm", "run", "build"]
-CMD ["npm", "run", "start"]
+CMD ["pnpm", "run", "build"]
+CMD ["pnpm", "start"]
