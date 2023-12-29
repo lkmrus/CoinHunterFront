@@ -3,13 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build && nuxt generate && nuxt prepare && nuxi build && pnpm i --prod",
+    "build": "nuxt generate && nuxt prepare && nuxi build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "start": "nuxt start",
-    "deploy": "nuxt generate && rimraf /var/www/www-root/data/www/coin-hunter.trade/ && copyfiles -u 1 \"dist/**/*\" /var/www/www-root/data/www/coin-hunter.trade/"
+    "start": "nuxt start"
   },
   "devDependencies": {
     "@nuxt/config": "^2.17.2",
