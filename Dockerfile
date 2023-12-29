@@ -1,7 +1,7 @@
 FROM node:20.10-alpine3.18  AS build-stage
 WORKDIR /app
 COPY ["package.json", "package-lock.json*", "./"]
-RUN npm ci
+RUN npm i
 #RUN npm install -g nuxt
 COPY . .
 ENV NODE_ENV=production
