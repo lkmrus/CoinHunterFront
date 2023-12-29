@@ -3,9 +3,10 @@ WORKDIR /app
 COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install -g pnpm
 RUN pnpm i --prod
+RUN npm install -g nuxt
 COPY . .
 ENV NODE_ENV=production
-CMD ["pnpm", "run", "build"]
+CMD ["npm", "run", "build"]
 
 FROM nginx:1.21-alpine
 # Copy built static files to Nginx's html directory
