@@ -26,7 +26,8 @@ export default defineNuxtConfig({
     'nuxt-security',
     '@pinia/nuxt',
     'nuxt-swiper',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@vite-pwa/nuxt'
   ],
   i18n: {
     lazy: true,
