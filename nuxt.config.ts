@@ -2,15 +2,13 @@ import { fileURLToPath } from 'url'
 import svgLoader from 'vite-svg-loader'
 
 export default defineNuxtConfig({
-  devServer: {
-    port: 8080
-  },
+  ssr: true,
   app: {
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       htmlAttrs: {
-        lang: 'ru'
+        lang: 'en'
       },
       meta: [{
         name: 'Content-Security-Policy',
@@ -28,7 +26,8 @@ export default defineNuxtConfig({
     'nuxt-security',
     '@pinia/nuxt',
     'nuxt-swiper',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@nuxt/pwa'
   ],
   i18n: {
     lazy: true,
