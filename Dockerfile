@@ -5,7 +5,7 @@ RUN npm i
 RUN npm install -g nuxt
 COPY . .
 ENV NODE_ENV=production
-CMD ["npm", "run", "build"]
+CMD ["npm", "run", "generate"]
 
 FROM nginx:1.21-alpine AS base
 # Copy built static files to Nginx's html directory
