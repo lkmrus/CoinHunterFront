@@ -25,3 +25,6 @@ logs
 !.env.example
 
 docker-compose.front.yaml
+
+certs/*
+!certs/create.sh
