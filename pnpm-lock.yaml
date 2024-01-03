@@ -71,7 +71,7 @@ devDependencies:
     specifier: ^5.0.1
     version: 5.1.2(eslint-config-prettier@9.1.0)(eslint@8.56.0)(prettier@3.1.1)
   nuxt:
-    specifier: ^3.9.0
+    specifier: ^3.8.2
     version: 3.9.0(@types/node@20.10.6)(eslint@8.56.0)(rollup@3.29.4)(sass@1.69.7)(typescript@5.3.3)(vite@5.0.10)(vue-tsc@1.8.27)
   nuxt-security:
     specifier: 1.0.0-rc.5
