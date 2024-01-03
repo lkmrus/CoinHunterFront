@@ -1,5 +1,9 @@
 <template>
     <div class="page-layout">
+        <meta
+            name="cryptomus"
+            content="8650a1e1"
+        />
         <div class="page-layout__header">
             <hint-unit />
             <layout-header />
