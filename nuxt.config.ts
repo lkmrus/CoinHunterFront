@@ -67,7 +67,7 @@ export default defineNuxtConfig({
     }
   },
   routeRules: {
-    '/api/**': { proxy: { to: process.env.BASE_API_URL } }
+    '/api/**': { proxy: { to: process.env.NUXT_BASE_API_URL } }
   },
   security: {
     headers: {
