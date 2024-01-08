@@ -4,6 +4,7 @@ ARG npm_cache_path=/var/tmp/.npm
 WORKDIR /dependencies
 
 COPY ["package.json", "package-lock.json*", "./"]
+RUN npm i pnpm -g
 RUN pnpm i --prod
 
 FROM dependencies AS build
@@ -12,6 +13,7 @@ ARG npm_cache_path=/var/tmp/.npm
 WORKDIR /app
 COPY . .
 
+RUN npm i pnpm -g
 RUN pnpm i --prod
 RUN pnpm run build
 
