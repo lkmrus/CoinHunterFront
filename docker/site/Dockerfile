@@ -17,7 +17,7 @@ WORKDIR /app
 
 COPY --from=build /app/.output ./.output
 COPY --from=build /app/.nuxt ./.nuxt
-COPY --from=build /app/dist .
+#COPY --from=build /app/dist .
 COPY --from=build /app/node_modules /app/node_modules
 COPY ["package.json", "package-lock.json*", "./"]
 
