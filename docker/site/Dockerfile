@@ -33,4 +33,4 @@ COPY --from=dependencies /dependencies/node_modules /app/node_modules
 COPY ["package.json", "package-lock.json*", "./"]
 
 ENTRYPOINT [ "/usr/bin/tini" ]
-CMD [ "pnpm", "run", "start" ]
+CMD [ "npm", "run", "start" ]
