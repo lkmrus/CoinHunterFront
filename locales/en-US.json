@@ -105,7 +105,7 @@
     "hint_unit_tg_mobile": "Go to Telegram bot",
 
     "payment_title": "Subscription payment",
-    "payment_description": "Video instruction on how to pay in USDT from any exchange or wallet in a couple of clicks",
+    "payment_description": "Payment for 1 month (30 days)",
     "payment_button": "Pay",
     "payment_vpn": "A VPN may be required for payment",
     "payment_success_notification_title": "Your order has been successfully paid for",

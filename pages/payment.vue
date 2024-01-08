@@ -16,9 +16,9 @@
                 />
                 <h2>{{ $t('payment_title') }}</h2>
             </div>
-            <h2 class="subtitle">
-                $20 USDT TRC20
-            </h2>
+            <!--            <h2 class="subtitle">-->
+            <!--                $20 USDT TRC20-->
+            <!--            </h2>-->
         </div>
         <div class="payment-page__description">
             {{ $t('payment_description') }}
