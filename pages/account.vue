@@ -20,6 +20,7 @@
         <div class="account-page__input">
             <input-custom
                 v-model="editableUser.email"
+                disabled
                 title="Email"
                 placeholder="name@example.com"
                 :i-error="userv$.email.$error"
