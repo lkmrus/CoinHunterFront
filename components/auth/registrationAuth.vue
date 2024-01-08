@@ -46,9 +46,6 @@
                 v-model="regitrationForm.login"
                 title="Telegram ID"
                 placeholder="@example"
-                :i-error="v$.login.$error"
-                :i-error-name="v$.login.minLength.$message"
-                @change="v$.login.$touch"
             />
         </div>
         <div class="registration__button">
@@ -129,10 +126,6 @@ const rules = computed(() => {
     password: {
       required: helpers.withMessage(t('form_password_helper_required_text'), required),
       minLength: helpers.withMessage(t('form_password_helper_text'), minLength(6))
-    },
-    login: {
-      required: helpers.withMessage(t('form_login_helper_required_text'), required),
-      minLength: helpers.withMessage(t('form_login_helper_text'), minLength(3))
     }
   }
 })
