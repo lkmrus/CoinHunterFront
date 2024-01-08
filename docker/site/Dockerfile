@@ -4,7 +4,7 @@ ARG npm_cache_path=/var/tmp/.npm
 WORKDIR /dependencies
 
 COPY ["package.json", "package-lock.json*", "./"]
-RUN npm i --include=dev --no-audit --cache "$npm_cache_path"
+RUN pnpm i --prod
 
 FROM dependencies AS build
 ARG npm_cache_path=/var/tmp/.npm
@@ -12,8 +12,8 @@ ARG npm_cache_path=/var/tmp/.npm
 WORKDIR /app
 COPY . .
 
-RUN npm i --prefer-offline --no-audit --cache "$npm_cache_path"
-RUN npm run build
+RUN pnpm i --prod
+RUN pnpm run build
 
 FROM node:20.10-slim AS base
 
@@ -31,4 +31,4 @@ COPY --from=dependencies /dependencies/node_modules /app/node_modules
 COPY ["package.json", "package-lock.json*", "./"]
 
 ENTRYPOINT [ "/usr/bin/tini" ]
-CMD [ "npm", "run", "start" ]
+CMD [ "pnpm", "run", "start" ]
