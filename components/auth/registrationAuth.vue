@@ -46,6 +46,7 @@
                 v-model="regitrationForm.login"
                 title="Telegram ID"
                 placeholder="@example"
+                @change="v$.login.$touch"
             />
         </div>
         <div class="registration__button">
