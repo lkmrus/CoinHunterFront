@@ -23,27 +23,33 @@
         <div class="payment-page__description">
             {{ $t('payment_description') }}
         </div>
-        <div class="payment-page__player">
-            <iframe
-                width="550"
-                height="304"
-                :src="`https://www.youtube.com/embed/d49zddgOF_c?si=o7GrM4pqHT_k-cj9`"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write;
-                encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-            />
-        </div>
-        <div class="payment-page__button">
-            <button-custom
-                class="big-h"
-                :value="$t('payment_button')"
-                b-icon="usdt"
-                b-icon-size="24"
-                @click="switchPopup()"
-            />
-        </div>
+        <!--        <div class="payment-page__player">-->
+        <!--            <iframe-->
+        <!--                width="550"-->
+        <!--                height="304"-->
+        <!--                :src="`https://www.youtube.com/embed/d49zddgOF_c?si=o7GrM4pqHT_k-cj9`"-->
+        <!--                title="YouTube video player"-->
+        <!--                frameborder="0"-->
+        <!--                allow="accelerometer; autoplay; clipboard-write;-->
+        <!--                encrypted-media; gyroscope; picture-in-picture; web-share"-->
+        <!--                allowfullscreen-->
+        <!--            />-->
+        <!--        </div>-->
+        <!--        <div class="payment-page__button">-->
+        <!--            <button-custom-->
+        <!--                class="big-h"-->
+        <!--                :value="$t('payment_button')"-->
+        <!--                b-icon="usdt"-->
+        <!--                b-icon-size="24"-->
+        <!--                @click="switchPopup()"-->
+        <!--            />-->
+        <!--        </div>-->
+        <iframe
+            src="https://pay.cryptomus.com/widget/5b142efc-230d-4d19-9ce1-3da50689db49"
+            height="320px"
+            width="440px"
+        />
+
         <div class="payment-page__vpn">
             {{ $t('payment_vpn') }}
         </div>
