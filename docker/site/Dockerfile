@@ -13,9 +13,8 @@ ARG npm_cache_path=/var/tmp/.npm
 WORKDIR /app
 COPY . .
 
-RUN npm i pnpm -g
-RUN pnpm i --prod
-RUN pnpm run build
+RUN npm i --prefer-offline --no-audit --cache "$npm_cache_path"
+RUN npm run build
 
 FROM node:20.10-slim AS base
 
