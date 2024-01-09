@@ -41,13 +41,13 @@
                 @change="v$.password.$touch"
             />
         </div>
-        <div class="registration__input">
-            <input-custom
-                v-model="regitrationForm.login"
-                title="Telegram ID"
-                placeholder="@example"
-            />
-        </div>
+        <!--        <div class="registration__input">-->
+        <!--            <input-custom-->
+        <!--                v-model="regitrationForm.login"-->
+        <!--                title="Telegram ID"-->
+        <!--                placeholder="@example"-->
+        <!--            />-->
+        <!--        </div>-->
         <div class="registration__button">
             <button-custom
                 class="big-h"

@@ -2,7 +2,7 @@
     "index_service_title": "Arbitration benefit search service",
     "index_service_subtitle": "on the cryptocurrency market",
     "index_service_tariff_btn": "Choose plan",
-    "index_service_progress_item_1_description_1": "arbitrage pairs right now with a profit up to 1-25%",
+    "index_service_progress_item_1_description_1": "arbitrage pairs right now with a profit up to 1-15%",
     "index_service_progress_item_2_description_1": "exchanges are already connected",
     "index_service_progress_item_2_description_2": "to the service",
 
@@ -31,7 +31,7 @@
     "index_all_in_telegram_card_4_title": "Guide",
     "index_all_in_telegram_card_4_subtitle_1": "A handy guide to arbitrage trading",
     "index_all_in_telegram_card_5_title": "Connection",
-    "index_all_in_telegram_card_5_subtitle_1": "Connection to the bot in the personal cabinet on the site after subscribing.",
+    "index_all_in_telegram_card_5_subtitle_1": "Connection to the bot in the profile on the site after subscribing.",
     "index_all_in_telegram_card_5_subtitle_2": "You can use the bot immediately after registration",
 
     "index_access_arbitrage_title": "Access to arbitrage tools",
@@ -138,7 +138,7 @@
     "auth_forget_form_code_title": "4-digit code",
     "auth_forget_button": "Sign in",
 
-    "account_title": "Personal cabinet",
+    "account_title": "Profile",
     "account_add_telegram_button_name": "Attach",
     "account_subscription_title": "Premium subscription",
     "account_subscription_active_text": "Premium subscription is active until",
