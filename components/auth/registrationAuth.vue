@@ -46,7 +46,6 @@
                 v-model="regitrationForm.login"
                 title="Telegram ID"
                 placeholder="@example"
-                @change="v$.login.$touch"
             />
         </div>
         <div class="registration__button">
@@ -136,12 +135,16 @@ const v$ = useVuelidate(rules, regitrationForm)
 const authRegister = async () => {
   v$.value.$validate()
   if (!v$.value.$error) {
-    await userRegistration({
+    const regData = {
       fullname: regitrationForm.fullname,
       email: regitrationForm.email,
-      password: regitrationForm.password,
-      login: regitrationForm.login
-    })
+      password: regitrationForm.password
+    }
+    if (regitrationForm.login) {
+      regData.login = regitrationForm.login
+    }
+    await userRegistration(regData)
+
     if (authenticated.value) {
       if (regitrationForm.login) {
         await userTelegramAttach({ nick: regitrationForm.login, token: authenticated.value })
