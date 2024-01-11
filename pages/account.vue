@@ -60,6 +60,7 @@
                 placeholder="@example"
             />
             <button-custom
+                class="attach-description"
                 :value="$t('account_add_telegram_button_name')"
                 @click="goToUrl(`https://t.me/CurrencyScanner3000Bot?start=${editableUser.login}`)"
             />
@@ -305,6 +306,22 @@ const goToPage = async (page, query = {}) => {
 </script>
 
 <style lang="scss" scoped>
+.attach-description:hover{
+  &:after{
+    content: "Instruction: \0a 1. Write your Telegram ID in the field.  \0a 2. Click 'Save changes' button. \0a 3. Click 'Attach' button. \0a 4. Click 'Start' button in the opened Telegram window. \0a 5. Done!";
+    position: absolute;
+    white-space: pre;
+    text-align: left;
+    top: 0;
+    left: 130px;
+    width: 220px;
+    height: 100%;
+    font-size: 12px;
+    border-radius: 16px;
+    z-index: 1;
+    opacity: 0.8;
+  }
+}
 .account-page{
     margin-top: 130px;
     position: relative;
