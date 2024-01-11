@@ -65,8 +65,11 @@
             />
         </div>
         <div class="account-page__subscription">
-            <h5 class="title">
-                {{ $t('account_subscription_title') }}
+            <h5
+                class="title"
+                style="color:#ffd700;"
+            >
+                &#9733; {{ $t('account_subscription_title') }} &#9733;
             </h5>
             <div
                 v-if="subscription"
