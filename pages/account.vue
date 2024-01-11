@@ -61,7 +61,7 @@
             />
             <button-custom
                 :value="$t('account_add_telegram_button_name')"
-                @click="goToUrl(`https://t.me/CurrencyScanner3000Bot?start=${editableUser.login}`)"
+                @click="goToUrl(`https://t.me/CurrencyScanner3000Bot?start=${editableUser.login}_${editableUser.id}`)"
             />
         </div>
         <div class="account-page__subscription">
