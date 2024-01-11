@@ -326,7 +326,7 @@
                         </div>
                     </div>
                     <div class="tarif__price">
-                        <span class="big">$20</span>
+                        <span class="big">$20 </span>
                         <span class="small"> {{ $t('index_access_arbitrage_tarif_2_price') }}</span>
                     </div>
                     <div class="tarif__provides">
