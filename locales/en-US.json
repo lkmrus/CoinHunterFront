@@ -177,6 +177,10 @@
     "table_unit_h5": "Selling Price",
     "table_unit_h6": "Update time (GMT+3)",
     "table_unit_h7": "TG notifications",
+    "table_unit_name": "Exchange",
+    "table_unit_taker_commision": "Takeer",
+    "table_unit_maker_commision": "Commission",
+    "table_unit_foundation": "Active since",
 
     "form_password_title": "Password",
     "form_repeat_password_title": "Repeat password",

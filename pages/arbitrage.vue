@@ -161,6 +161,7 @@
                         class="button-content"
                     >
                         <button-custom
+                            id="table"
                             :value="pageText.button_text"
                             @click="goToPage(pageText.button_method.page, pageText.button_method.query)"
                         />

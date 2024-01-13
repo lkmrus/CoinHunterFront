@@ -188,9 +188,9 @@ const navs = reactive([
   {
     name: t('layout_header_nav_2_name'),
     menu: [
-      { name: t('layout_nav_2_menu_1'), link: '/arbitrage' }
+      { name: t('layout_nav_2_menu_1'), link: '/arbitrage' },
     //   { name: t('layout_nav_2_menu_2'), link: '#' },
-    //   { name: t('layout_nav_2_menu_3'), link: '#' }
+      { name: t('layout_nav_2_menu_3'), link: '/arbitrage#table' }
     ],
     isActive: false
   }

@@ -66,13 +66,13 @@ const activeLocaleName = computed(() => {
 const langOpen = ref(false)
 
 const navItems = reactive([
-  { name: t('layout_nav_2_menu_1'), link: '/arbitrage' }
+  { name: t('layout_nav_2_menu_1'), link: '/arbitrage' },
 //   { name: t('layout_nav_1_menu_1'), link: '#' },
 //   { name: t('layout_nav_3_menu_1'), link: '#' },
 //   { name: t('layout_nav_2_menu_2'), link: '#' },
 //   { name: t('layout_nav_1_menu_2'), link: '#' },
 //   { name: t('layout_nav_3_menu_2'), link: '#' },
-//   { name: t('layout_nav_2_menu_3'), link: '#' }
+  { name: t('layout_nav_2_menu_3'), link: '/arbitrage#table' }
 ])
 
 const setLang = async (langCode) => {

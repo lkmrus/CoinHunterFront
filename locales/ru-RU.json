@@ -92,7 +92,7 @@
     "layout_header_nav_2_name": "Инструменты арбитража",
     "layout_nav_2_menu_1": "Межбиржевой арбитраж",
     "layout_nav_2_menu_2": "Внутрибиржевой арбитраж",
-    "layout_nav_2_menu_3": "Биржи и коммиссии",
+    "layout_nav_2_menu_3": "Биржи и комиссии",
     "layout_nav_3_menu_1": "Гайды",
     "layout_nav_3_menu_2": "Обучающие видео",
     "layout_header_account_menu_lk": "Личный кабинет",
@@ -177,7 +177,11 @@
     "table_unit_h5": "Цена продажи",
     "table_unit_h6": "Время обновления (GMT+3)",
     "table_unit_h7": "TG уведомления",
-
+    "table_unit_name": "Название",
+    "table_unit_taker_commision": "Комиссия тейкера",
+    "table_unit_maker_commision": "Комиссия мейкера",
+    "table_unit_foundation": "Год основания",
+    
     "form_password_title": "Пароль",
     "form_repeat_password_title": "Повторите пароль",
     "form_email_helper_text": "Неверный формат почты",
