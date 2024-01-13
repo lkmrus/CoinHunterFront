@@ -113,8 +113,22 @@
                             <svg-icon icon="down-arrow" />
                         </div>
                     </div>
+
                     <div
-                        class="menu"
+                        class="lang__name lang__name_mobile"
+                        @click="accountMenuOpen = !accountMenuOpen"
+                    >
+                        {{ $t("layout_header_account_menu_lk") }}
+                        <div
+                            class="lang-drop-down"
+                            :class="{'lang-drop-down_open': accountMenuOpen}"
+                        >
+                            <svg-icon icon="down-arrow" />
+                        </div>
+                    </div>
+
+                    <div
+                        class="menu menu_mobile"
                         :class="{'menu_open' : accountMenuOpen}"
                     >
                         <div
@@ -297,6 +311,9 @@ const logout = async () => {
                     transform: rotate(180deg);
                 }
             }
+            &_mobile {
+                display: none;
+            }
         }
     }
     .buttons{
@@ -406,6 +423,11 @@ const logout = async () => {
             .lang{
                 margin-right: 0;
                 margin-bottom: 20px;
+                &__name {
+                    &_mobile {
+                        display: flex;
+                    }
+                }
             }
             .buttons{
                 flex-direction: column;
@@ -431,6 +453,13 @@ const logout = async () => {
                     align-items: flex-start;
                     .item{
                         padding: 0;
+                    }
+            }
+
+            .menu {
+                &_mobile {
+                        top: 24px;
+                        left: -5px;
                     }
                 }
             }
