@@ -74,6 +74,12 @@ const navItems = reactive([
 //   { name: t('layout_nav_3_menu_2'), link: '#' },
 //   { name: t('layout_nav_2_menu_3'), link: '#' }
 ])
+
+const setLang = async (langCode) => {
+  const siteLang = await useCookie('i18n_redirected')
+  siteLang.value = langCode
+  location.reload()
+}
 </script>
 
 <style lang="scss" scoped>
