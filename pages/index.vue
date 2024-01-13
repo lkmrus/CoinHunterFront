@@ -10,12 +10,11 @@
             </div>
             <h1>{{ $t('index_service_title') }}</h1>
             <h2>{{ $t('index_service_subtitle') }}</h2>
-            <nuxt-link to="/payment">
-                <button-custom
-                    class="big-h"
-                    :value="$t('index_service_tariff_btn')"
-                />
-            </nuxt-link>
+            <button-custom
+                class="big-h"
+                :value="$t('index_service_tariff_btn')"
+                @click="jumpToTariffs"
+            />
             <div class="progress">
                 <div class="progress__item">
                     <p class="big-text">
@@ -250,7 +249,10 @@
                     <div class="blur blur-3" />
                 </div>
             </div>
-            <div class="blurs blurs-4">
+            <div
+                ref="tariffsRef"
+                class="blurs blurs-4"
+            >
                 <div class="blurs__content">
                     <div class="blur blur-1" />
                     <div class="blur blur-2" />
@@ -588,6 +590,7 @@ import { required, email, minLength, helpers } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
 const { t } = useI18n({ useScope: 'global' })
 
+const tariffsRef = ref()
 const questionForm = reactive({
   name: '',
   email: '',
@@ -657,6 +660,8 @@ const startUsing = () => {
     navigateTo('/auth?type=registration', { replace: true })
   }
 }
+
+const jumpToTariffs = () => tariffsRef.value.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' })
 
 const notificationSettings = reactive({
   isOpen: false,
