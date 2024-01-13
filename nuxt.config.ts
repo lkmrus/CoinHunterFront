@@ -76,5 +76,10 @@ export default defineNuxtConfig({
   },
   components: [
     { global: true, path: '~/components', pathPrefix: false }
-  ]
+  ],
+  runtimeConfig: {
+    public: {
+      recaptchaKey: process.env.NUXT_RECAPTCHA_SITE_KEY
+    }
+  }
 })

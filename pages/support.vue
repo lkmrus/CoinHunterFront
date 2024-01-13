@@ -79,8 +79,23 @@
 <script setup>
 import { required, email, minLength, helpers } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
-const { t } = useI18n({ useScope: 'global' })
+import { VueReCaptcha, useReCaptcha } from 'vue-recaptcha-v3'
 
+const { vueApp } = useNuxtApp()
+const config = useRuntimeConfig()
+const { t, locale } = useI18n({ useScope: 'global' })
+
+vueApp.use(VueReCaptcha, {
+  siteKey: config.public.recaptchaKey,
+  loaderOptions: {
+    autoHideBadge: true,
+    renderParameters: {
+      hl: locale.value
+    }
+  }
+})
+
+const recaptchaInstance = useReCaptcha()
 const questionForm = reactive({
   name: '',
   email: '',
@@ -108,13 +123,17 @@ const v$ = useVuelidate(questionRules, questionForm)
 const sendMail = async () => {
   v$.value.$validate()
   if (!v$.value.$error) {
+    await recaptchaInstance?.recaptchaLoaded()
+
+    const token = await recaptchaInstance?.executeRecaptcha('LOGIN')
     const { error } = await useFetch('/api/users/question', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email: questionForm.email,
         name: questionForm.name,
-        text: questionForm.question
+        text: questionForm.question,
+        token
       })
     })
     if (error.value) {
