@@ -847,6 +847,7 @@ const exchangesItems = reactive([
             background-color: var(--bg-blue);
             padding: 40px;
             border-radius: 32px;
+            min-height: 300px;
             h2{
                 margin-bottom: 6px;
                 color: var(--text-color);
@@ -1315,6 +1316,7 @@ const exchangesItems = reactive([
                 }
             }
             .key-benefits{
+                min-height: auto;
                 h2, p{
                     max-width: 80%;
                 }
