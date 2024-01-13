@@ -136,7 +136,12 @@
     "auth_forget_password_title": "Password recovery",
     "auth_forget_password_subtitle": "We'll send you a 4-digit code to your inbox",
     "auth_forget_form_code_title": "4-digit code",
-    "auth_forget_button": "Sign in",
+    "auth_forget_form_password_title": "New password",
+    "auth_forget_button": "Send code",
+    "auth_confirm_button": "Confirm",
+    "auth_notification_error_title": "Incorrect data",
+    "auth_notification_error_email_description": "Please enter correct email",
+    "auth_notification_error_code_description": "Entered code is incorrect",
 
     "account_title": "Profile",
     "account_add_telegram_button_name": "Attach",
