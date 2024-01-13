@@ -2,7 +2,7 @@
     <div
         v-if="token"
         class="hint-unit"
-        @click="goToUrl(`https://t.me/CurrencyScanner3000Bot`)"
+        @click="goToUrl(`https://t.me/CurrencyScanner3000Bot${userParam}`)"
     >
         <div class="hint-unit__text">
             {{ $t('hint_unit_text') }}
@@ -20,7 +20,18 @@
 </template>
 
 <script setup>
+import { useUserStore } from '~/store/user'
+const { getUser } = useUserStore()
 const token = useCookie('coinht')
+
+const user = await getUser({ token: token.value })
+const userParam = computed(() => {
+  if (!user?.login) {
+    return ''
+  }
+
+  return `?start=${user.login}`
+})
 
 const goToUrl = async (url) => {
   await navigateTo(url, {
