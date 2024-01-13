@@ -166,15 +166,14 @@ const { t } = useI18n({ useScope: 'global' })
 const { authenticated } = await storeToRefs(useAuthStore())
 const { logUserOut } = useAuthStore()
 const { locale, locales } = useI18n()
+const route = useRoute()
 const activeLocaleName = computed(() => {
   return (locales.value).find(i => i.code === locale.value)
 })
-
 const isAuthenticated = ref(authenticated.value)
 const accountMenuOpen = ref(false)
 const headerKey = ref(0)
 const langOpen = ref(false)
-
 const hamburgerOpen = ref(false)
 
 const navs = reactive([
@@ -218,6 +217,10 @@ const getArrowColor = (isActive) => {
 watch(() => authenticated, (newval) => {
   isAuthenticated.value = toRaw(newval).value
 }, { immediate: true, deep: true })
+
+watch(() => route.path, () => {
+  hamburgerOpen.value = false
+})
 
 const logout = async () => {
   await logUserOut()
