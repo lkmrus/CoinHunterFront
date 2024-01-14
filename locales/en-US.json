@@ -201,5 +201,7 @@
     "form_name_placeholder": "What to call you",
     "form_question_helper_required_text": "Enter a question",
 
-    "popup_sending_button": "Go back to CoinHunter"
+    "popup_sending_button": "Go back to CoinHunter",
+
+    "404_error_text": "Looks like we've encountered a glitch. The page you were looking for has disappeared into the depths of cyberspace. Don't worry, we are here to guide you back to the light."
 }
