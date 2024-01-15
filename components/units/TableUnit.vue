@@ -793,7 +793,6 @@ const infoRows = computed(() => rowsData.map((item) => { return { ...item, bonus
 
 <style lang="scss" scoped>
 .table{
-    margin-top: 112px;
     &__title{
         margin-bottom: 24px;
     }

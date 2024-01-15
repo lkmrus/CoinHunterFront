@@ -6,7 +6,7 @@
 
 <style lang="scss">
 .exchanges-page{
-    padding-top: 182px;
+    padding-top: 138px;
     padding-bottom: 120px;
 }
 </style>
