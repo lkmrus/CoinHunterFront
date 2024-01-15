@@ -5,15 +5,18 @@ export default function () {
     const router = useRouter()
 
     router.afterEach(async (to, from) => {
-      if (to.hash) {
+      if (to?.hash) {
         const targetElement = document.querySelector(to.hash)
 
         if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-            inline: 'nearest'
-          })
+          setTimeout(() => {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+              inline: 'nearest'
+            })
+          }, 100)
+
           return
         }
       }
