@@ -190,7 +190,7 @@ const navs = reactive([
     menu: [
       { name: t('layout_nav_2_menu_1'), link: '/arbitrage' },
     //   { name: t('layout_nav_2_menu_2'), link: '#' },
-      { name: t('layout_nav_2_menu_3'), link: '/arbitrage#table' }
+      { name: t('layout_nav_2_menu_3'), link: '/exchanges' }
     ],
     isActive: false
   }
