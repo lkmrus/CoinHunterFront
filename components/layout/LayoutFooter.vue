@@ -72,7 +72,8 @@ const navItems = reactive([
 //   { name: t('layout_nav_2_menu_2'), link: '#' },
 //   { name: t('layout_nav_1_menu_2'), link: '#' },
 //   { name: t('layout_nav_3_menu_2'), link: '#' },
-  { name: t('layout_nav_2_menu_3'), link: '/arbitrage#table' }
+  { name: t('layout_nav_2_menu_3'), link: '/exchanges' },
+  { name: t('layout_nav_support'), link: '/support' }
 ])
 
 const setLang = async (langCode) => {

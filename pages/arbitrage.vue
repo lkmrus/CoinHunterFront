@@ -169,7 +169,6 @@
                 </div>
             </div>
         </section>
-        <table-unit />
     </div>
 </template>
 

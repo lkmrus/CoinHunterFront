@@ -47,7 +47,9 @@ export default defineNuxtConfig({
     ]
   },
   css: ['@/assets/css/style.scss'],
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/scroll-behavior.client.js', mode: 'client' }
+  ],
   alias: {
     '@svg': fileURLToPath(new URL('./assets/svg', import.meta.url)),
     '@css': fileURLToPath(new URL('./assets/css', import.meta.url)),
