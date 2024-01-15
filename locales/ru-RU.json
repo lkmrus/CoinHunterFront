@@ -92,7 +92,7 @@
     "layout_header_nav_2_name": "Инструменты арбитража",
     "layout_nav_2_menu_1": "Межбиржевой арбитраж",
     "layout_nav_2_menu_2": "Внутрибиржевой арбитраж",
-    "layout_nav_2_menu_3": "Биржи и коммиссии",
+    "layout_nav_2_menu_3": "Биржи и комиссии",
     "layout_nav_3_menu_1": "Гайды",
     "layout_nav_3_menu_2": "Обучающие видео",
     "layout_header_account_menu_lk": "Личный кабинет",
@@ -136,7 +136,13 @@
     "auth_forget_password_title": "Восстановление пароля",
     "auth_forget_password_subtitle": "Отправим вам код из 4-х знаков на почту",
     "auth_forget_form_code_title": "Код из 4-х знаков",
-    "auth_forget_button": "Войти",
+    "auth_forget_form_password_title": "Новый пароль",
+    "auth_forget_button": "Отправить код",
+    "auth_confirm_button": "Подтвердить",
+    "auth_notification_error_title": "Неверные данные",
+    "auth_notification_error_email_description": "Пожалуйста введите корректный email",
+    "auth_notification_error_code_description": "Введенный код неверен",
+
 
     "account_title": "Личный кабинет",
     "account_add_telegram_button_name": "Привязать",
@@ -177,7 +183,11 @@
     "table_unit_h5": "Цена продажи",
     "table_unit_h6": "Время обновления (GMT+3)",
     "table_unit_h7": "TG уведомления",
-
+    "table_unit_name": "Название",
+    "table_unit_taker_commision": "Комиссия тейкера",
+    "table_unit_maker_commision": "Комиссия мейкера",
+    "table_unit_foundation": "Год основания",
+    
     "form_password_title": "Пароль",
     "form_repeat_password_title": "Повторите пароль",
     "form_email_helper_text": "Неверный формат почты",
@@ -192,5 +202,7 @@
     "form_name_placeholder": "Как к вам обращаться",
     "form_question_helper_required_text": "Введите вопрос",
 
-    "popup_sending_button": "Вернуться в CoinHunter"
+    "popup_sending_button": "Вернуться в CoinHunter",
+
+    "404_error_text": "Похоже, мы столкнулись со сбоем. Страница, которую вы искали, исчезла в глубинах киберпространства. Не волнуйтесь, мы здесь, чтобы провести вас обратно к свету."
 }

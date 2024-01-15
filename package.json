@@ -32,6 +32,7 @@
     "typescript": "^5.3.3",
     "vite-svg-loader": "^5.1.0",
     "vue": "^3.3.10",
+    "vue-recaptcha-v3": "^2.0.1",
     "vue-router": "^4.2.5",
     "vue-tsc": "^1.8.25"
   },

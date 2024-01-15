@@ -9,7 +9,8 @@ interface UserRegistrationPayloadInterface {
   email: string;
   password: string;
   login?: string;
-  fullname?: string
+  fullname?: string;
+  token?: string;
 }
 
 export const useAuthStore = defineStore('auth', {
@@ -40,12 +41,12 @@ export const useAuthStore = defineStore('auth', {
         }
       }
     },
-    async userRegistration ({ email, password, login = '', fullname = '' }: UserRegistrationPayloadInterface) {
+    async userRegistration ({ email, password, login = '', fullname = '', token = '' }: UserRegistrationPayloadInterface) {
       const store = useAuthStore()
       const { data, pending }: any = await useFetch('/api/auth/sign_up', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password, login, fullname })
+        body: JSON.stringify({ email, password, login, fullname, token })
       })
       store.loading = pending
       if (data.value) {

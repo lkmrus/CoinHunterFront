@@ -113,8 +113,22 @@
                             <svg-icon icon="down-arrow" />
                         </div>
                     </div>
+
                     <div
-                        class="menu"
+                        class="lang__name lang__name_mobile"
+                        @click="accountMenuOpen = !accountMenuOpen"
+                    >
+                        {{ $t("layout_header_account_menu_lk") }}
+                        <div
+                            class="lang-drop-down"
+                            :class="{'lang-drop-down_open': accountMenuOpen}"
+                        >
+                            <svg-icon icon="down-arrow" />
+                        </div>
+                    </div>
+
+                    <div
+                        class="menu menu_mobile"
                         :class="{'menu_open' : accountMenuOpen}"
                     >
                         <div
@@ -152,15 +166,14 @@ const { t } = useI18n({ useScope: 'global' })
 const { authenticated } = await storeToRefs(useAuthStore())
 const { logUserOut } = useAuthStore()
 const { locale, locales } = useI18n()
+const route = useRoute()
 const activeLocaleName = computed(() => {
   return (locales.value).find(i => i.code === locale.value)
 })
-
 const isAuthenticated = ref(authenticated.value)
 const accountMenuOpen = ref(false)
 const headerKey = ref(0)
 const langOpen = ref(false)
-
 const hamburgerOpen = ref(false)
 
 const navs = reactive([
@@ -175,9 +188,9 @@ const navs = reactive([
   {
     name: t('layout_header_nav_2_name'),
     menu: [
-      { name: t('layout_nav_2_menu_1'), link: '/arbitrage' }
+      { name: t('layout_nav_2_menu_1'), link: '/arbitrage' },
     //   { name: t('layout_nav_2_menu_2'), link: '#' },
-    //   { name: t('layout_nav_2_menu_3'), link: '#' }
+      { name: t('layout_nav_2_menu_3'), link: '/arbitrage#table' }
     ],
     isActive: false
   }
@@ -204,6 +217,10 @@ const getArrowColor = (isActive) => {
 watch(() => authenticated, (newval) => {
   isAuthenticated.value = toRaw(newval).value
 }, { immediate: true, deep: true })
+
+watch(() => route.path, () => {
+  hamburgerOpen.value = false
+})
 
 const logout = async () => {
   await logUserOut()
@@ -296,6 +313,9 @@ const logout = async () => {
                     transition: 0.3s;
                     transform: rotate(180deg);
                 }
+            }
+            &_mobile {
+                display: none;
             }
         }
     }
@@ -406,6 +426,11 @@ const logout = async () => {
             .lang{
                 margin-right: 0;
                 margin-bottom: 20px;
+                &__name {
+                    &_mobile {
+                        display: flex;
+                    }
+                }
             }
             .buttons{
                 flex-direction: column;
@@ -431,6 +456,13 @@ const logout = async () => {
                     align-items: flex-start;
                     .item{
                         padding: 0;
+                    }
+            }
+
+            .menu {
+                &_mobile {
+                        top: 24px;
+                        left: -5px;
                     }
                 }
             }

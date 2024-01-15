@@ -63,12 +63,14 @@ onMounted(() => {
 </script>
 <style lang="scss">
 .auth-page{
+  $header-height: 68px;
+
   padding-top: 68px;
   position: relative;
     display: flex;
     &__left-content{
         width: 50%;
-        height: 100vh;
+        height: calc(100vh - $header-height);
         img{
           width: 100%;
           height: 100%;
