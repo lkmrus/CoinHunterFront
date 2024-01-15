@@ -1,5 +1,6 @@
 <template>
     <div class="page-layout">
+        <NuxtPwaManifest />
         <meta
             name="cryptomus"
             content="8650a1e1"

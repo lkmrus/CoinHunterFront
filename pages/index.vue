@@ -10,11 +10,13 @@
             </div>
             <h1>{{ $t('index_service_title') }}</h1>
             <h2>{{ $t('index_service_subtitle') }}</h2>
-            <button-custom
-                class="big-h"
-                :value="$t('index_service_tariff_btn')"
-                @click="jumpToTariffs"
-            />
+            <nuxt-link to="#tarifs">
+                <button-custom
+                    class="big-h"
+                    :value="$t('index_service_tariff_btn')"
+                />
+            </nuxt-link>
+
             <div class="progress">
                 <div class="progress__item">
                     <p class="big-text">
@@ -227,7 +229,10 @@
                 </div>
             </div>
         </section>
-        <section class="access-to-arbitrage">
+        <section
+            id="tarifs"
+            class="access-to-arbitrage"
+        >
             <div class="blurs blurs-1">
                 <div class="blurs__content">
                     <div class="blur blur-1" />
@@ -249,10 +254,7 @@
                     <div class="blur blur-3" />
                 </div>
             </div>
-            <div
-                ref="tariffsRef"
-                class="blurs blurs-4"
-            >
+            <div class="blurs blurs-4">
                 <div class="blurs__content">
                     <div class="blur blur-1" />
                     <div class="blur blur-2" />
@@ -605,7 +607,6 @@ vueApp.use(VueReCaptcha, {
 })
 
 const recaptchaInstance = useReCaptcha()
-const tariffsRef = ref()
 const questionForm = reactive({
   name: '',
   email: '',
@@ -679,8 +680,6 @@ const startUsing = () => {
     navigateTo('/auth?type=registration', { replace: true })
   }
 }
-
-const jumpToTariffs = () => tariffsRef.value.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' })
 
 const notificationSettings = reactive({
   isOpen: false,
