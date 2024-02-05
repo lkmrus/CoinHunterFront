@@ -164,6 +164,7 @@ const setLang = async (langCode) => {
             flex-direction: column;
             align-items: flex-start;
             gap: 35px;
+            height: auto;
             .navigation{
                 &__items{
                     grid-column-gap: 15px;
@@ -178,7 +179,7 @@ const setLang = async (langCode) => {
         &__content{
             .navigation{
                 &__items{
-                    grid-template-columns: auto, 105px;
+                    grid-template-columns: repeat(2, 1fr);
                     grid-column-gap: 37px;
                     .nav-1{
                         grid-column: 1;
