@@ -73,10 +73,10 @@
                 &#9733; {{ $t('account_subscription_title') }} &#9733;
             </h5>
             <div
-                v-if="subscription"
+                v-if="isSubscriptionActive"
                 class="status status_active"
             >
-                {{ $t('account_subscription_active_text') }} {{ new Date(subscription).toLocaleDateString() }}
+                {{ $t('account_subscription_active_text') }} {{ subscriptionDate }}
             </div>
             <div
                 v-else
@@ -198,12 +198,25 @@ const passwordForm = reactive({
   repeatPassword: ''
 })
 
-let subscription = null
-for (const chat of editableUser.chats) {
-  if (chat.paidUpToDate) {
-    subscription = chat.paidUpToDate
+const subscription = computed(() => {
+  for (const chat of editableUser.chats) {
+    if (chat.paidUpToDate) {
+      return chat.paidUpToDate
+    }
   }
-}
+})
+
+const subscriptionDate = computed(() => subscription.value
+  ? (new Date(subscription.value)).toLocaleDateString()
+  : ''
+)
+const isSubscriptionActive = computed(() => {
+  if (!subscription.value) {
+    return false
+  }
+
+  return subscription.value > Date.now()
+})
 
 const userRules = computed(() => {
   return {
