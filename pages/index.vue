@@ -563,11 +563,16 @@
                 space-between="25"
             >
                 <swiper-slide
-                    v-for="slide in 10"
+                    v-for="(review, index) in reviews"
                     ref="swiperSlide"
-                    :key="slide"
+                    :key="`${index}-${review.name}`"
                 >
-                    <review-card />
+                    <review-card
+                        :name="review.name"
+                        :avatar="review.avatar"
+                        :rating="review.rating"
+                        :text="review.text"
+                    />
                 </swiper-slide>
             </swiper>
         </section>
@@ -605,6 +610,72 @@ vueApp.use(VueReCaptcha, {
     }
   }
 })
+
+const reviews = ref([
+  {
+    name: 'Bryant Olushola',
+    avatar: 'avatar/1.png',
+    rating: 5,
+    text: `Now I know that something Good can come out of Africa
+This is the Messiah we have been waiting for AAS
+I thought is gonna come from the whites but I lied I call the CEO Black JESUS`
+  },
+  {
+    name: 'Lebo Mafatshe',
+    avatar: 'avatar/2.png',
+    rating: 5,
+    text: `The Best System Ever. AAS is here to get rid of all Ponzi Schemes and to make people's lives better and financially stable.`
+  },
+  {
+    name: 'Sandra Theriza Thanni',
+    avatar: 'avatar/3.png',
+    rating: 5,
+    text: `AAS is non to compare to,its a ponzi killer of our time,transperent ceo ,built on a blockchain`
+  },
+  {
+    name: 'Sylvester',
+    avatar: 'avatar/4.png',
+    rating: 5,
+    text: `Leadership visibility and integrity, regular communication, security of funds (locked up in Binance Pool) instant withdrawals, among others makes AAS a disruptor in the financial system. My only problem is that I don't have enough fund to maximize this wonderful opportunity. Scammers are scared!`
+  },
+  {
+    name: 'Stephen Ofori',
+    avatar: 'avatar/5.png',
+    rating: 5,
+    text: `The best of all Arbitrage company in the world hundred percent decentralized system with the fastest speed ever, a very transparent system of all with the best CEO born for humans`
+  },
+  {
+    name: 'Grace Tanko',
+    avatar: 'avatar/6.png',
+    rating: 5,
+    text: `It is great truthful keeping it's word and promise making me to smile`
+  },
+  {
+    name: 'Omolajaye Olusegun',
+    avatar: 'avatar/7.png',
+    rating: 5,
+    text: `AAS IS HIGHLY TRANSPARENT ALL ABOUT THE PROJECT BASE ON HONESTY.`
+  },
+  {
+    name: 'Herbert Brooks',
+    avatar: 'avatar/8.png',
+    rating: 4,
+    text: `Every time I withdraw, my trust grows. I'm on house money now after just two months. AAS is for real today.
+If you are afraid don,t invest. If you don't invest, how would you know? All those that call it a scam, but are not in it, should be quiet.`
+  },
+  {
+    name: 'Courage Agbeko',
+    avatar: 'avatar/9.png',
+    rating: 4,
+    text: `The regular updates and transparency coupled with the face to face interaction with the CEO is commendable. Financial freedom l believe is assured with AAS.`
+  },
+  {
+    name: 'Zer',
+    avatar: 'avatar/10.png',
+    rating: 5,
+    text: `This is a Game Changer. Liquidity Pool is real and all the money from investors is intact and safe.`
+  },
+])
 
 const recaptchaInstance = useReCaptcha()
 const questionForm = reactive({

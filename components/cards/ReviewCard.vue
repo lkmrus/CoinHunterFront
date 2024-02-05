@@ -5,12 +5,12 @@
                 <img
                     width="44"
                     height="44"
-                    src="@/assets/img/user1.jpg"
-                    alt="user1"
+                    alt="user picture"
+                    :src="avatar"
                 >
             </div>
             <div class="name">
-                Алексеев Алексей
+                {{ name }}
             </div>
         </div>
         <div class="review-card__rating">
@@ -18,24 +18,36 @@
                 v-for="(star, starIndex) in 5"
                 :key="`star-${starIndex}`"
                 icon="star"
-                :fill="getStarColor(star)"
+                :fill="fillWithColor(star)"
             />
         </div>
         <div class="review-card__review">
-            CoinHunter превзошел мои ожидания! Он точно определил оптимальные
-            варианты для моего бизнеса, сэкономив время и ресурсы.
-            Рекомендую всем предпринимателям!
+            {{ text }}
         </div>
     </div>
 </template>
 
 <script setup>
-const rating = ref(4)
+const props = defineProps({
+  name: {
+    type: String,
+    default: ''
+  },
+  avatar: {
+    type: String,
+    default: ''
+  },
+  rating: {
+    type: Number,
+    default: 0
+  },
+  text: {
+    type: String,
+    default: ''
+  }
+})
 
-const getStarColor = (starNum) => {
-  if (starNum <= rating.value) { return '#FFFFFF' }
-  return '#6E6E8A'
-}
+const fillWithColor = star => star <= props.rating ? '#FFFFFF' : '#6E6E8A'
 </script>
 
 <style lang="scss" scoped>
