@@ -60,9 +60,11 @@
                 placeholder="@example"
             />
             <button-custom
+                v-if="userData.login"
                 class="attach-description"
                 :value="$t('account_add_telegram_button_name')"
-                @click="goToUrl(`https://t.me/CurrencyScanner3000Bot?start=${editableUser.login}`)"
+                :disabled="attachClicked"
+                @click="clickAttach"
             />
         </div>
         <div class="account-page__subscription">
@@ -189,14 +191,13 @@ const notificationSettings = reactive({
   description: t('account_notification_error_description')
 })
 
-const user = await getUser({ token: token.value })
-
-const editableUser = reactive({ ...user })
-
+const userData = ref(await getUser({ token: token.value }))
+const editableUser = reactive({ ...userData.value })
 const passwordForm = reactive({
   password: '',
   repeatPassword: ''
 })
+const attachClicked = ref(false)
 
 const subscription = computed(() => {
   for (const chat of editableUser.chats) {
@@ -251,9 +252,9 @@ const saveSettings = async () => {
   if (passwordForm.password) { passwordv$.value.$validate() }
   if (
     !userv$.value.$error &&
-    (editableUser.email !== user.email ||
-    editableUser.login !== user.login ||
-    editableUser.fullname !== user.fullname) &&
+    (editableUser.email !== userData.email ||
+    editableUser.login !== userData.login ||
+    editableUser.fullname !== userData.fullname) &&
     ((passwordForm.password && !passwordv$.value.$error) || !passwordForm.password)
   ) {
     isSavedData = await userSettings({
@@ -266,14 +267,14 @@ const saveSettings = async () => {
   if (
     passwordForm.password &&
     ((
-      (editableUser.email !== user.email ||
-      editableUser.login !== user.login ||
-      editableUser.fullname !== user.fullname) &&
+      (editableUser.email !== userData.email ||
+      editableUser.login !== userData.login ||
+      editableUser.fullname !== userData.fullname) &&
       !userv$.value.$error
     ) || (
-      editableUser.email === user.email &&
-      editableUser.login === user.login &&
-      editableUser.fullname === user.fullname
+      editableUser.email === userData.email &&
+      editableUser.login === userData.login &&
+      editableUser.fullname === userData.fullname
     ))
   ) {
     if (!passwordv$.value.$error) {
@@ -291,6 +292,7 @@ const saveSettings = async () => {
     (isSavedPassword && isSavedData === null)
   ) {
     switchPopup(true)
+    userData.value = await getUser({ token: token.value }, true)
   } else {
     notificationSettings.isOpen = true
   }
@@ -316,6 +318,12 @@ const goToPage = async (page, query = {}) => {
   })
 }
 
+const clickAttach = async () => {
+  attachClicked.value = true
+  await goToUrl(`https://t.me/CurrencyScanner3000Bot?start=${editableUser.login}`)
+}
+
+watch(userData, user => Object.assign(editableUser, user))
 </script>
 
 <style lang="scss" scoped>
