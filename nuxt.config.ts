@@ -541,6 +541,13 @@ export default defineNuxtConfig({
           src: 'manifest/ios/1024.png',
           sizes: '1024x1024'
         }
+      ],
+      related_applications: [
+        {
+          platform: 'webapp',
+          url: 'https://coin-hunter.trade/manifest.webmanifest',
+          id: 'trade.hunter-coin'
+        }
       ]
     }
   }
