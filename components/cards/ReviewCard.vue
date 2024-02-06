@@ -86,7 +86,7 @@ const fillWithColor = star => star <= props.rating ? '#FFFFFF' : '#6E6E8A'
     &__review{
         @include text-medium-mixin;
         display: -webkit-box;
-        -webkit-line-clamp: 7;
+        -webkit-line-clamp: 9;
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
@@ -97,6 +97,10 @@ const fillWithColor = star => star <= props.rating ? '#FFFFFF' : '#6E6E8A'
         padding: 30px;
         width: 360px;
         height: 360px;
+
+        &__review{
+            -webkit-line-clamp: 8;
+        }
     }
 }
 
@@ -106,6 +110,10 @@ const fillWithColor = star => star <= props.rating ? '#FFFFFF' : '#6E6E8A'
         padding: 24px;
         width: 320px;
         height: 320px;
+
+        &__review{
+            -webkit-line-clamp: 7;
+        }
     }
 }
 
@@ -115,6 +123,10 @@ const fillWithColor = star => star <= props.rating ? '#FFFFFF' : '#6E6E8A'
         padding: 12px;
         width: 300px;
         height: 300px;
+
+        &__review{
+            -webkit-line-clamp: 7;
+        }
     }
 }
 </style>
