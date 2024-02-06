@@ -85,6 +85,10 @@ const fillWithColor = star => star <= props.rating ? '#FFFFFF' : '#6E6E8A'
     }
     &__review{
         @include text-medium-mixin;
+        display: -webkit-box;
+        -webkit-line-clamp: 7;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 }
 
