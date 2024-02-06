@@ -23,9 +23,9 @@ export const useUserStore = defineStore('user', {
     user: ''
   }),
   actions: {
-    async getUser ({ token }: GetUserInterface) {
+    async getUser ({ token }: GetUserInterface, update = false) {
       const store = useUserStore()
-      if (store.user) { return store.user }
+      if (store.user && !update) { return store.user }
       const { data, pending }: any = await useFetch('/api/users/me', {
         method: 'post',
         headers: { Authorization: `Bearer ${token}` }

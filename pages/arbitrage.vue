@@ -152,7 +152,10 @@
                 <arbitrage-card />
                 <arbitrage-card />
             </div>
-            <div class="arbitrage-page__text">
+            <div
+                v-else
+                class="arbitrage-page__text"
+            >
                 <div class="content">
                     <h4>{{ pageText.heading }}</h4>
                     <p>{{ pageText.text }}</p>
@@ -182,6 +185,7 @@ const { authenticated } = storeToRefs(useAuthStore())
 const telegramNotifications = ref(false)
 const pushNotifications = ref(false)
 const haveFilter = ref(false)
+const isOpen = ref(false)
 const filterButtonText = reactive({
   name: t('arbitrage_filter_button_text_name'),
   icon: ''

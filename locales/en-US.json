@@ -204,5 +204,7 @@
 
     "popup_sending_button": "Go back to CoinHunter",
 
-    "404_error_text": "Looks like we've encountered a glitch. The page you were looking for has disappeared into the depths of cyberspace. Don't worry, we are here to guide you back to the light."
+    "404_error_text": "Looks like we've encountered a glitch. The page you were looking for has disappeared into the depths of cyberspace. Don't worry, we are here to guide you back to the light.",
+
+    "install_app_button_text": "ADD TO HOME SCREEN"
 }

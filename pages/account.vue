@@ -60,9 +60,11 @@
                 placeholder="@example"
             />
             <button-custom
+                v-if="userData.login"
                 class="attach-description"
                 :value="$t('account_add_telegram_button_name')"
-                @click="goToUrl(`https://t.me/CurrencyScanner3000Bot?start=${editableUser.login}`)"
+                :disabled="attachClicked"
+                @click="clickAttach"
             />
         </div>
         <div class="account-page__subscription">
@@ -73,10 +75,10 @@
                 &#9733; {{ $t('account_subscription_title') }} &#9733;
             </h5>
             <div
-                v-if="subscription"
+                v-if="isSubscriptionActive"
                 class="status status_active"
             >
-                {{ $t('account_subscription_active_text') }} {{ new Date(subscription).toLocaleDateString() }}
+                {{ $t('account_subscription_active_text') }} {{ subscriptionDate }}
             </div>
             <div
                 v-else
@@ -189,21 +191,33 @@ const notificationSettings = reactive({
   description: t('account_notification_error_description')
 })
 
-const user = await getUser({ token: token.value })
-
-const editableUser = reactive({ ...user })
-
+const userData = ref(await getUser({ token: token.value }))
+const editableUser = reactive({ ...userData.value })
 const passwordForm = reactive({
   password: '',
   repeatPassword: ''
 })
+const attachClicked = ref(false)
 
-let subscription = null
-for (const chat of editableUser.chats) {
-  if (chat.paidUpToDate) {
-    subscription = chat.paidUpToDate
+const subscription = computed(() => {
+  for (const chat of editableUser.chats) {
+    if (chat.paidUpToDate) {
+      return chat.paidUpToDate
+    }
   }
-}
+})
+
+const subscriptionDate = computed(() => subscription.value
+  ? (new Date(subscription.value)).toLocaleDateString()
+  : ''
+)
+const isSubscriptionActive = computed(() => {
+  if (!subscription.value) {
+    return false
+  }
+
+  return subscription.value > Date.now()
+})
 
 const userRules = computed(() => {
   return {
@@ -238,9 +252,9 @@ const saveSettings = async () => {
   if (passwordForm.password) { passwordv$.value.$validate() }
   if (
     !userv$.value.$error &&
-    (editableUser.email !== user.email ||
-    editableUser.login !== user.login ||
-    editableUser.fullname !== user.fullname) &&
+    (editableUser.email !== userData.email ||
+    editableUser.login !== userData.login ||
+    editableUser.fullname !== userData.fullname) &&
     ((passwordForm.password && !passwordv$.value.$error) || !passwordForm.password)
   ) {
     isSavedData = await userSettings({
@@ -253,14 +267,14 @@ const saveSettings = async () => {
   if (
     passwordForm.password &&
     ((
-      (editableUser.email !== user.email ||
-      editableUser.login !== user.login ||
-      editableUser.fullname !== user.fullname) &&
+      (editableUser.email !== userData.email ||
+      editableUser.login !== userData.login ||
+      editableUser.fullname !== userData.fullname) &&
       !userv$.value.$error
     ) || (
-      editableUser.email === user.email &&
-      editableUser.login === user.login &&
-      editableUser.fullname === user.fullname
+      editableUser.email === userData.email &&
+      editableUser.login === userData.login &&
+      editableUser.fullname === userData.fullname
     ))
   ) {
     if (!passwordv$.value.$error) {
@@ -278,6 +292,7 @@ const saveSettings = async () => {
     (isSavedPassword && isSavedData === null)
   ) {
     switchPopup(true)
+    userData.value = await getUser({ token: token.value }, true)
   } else {
     notificationSettings.isOpen = true
   }
@@ -303,6 +318,12 @@ const goToPage = async (page, query = {}) => {
   })
 }
 
+const clickAttach = async () => {
+  attachClicked.value = true
+  await goToUrl(`https://t.me/CurrencyScanner3000Bot?start=${editableUser.login}`)
+}
+
+watch(userData, user => Object.assign(editableUser, user))
 </script>
 
 <style lang="scss" scoped>
