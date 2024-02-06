@@ -13,6 +13,7 @@
                 @close="closePromotion"
                 @click="installApp"
             />
+            {{ showButton }}
         </div>
         <slot />
         <layout-footer />
@@ -20,10 +21,12 @@
 </template>
 
 <script setup>
+const { $isMobile } = useNuxtApp()
+
 let installPrompt
 const canInstall = ref(false)
 const installed = ref(false)
-const showButton = computed(() => canInstall.value && !installed.value)
+const showButton = computed(() => $isMobile() && canInstall.value && !installed.value)
 
 const closePromotion = () => {
   canInstall.value = false
