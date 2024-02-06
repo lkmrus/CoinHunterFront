@@ -13,7 +13,6 @@
                 @close="closePromotion"
                 @click="installApp"
             />
-            {{ showButton }}
         </div>
         <slot />
         <layout-footer />
