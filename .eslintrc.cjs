@@ -124,7 +124,8 @@ module.exports = {
           ]
         }
       ],
-      'max-len': ['error', { code: 120, ignoreStrings: true }],
+      quotes: ['error', 'single', { allowTemplateLiterals: true }],
+      'max-len': ['error', { code: 120, ignoreStrings: true, ignoreTemplateLiterals: true }],
       'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       'no-bitwise': ['error', { allow: ['~'] }],
       'no-unused-expressions': 'error',
