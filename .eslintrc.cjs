@@ -124,7 +124,7 @@ module.exports = {
           ]
         }
       ],
-      'max-len': ['error', { code: 120 }],
+      'max-len': ['error', { code: 120, ignoreStrings: true }],
       'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       'no-bitwise': ['error', { allow: ['~'] }],
       'no-unused-expressions': 'error',
