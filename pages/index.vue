@@ -674,7 +674,7 @@ If you are afraid don,t invest. If you don't invest, how would you know? All tho
     avatar: 'avatar/10.png',
     rating: 5,
     text: `This is a Game Changer. Liquidity Pool is real and all the money from investors is intact and safe.`
-  },
+  }
 ])
 
 const recaptchaInstance = useReCaptcha()
