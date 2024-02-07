@@ -4,7 +4,7 @@ export default function () {
   if (typeof window !== 'undefined') {
     const router = useRouter()
 
-    router.afterEach(async (to, from) => {
+    router.afterEach((to) => {
       if (to?.hash) {
         const targetElement = document.querySelector(to.hash)
 

@@ -75,15 +75,15 @@ definePageMeta({
   layout: 'no-footer-layout'
 })
 
-const switchPopup = () => {
-  const popup = document.getElementById('popup-notification')
-  if (popup) {
-    popup.style.display = 'flex'
-    setTimeout(() => {
-      popup.style.opacity = '1'
-    }, 200)
-  }
-}
+// const switchPopup = () => {
+//   const popup = document.getElementById('popup-notification')
+//   if (popup) {
+//     popup.style.display = 'flex'
+//     setTimeout(() => {
+//       popup.style.opacity = '1'
+//     }, 200)
+//   }
+// }
 </script>
 
 <style lang="scss" scoped>

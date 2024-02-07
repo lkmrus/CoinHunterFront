@@ -4,7 +4,7 @@
         <meta
             name="cryptomus"
             content="8650a1e1"
-        />
+        >
         <div class="page-layout__header">
             <hint-unit />
             <layout-header />
@@ -20,10 +20,12 @@
 </template>
 
 <script setup>
+const { $isMobile } = useNuxtApp()
+
 let installPrompt
 const canInstall = ref(false)
 const installed = ref(false)
-const showButton = computed(() => canInstall.value && !installed.value)
+const showButton = computed(() => $isMobile() && canInstall.value && !installed.value)
 
 const closePromotion = () => {
   canInstall.value = false

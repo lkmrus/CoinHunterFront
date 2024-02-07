@@ -541,7 +541,7 @@ const rowsData = [
     maker: '0.2%',
     foundation: '2014',
     bonuses: {
-      en: "Invite friends and get rewards: 10,000 won and 20% for each friend's transaction",
+      en: `Invite friends and get rewards: 10,000 won and 20% for each friend's transaction`,
       ru: 'Приглашайте друзей и получайте особые награды: 10 000 вон и 20% за каждую транзакию друга'
     },
     score: '2.8 from 5 votes',
@@ -625,7 +625,7 @@ const rowsData = [
     maker: '0.35%',
     foundation: '2017',
     bonuses: {
-      en: "Trade on one of Turkey's most popular exchanges",
+      en: `Trade on one of Turkey's most popular exchanges`,
       ru: 'Торгуйте на одной из самых популярных Турецких бирж'
     },
     score: '2.6 from 5 votes',
