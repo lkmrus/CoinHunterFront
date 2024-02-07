@@ -5,6 +5,7 @@
                 <svg-icon
                     class="logo"
                     icon="logo"
+                    @click="goToAuthPage('/')"
                 />
                 <div
                     class="lang"
@@ -80,6 +81,13 @@ const setLang = async (langCode) => {
   const siteLang = await useCookie('i18n_redirected')
   siteLang.value = langCode
   location.reload()
+}
+
+const goToAuthPage = async (page, query = {}) => {
+  await navigateTo({
+    path: page,
+    query
+  })
 }
 </script>
 
