@@ -79,30 +79,18 @@
 
 <script setup>
 import { required, email, minLength, helpers } from '@vuelidate/validators'
-import { VueReCaptcha, useReCaptcha } from 'vue-recaptcha-v3'
+import { useReCaptcha } from 'vue-recaptcha-v3'
 import { useVuelidate } from '@vuelidate/core'
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '~/store/auth'
 import { useUserStore } from '~/store/user'
 
-const { vueApp } = useNuxtApp()
-const config = useRuntimeConfig()
-const { t, locale } = useI18n({ useScope: 'global' })
+const { t } = useI18n({ useScope: 'global' })
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 const { userRegistration } = useAuthStore()
 const { userTelegramAttach } = useUserStore()
 const { authenticated } = storeToRefs(useAuthStore())
-
-vueApp.use(VueReCaptcha, {
-  siteKey: config.public.recaptchaKey,
-  loaderOptions: {
-    autoHideBadge: true,
-    renderParameters: {
-      hl: locale.value
-    }
-  }
-})
 
 const recaptchaInstance = useReCaptcha()
 const switchPopup = async () => {
