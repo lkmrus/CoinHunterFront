@@ -66,8 +66,7 @@ onBeforeMount(async () => {
 
       if ('getInstalledRelatedApps' in navigator) {
         const apps = await navigator.getInstalledRelatedApps()
-        const appIndex = apps.findIndex(({ id }) => id === 'trade.hunter-coin')
-        const isInstalled = appIndex > -1
+        const isInstalled = !!apps?.length
 
         installed.value = isInstalled
       }
