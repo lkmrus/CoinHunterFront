@@ -60,7 +60,7 @@
                 placeholder="@example"
             />
             <button-custom
-                v-if="userData.login"
+                v-if="toBeAttached"
                 class="attach-description"
                 :value="$t('account_add_telegram_button_name')"
                 :disabled="attachClicked"
@@ -192,6 +192,7 @@ const notificationSettings = reactive({
 })
 
 const userData = ref(await getUser({ token: token.value }))
+const toBeAttached = computed(() => !!userData.value.login && !userData.value.chats.length)
 const editableUser = reactive({ ...userData.value })
 const passwordForm = reactive({
   password: '',
