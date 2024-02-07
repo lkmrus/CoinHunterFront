@@ -52,13 +52,11 @@ const handleAppInstalled = () => {
 
 onBeforeMount(async () => {
   if (process.client) {
-    if ('getInstalledRelatedApps' in navigator) {
-      const apps = await navigator.getInstalledRelatedApps()
-      const isInstalled = apps.includes('trade.hunter-coin')
+    canInstall.value = isMobile.value
+
+    if (canInstall.value) {
       const promotionClosed = localStorage.getItem('promotionClosed')
       const oneDaySec = 60 * 60 * 24
-
-      canInstall.value = true
 
       if (promotionClosed) {
         const closedAt = Number(promotionClosed)
@@ -66,7 +64,13 @@ onBeforeMount(async () => {
         canInstall.value = closedAt + oneDaySec <= Date.now()
       }
 
-      installed.value = isInstalled
+      if ('getInstalledRelatedApps' in navigator) {
+        const apps = await navigator.getInstalledRelatedApps()
+        const appIndex = apps.findIndex(({ id }) => id === 'trade.hunter-coin')
+        const isInstalled = appIndex > -1
+
+        installed.value = isInstalled
+      }
     }
 
     window.addEventListener('beforeinstallprompt', handleInstallPrompt)
