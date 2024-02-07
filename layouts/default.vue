@@ -20,12 +20,13 @@
 </template>
 
 <script setup>
-const { $isMobile } = useNuxtApp()
+const { $isDesktop } = useNuxtApp()
 
 let installPrompt
 const canInstall = ref(false)
 const installed = ref(false)
-const showButton = computed(() => $isMobile() && canInstall.value && !installed.value)
+const isMobile = computed(() => !$isDesktop())
+const showButton = computed(() => isMobile.value && canInstall.value && !installed.value)
 
 const closePromotion = () => {
   canInstall.value = false
