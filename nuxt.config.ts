@@ -90,6 +90,7 @@ export default defineNuxtConfig({
       name: 'CoinHunter',
       short_name: 'CoinHunter',
       start_url: '/',
+      scope: '/',
       background_color: '#03041c',
       description: 'CoinHunter',
       icons: [
@@ -545,8 +546,7 @@ export default defineNuxtConfig({
       related_applications: [
         {
           platform: 'webapp',
-          url: 'https://coin-hunter.trade/manifest.webmanifest',
-          id: 'trade.hunter-coin'
+          url: 'https://coin-hunter.trade/manifest.webmanifest'
         }
       ]
     }
