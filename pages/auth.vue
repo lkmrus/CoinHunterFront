@@ -1,35 +1,37 @@
 <template>
-    <div class="auth-page">
-        <div class="auth-page__left-content">
-            <img
-                src="@/assets/img/auth-background-high.png"
-                alt="user1"
-            >
-        </div>
-        <div class="auth-page__right-content">
-            <registration-auth
-                v-if="queryValue == 'registration'"
-            />
-            <forget-password-auth
-                v-else-if="queryValue == 'forget-password'"
-            />
-            <login-auth
-                v-else
-            />
-        </div>
+    <div>
+        <NuxtLayout :name="activePageLayout">
+            <div class="auth-page">
+                <div class="auth-page__left-content">
+                    <img
+                        src="@/assets/img/auth-background-high.png"
+                        alt="user1"
+                    >
+                </div>
+                <div class="auth-page__right-content">
+                    <registration-auth
+                        v-if="queryValue == 'registration'"
+                    />
+                    <forget-password-auth
+                        v-else-if="queryValue == 'forget-password'"
+                    />
+                    <login-auth
+                        v-else
+                    />
+                </div>
+            </div>
+        </NuxtLayout>
     </div>
 </template>
 
 <script setup>
-
-const activePageLayout = ref('no-footer-layout')
-
 definePageMeta({
-  layout: 'no-footer-layout'
+  layout: false
 })
 
 const route = useRoute()
 const queryValue = computed(() => route.query.type)
+const activePageLayout = ref('no-footer-layout')
 
 const handleWindowResize = (e) => {
   const width = e.target.innerWidth
@@ -46,10 +48,6 @@ const handleWindowResize = (e) => {
     activePageLayout.value = 'no-footer-layout'
   }
 }
-
-watch(activePageLayout, (layout) => {
-  setPageLayout(layout)
-})
 
 onMounted(() => {
   if (process.client) {
