@@ -21,17 +21,12 @@
 
 <script setup>
 import { useUserStore } from '~/store/user'
-const { getUser } = useUserStore()
+
 const token = useCookie('coinht')
+const { getUser } = useUserStore()
 
-const user = await getUser({ token: token.value })
-const userParam = computed(() => {
-  if (!user?.login) {
-    return ''
-  }
-
-  return `?start=${user.login}`
-})
+const user = ref({})
+const userParam = computed(() => user?.login ? `?start=${user.login}` : '')
 
 const goToUrl = async (url) => {
   await navigateTo(url, {
@@ -45,6 +40,10 @@ const goToUrl = async (url) => {
     }
   })
 }
+
+onBeforeMount(async () => {
+  user.value = await getUser({ token: token.value })
+})
 </script>
 
 <style lang="scss" scoped>

@@ -1,62 +1,67 @@
 <template>
-    <div class="auth-page">
-        <div class="auth-page__left-content">
-            <img
-                src="@/assets/img/auth-background-high.png"
-                alt="user1"
-            >
-        </div>
-        <div class="auth-page__right-content">
-            <registration-auth
-                v-if="queryValue == 'registration'"
-            />
-            <forget-password-auth
-                v-else-if="queryValue == 'forget-password'"
-            />
-            <login-auth
-                v-else
-            />
-        </div>
+    <div>
+        <NuxtLayout :name="activePageLayout">
+            <div class="auth-page">
+                <div class="auth-page__left-content">
+                    <img
+                        src="@/assets/img/auth-background-high.png"
+                        alt="user1"
+                    >
+                </div>
+                <div class="auth-page__right-content">
+                    <registration-auth
+                        v-if="queryValue == 'registration'"
+                    />
+                    <forget-password-auth
+                        v-else-if="queryValue == 'forget-password'"
+                    />
+                    <login-auth
+                        v-else
+                    />
+                </div>
+            </div>
+        </NuxtLayout>
     </div>
 </template>
 
 <script setup>
-
-let activePageLayout = 'no-footer-layout'
-
 definePageMeta({
-  layout: 'no-footer-layout'
+  layout: false
 })
 
 const route = useRoute()
-let queryValue = route.query.type
-watch(
-  () => route.query.type,
-  (newValue) => {
-    if (newValue) {
-      queryValue = newValue
-    } else {
-      queryValue = ''
+const queryValue = computed(() => route.query.type)
+const activePageLayout = ref('no-footer-layout')
+
+const handleWindowResize = (e) => {
+  const width = e.target.innerWidth
+
+  if (width <= 920) {
+    if (activePageLayout.value !== 'default') {
+      activePageLayout.value = 'default'
     }
+
+    return
   }
-)
+
+  if (activePageLayout.value !== 'no-footer-layout') {
+    activePageLayout.value = 'no-footer-layout'
+  }
+}
 
 onMounted(() => {
   if (process.client) {
     if (window.innerWidth <= 920) {
-      setPageLayout('default')
-      activePageLayout = 'default'
+      activePageLayout.value = 'default'
     }
-    window.addEventListener('resize', (e) => {
-      const width = e.target.innerWidth
-      if (width <= 920 && activePageLayout !== 'default') {
-        setPageLayout('default')
-        activePageLayout = 'default'
-      } else if (activePageLayout !== 'no-footer-layout') {
-        setPageLayout('no-footer-layout')
-        activePageLayout = 'no-footer-layout'
-      }
-    })
+
+    window.addEventListener('resize', handleWindowResize)
+  }
+})
+
+onBeforeUnmount(() => {
+  if (process.client) {
+    window.removeEventListener('resize', handleWindowResize)
   }
 })
 

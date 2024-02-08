@@ -1,136 +1,141 @@
 <template>
-    <div class="account-page">
-        <div class="blurs">
-            <div class="blurs__content">
-                <div class="blur blur-1" />
-                <div class="blur blur-2" />
-                <div class="blur blur-3" />
-            </div>
-        </div>
-        <h2 class="account-page__title">
-            {{ $t('account_title') }}
-        </h2>
-        <div class="account-page__input">
-            <input-custom
-                v-model="editableUser.fullname"
-                :title="$t('form_name_title')"
-                :placeholder="$t('form_name_placeholder')"
-            />
-        </div>
-        <div class="account-page__input">
-            <input-custom
-                v-model="editableUser.email"
-                disabled
-                title="Email"
-                placeholder="name@example.com"
-                :i-error="userv$.email.$error"
-                :i-error-name="userv$.email.email.$message"
-                @change="userv$.email.$touch"
-            />
-        </div>
-        <div class="account-page__input">
-            <input-custom
-                v-model="passwordForm.password"
-                password-type
-                :title="$t('form_password_title')"
-                placeholder="example_password"
-                :i-error="passwordv$.password.$error"
-                :i-error-name="passwordv$.password.minLength.$message"
-                @change="passwordv$.password.$touch"
-            />
-        </div>
-        <div class="account-page__input">
-            <input-custom
-                v-model="passwordForm.repeatPassword"
-                password-type
-                :title="$t('form_repeat_password_title')"
-                placeholder="example_password"
-                :i-error="passwordv$.repeatPassword.$error"
-                :i-error-name="
-                    passwordv$.repeatPassword.$errors[0] ? passwordv$.repeatPassword.$errors[0].$message : ''
-                "
-                @change="passwordv$.repeatPassword.$touch"
-            />
-        </div>
-        <!-- {{ passwordv$.repeatPassword.$errors[0].$message }} -->
-        <div class="account-page__input account-page__input_telegram">
-            <input-custom
-                v-model="editableUser.login"
-                title="Telegram ID"
-                placeholder="@example"
-            />
-            <button-custom
-                v-if="userData.login"
-                class="attach-description"
-                :value="$t('account_add_telegram_button_name')"
-                :disabled="attachClicked"
-                @click="clickAttach"
-            />
-        </div>
-        <div class="account-page__subscription">
-            <h5
-                class="title"
-                style="color:#ffd700;"
-            >
-                &#9733; {{ $t('account_subscription_title') }} &#9733;
-            </h5>
-            <div
-                v-if="isSubscriptionActive"
-                class="status status_active"
-            >
-                {{ $t('account_subscription_active_text') }} {{ subscriptionDate }}
-            </div>
-            <div
-                v-else
-                class="status"
-            >
-                {{ $t('account_subscription_inactive_text') }}
-                <div class="status__pay">
-                    <button-custom
-                        class="big-h"
-                        :value="$t('account_subscription_inactive_button')"
-                        @click="goToPage('/payment')"
+    <div>
+        <NuxtLayout :name="activePageLayout">
+            <div class="account-page">
+                <div class="blurs">
+                    <div class="blurs__content">
+                        <div class="blur blur-1" />
+                        <div class="blur blur-2" />
+                        <div class="blur blur-3" />
+                    </div>
+                </div>
+                <h2 class="account-page__title">
+                    {{ $t('account_title') }}
+                </h2>
+                <div class="account-page__input">
+                    <input-custom
+                        v-model="editableUser.fullname"
+                        :title="$t('form_name_title')"
+                        :placeholder="$t('form_name_placeholder')"
                     />
                 </div>
-            </div>
-        </div>
-        <div class="account-page__buttons">
-            <div class="pay-mobile">
-                <button-custom
-                    class="big-h"
-                    :value="$t('account_connect_telegram_button')"
-                    @click="goToUrl(`https://t.me/CurrencyScanner3000Bot?start=${editableUser.login}`)"
+                <div class="account-page__input">
+                    <input-custom
+                        v-model="editableUser.email"
+                        disabled
+                        title="Email"
+                        placeholder="name@example.com"
+                        :i-error="userv$.email.$error"
+                        :i-error-name="userv$.email.email.$message"
+                        @change="userv$.email.$touch"
+                    />
+                </div>
+                <div class="account-page__input">
+                    <input-custom
+                        v-model="passwordForm.password"
+                        password-type
+                        :title="$t('form_password_title')"
+                        placeholder="example_password"
+                        :i-error="passwordv$.password.$error"
+                        :i-error-name="passwordv$.password.minLength.$message"
+                        @change="passwordv$.password.$touch"
+                    />
+                </div>
+                <div class="account-page__input">
+                    <input-custom
+                        v-model="passwordForm.repeatPassword"
+                        password-type
+                        :title="$t('form_repeat_password_title')"
+                        placeholder="example_password"
+                        :i-error="passwordv$.repeatPassword.$error"
+                        :i-error-name="
+                            passwordv$.repeatPassword.$errors[0] ? passwordv$.repeatPassword.$errors[0].$message : ''
+                        "
+                        @change="passwordv$.repeatPassword.$touch"
+                    />
+                </div>
+                <!-- {{ passwordv$.repeatPassword.$errors[0].$message }} -->
+                <div class="account-page__input account-page__input_telegram">
+                    <input-custom
+                        v-model="editableUser.login"
+                        title="Telegram ID"
+                        placeholder="@example"
+                        :disabled="!toBeAttached"
+                    />
+                    <button-custom
+                        v-if="toBeAttached"
+                        class="attach-description"
+                        :value="$t('account_add_telegram_button_name')"
+                        :disabled="attachClicked"
+                        @click="clickAttach"
+                    />
+                </div>
+                <div class="account-page__subscription">
+                    <h5
+                        class="title"
+                        style="color:#ffd700;"
+                    >
+                        &#9733; {{ $t('account_subscription_title') }} &#9733;
+                    </h5>
+                    <div
+                        v-if="isSubscriptionActive"
+                        class="status status_active"
+                    >
+                        {{ $t('account_subscription_active_text') }} {{ subscriptionDate }}
+                    </div>
+                    <div
+                        v-else
+                        class="status"
+                    >
+                        {{ $t('account_subscription_inactive_text') }}
+                        <div class="status__pay">
+                            <button-custom
+                                class="big-h"
+                                :value="$t('account_subscription_inactive_button')"
+                                @click="goToPage('/payment')"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="account-page__buttons">
+                    <div class="pay-mobile">
+                        <button-custom
+                            class="big-h"
+                            :value="$t('account_connect_telegram_button')"
+                            @click="goToUrl(`https://t.me/CurrencyScanner3000Bot?start=${editableUser.login}`)"
+                        />
+                        <button-custom
+                            class="big-h"
+                            :value="$t('account_subscription_inactive_button')"
+                            @click="goToPage('/payment')"
+                        />
+                    </div>
+                    <div class="save">
+                        <button-custom
+                            :value="$t('account_save_settings')"
+                            @click="saveSettings()"
+                        />
+                    </div>
+                </div>
+                <img
+                    class="bitcoin"
+                    src="@/assets/img/bitcoin.png"
+                    alt="bitcoin"
+                >
+                <popup-sending
+                    id="popup-sending"
+                    :title="$t('account_popup_success_title')"
+                    @close="switchPopup(false)"
                 />
-                <button-custom
-                    class="big-h"
-                    :value="$t('account_subscription_inactive_button')"
-                    @click="goToPage('/payment')"
+                <notification-unit
+                    v-if="notificationSettings.isOpen"
+                    error
+                    :title="notificationSettings.title"
+                    :description="notificationSettings.description"
+                    @close="notificationSettings.isOpen = false"
                 />
             </div>
-            <div class="save">
-                <button-custom
-                    :value="$t('account_save_settings')"
-                    @click="saveSettings()"
-                />
-            </div>
-        </div>
-        <img
-            class="bitcoin"
-            src="@/assets/img/bitcoin.png"
-            alt="bitcoin"
-        >
-        <popup-sending
-            id="popup-sending"
-            :title="$t('account_popup_success_title')"
-            @close="switchPopup(false)"
-        />
-        <notification-unit
-            v-if="notificationSettings.isOpen"
-            error
-            :title="notificationSettings.title"
-            :description="notificationSettings.description"
-            @close="notificationSettings.isOpen = false"
-        />
+        </NuxtLayout>
     </div>
 </template>
 
@@ -142,29 +147,41 @@ const { t } = useI18n({ useScope: 'global' })
 
 const { userSettings, userTelegramAttach, getUser } = useUserStore()
 const token = useCookie('coinht')
-
-let activePageLayout = 'no-footer-layout'
+const activePageLayout = ref('no-footer-layout')
 
 definePageMeta({
-  layout: 'no-footer-layout'
+  layout: false
 })
+
+const handleWindowResize = (e) => {
+  const width = e.target.innerWidth
+
+  if (width <= 920) {
+    if (activePageLayout.value !== 'default') {
+      activePageLayout.value = 'default'
+    }
+
+    return
+  }
+
+  if (activePageLayout.value !== 'no-footer-layout') {
+    activePageLayout.value = 'no-footer-layout'
+  }
+}
 
 onMounted(() => {
   if (process.client) {
     if (window.innerWidth <= 920) {
-      setPageLayout('default')
-      activePageLayout = 'default'
+      activePageLayout.value = 'default'
     }
-    window.addEventListener('resize', (e) => {
-      const width = e.target.innerWidth
-      if (width <= 920 && activePageLayout !== 'default') {
-        setPageLayout('default')
-        activePageLayout = 'default'
-      } else if (activePageLayout !== 'no-footer-layout') {
-        setPageLayout('no-footer-layout')
-        activePageLayout = 'no-footer-layout'
-      }
-    })
+
+    window.addEventListener('resize', handleWindowResize)
+  }
+})
+
+onBeforeUnmount(() => {
+  if (process.client) {
+    window.removeEventListener('resize', handleWindowResize)
   }
 })
 
@@ -192,6 +209,7 @@ const notificationSettings = reactive({
 })
 
 const userData = ref(await getUser({ token: token.value }))
+const toBeAttached = computed(() => !!userData.value.login && !userData.value.chats.length)
 const editableUser = reactive({ ...userData.value })
 const passwordForm = reactive({
   password: '',
@@ -259,7 +277,7 @@ const saveSettings = async () => {
   ) {
     isSavedData = await userSettings({
       email: editableUser.email,
-      login: editableUser.login,
+      login: editableUser.login.replace(/^@/, ''),
       fullname: editableUser.fullname,
       token: token.value
     })

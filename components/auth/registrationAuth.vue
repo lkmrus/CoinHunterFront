@@ -79,42 +79,30 @@
 
 <script setup>
 import { required, email, minLength, helpers } from '@vuelidate/validators'
-import { VueReCaptcha, useReCaptcha } from 'vue-recaptcha-v3'
+import { useReCaptcha } from 'vue-recaptcha-v3'
 import { useVuelidate } from '@vuelidate/core'
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '~/store/auth'
 import { useUserStore } from '~/store/user'
 
-const { vueApp } = useNuxtApp()
-const config = useRuntimeConfig()
-const { t, locale } = useI18n({ useScope: 'global' })
+const { t } = useI18n({ useScope: 'global' })
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 const { userRegistration } = useAuthStore()
 const { userTelegramAttach } = useUserStore()
 const { authenticated } = storeToRefs(useAuthStore())
 
-vueApp.use(VueReCaptcha, {
-  siteKey: config.public.recaptchaKey,
-  loaderOptions: {
-    autoHideBadge: true,
-    renderParameters: {
-      hl: locale.value
-    }
-  }
-})
-
 const recaptchaInstance = useReCaptcha()
-const switchPopup = () => {
+const switchPopup = async () => {
   const popup = document.getElementById('popup-notification')
   const router = useRouter()
+
   if (popup) {
     popup.style.display = 'flex'
-    setTimeout(() => {
-      popup.style.opacity = '1'
-      setTimeout(() => {
-        router.push('/account')
-      }, 5000)
-    }, 200)
+    await sleep(200)
+    popup.style.opacity = '1'
+    await sleep(5000)
+    router.push('/account')
   }
 }
 

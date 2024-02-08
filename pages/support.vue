@@ -79,21 +79,9 @@
 <script setup>
 import { required, email, minLength, helpers } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
-import { VueReCaptcha, useReCaptcha } from 'vue-recaptcha-v3'
+import { useReCaptcha } from 'vue-recaptcha-v3'
 
-const { vueApp } = useNuxtApp()
-const config = useRuntimeConfig()
-const { t, locale } = useI18n({ useScope: 'global' })
-
-vueApp.use(VueReCaptcha, {
-  siteKey: config.public.recaptchaKey,
-  loaderOptions: {
-    autoHideBadge: true,
-    renderParameters: {
-      hl: locale.value
-    }
-  }
-})
+const { t } = useI18n({ useScope: 'global' })
 
 const recaptchaInstance = useReCaptcha()
 const questionForm = reactive({
