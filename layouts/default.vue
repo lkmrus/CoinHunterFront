@@ -24,7 +24,7 @@ const { $isDesktop, $pwa } = useNuxtApp()
 
 const isMobile = computed(() => !$isDesktop())
 const closed = ref(false)
-const showButton = computed(() => $pwa.showInstallPrompt && isMobile.value && !closed.value)
+const showButton = computed(() => $pwa?.showInstallPrompt && isMobile.value && !closed.value)
 
 const closePromotion = () => {
   localStorage.setItem('promotionClosed', `${Date.now()}`)
