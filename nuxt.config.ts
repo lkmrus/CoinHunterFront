@@ -87,6 +87,9 @@ export default defineNuxtConfig({
   },
   pwa: {
     registerType: 'autoUpdate',
+    workbox: {
+      navigateFallback: undefined
+    },
     manifest: {
       name: 'CoinHunter',
       short_name: 'CoinHunter',
