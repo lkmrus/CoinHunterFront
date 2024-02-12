@@ -11,7 +11,7 @@
             <install-promotion
                 v-if="showButton"
                 @close="closePromotion"
-                @click="installApp"
+                @click="$pwa.install()"
             />
         </div>
         <slot />
@@ -20,68 +20,29 @@
 </template>
 
 <script setup>
-const { $isDesktop } = useNuxtApp()
+const { $isDesktop, $pwa } = useNuxtApp()
 
-let installPrompt
-const canInstall = ref(false)
-const installed = ref(false)
 const isMobile = computed(() => !$isDesktop())
-const showButton = computed(() => isMobile.value && canInstall.value && !installed.value)
+const closed = ref(false)
+const showButton = computed(() => $pwa?.showInstallPrompt && isMobile.value && !closed.value)
 
 const closePromotion = () => {
-  canInstall.value = false
   localStorage.setItem('promotionClosed', `${Date.now()}`)
+  closed.value = true
 }
 
-const installApp = () => {
-  if (!installPrompt) {
-    return
-  }
-
-  installPrompt.prompt()
-}
-
-const handleInstallPrompt = (event) => {
-  event.preventDefault()
-  installPrompt = event
-}
-
-const handleAppInstalled = () => {
-  installed.value = true
-}
-
-onBeforeMount(async () => {
+onBeforeMount(() => {
   if (process.client) {
-    canInstall.value = isMobile.value
+    const promotionClosed = localStorage.getItem('promotionClosed')
 
-    if (canInstall.value) {
-      const promotionClosed = localStorage.getItem('promotionClosed')
-      const oneDaySec = 60 * 60 * 24
-
-      if (promotionClosed) {
-        const closedAt = Number(promotionClosed)
-
-        canInstall.value = closedAt + oneDaySec <= Date.now()
-      }
-
-      if ('getInstalledRelatedApps' in navigator) {
-        const apps = await navigator.getInstalledRelatedApps()
-        const isInstalled = !!apps?.length
-
-        installed.value = isInstalled
-      }
+    if (!promotionClosed) {
+      return
     }
 
-    window.addEventListener('beforeinstallprompt', handleInstallPrompt)
-    window.addEventListener('appinstalled', handleAppInstalled)
-  }
-})
+    const oneDaySec = 60 * 60 * 24
+    const closedAt = Number(promotionClosed)
 
-onBeforeUnmount(() => {
-  if (process.client) {
-    installPrompt = null
-    window.removeEventListener('appinstalled', handleAppInstalled)
-    window.removeEventListener('beforeinstallprompt', handleInstallPrompt)
+    closed.value = Date.now() < closedAt + oneDaySec
   }
 })
 </script>

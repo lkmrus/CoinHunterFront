@@ -222,6 +222,10 @@ watch(() => route.path, () => {
   hamburgerOpen.value = false
 })
 
+watch(() => route.params, () => {
+  hamburgerOpen.value = false
+})
+
 const logout = async () => {
   await logUserOut()
   isAuthenticated.value = false

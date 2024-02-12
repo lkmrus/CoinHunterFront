@@ -60,7 +60,7 @@
                         v-model="editableUser.login"
                         title="Telegram ID"
                         placeholder="@example"
-                        :disabled="!toBeAttached"
+                        :disabled="attached"
                     />
                     <button-custom
                         v-if="toBeAttached"
@@ -209,7 +209,8 @@ const notificationSettings = reactive({
 })
 
 const userData = ref(await getUser({ token: token.value }))
-const toBeAttached = computed(() => !!userData.value.login && !userData.value.chats.length)
+const attached = computed(() => !!userData.value?.chats?.length)
+const toBeAttached = computed(() => !!userData.value?.login && !attached.value)
 const editableUser = reactive({ ...userData.value })
 const passwordForm = reactive({
   password: '',

@@ -1,6 +1,6 @@
 <template>
     <div
-        v-if="token"
+        v-if="token && !attached"
         class="hint-unit"
         @click="goToUrl(`https://t.me/CurrencyScanner3000Bot${userParam}`)"
     >
@@ -26,7 +26,8 @@ const token = useCookie('coinht')
 const { getUser } = useUserStore()
 
 const user = ref({})
-const userParam = computed(() => user?.login ? `?start=${user.login}` : '')
+const userParam = computed(() => user?.value.login ? `?start=${user.value.login}` : '')
+const attached = computed(() => !!user.value?.chats?.length)
 
 const goToUrl = async (url) => {
   await navigateTo(url, {
