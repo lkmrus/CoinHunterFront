@@ -1,35 +1,35 @@
 <template>
-    <section class="table">
-        <h2 class="table__title">
-            {{ $t('table_unit_title') }}
-        </h2>
-        <div class="table__content">
-            <table>
-                <thead>
-                    <tr>
-                        <th
-                            v-for="(item, itemIndex) in tableHeader"
-                            :key="`header-item-${itemIndex}`"
-                            :class="{'wide': item.is_wide}"
-                        >
-                            {{ item.name }}
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr
-                        v-for="(row, rowIndex) in infoRows"
-                        :key="`row-${rowIndex}`"
-                    >
-                        <td>{{ row.name }}</td>
-                        <td>{{ row.taker }}</td>
-                        <td>{{ row.maker }}</td>
-                        <td>{{ row.foundation }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
+  <section class="table">
+    <h2 class="table__title">
+      {{ $t('table_unit_title') }}
+    </h2>
+    <div class="table__content">
+      <table>
+        <thead>
+          <tr>
+            <th
+              v-for="(item, itemIndex) in tableHeader"
+              :key="`header-item-${itemIndex}`"
+              :class="{'wide': item.is_wide}"
+            >
+              {{ item.name }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(row, rowIndex) in infoRows"
+            :key="`row-${rowIndex}`"
+          >
+            <td>{{ row.name }}</td>
+            <td>{{ row.taker }}</td>
+            <td>{{ row.maker }}</td>
+            <td>{{ row.foundation }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 </template>
 
 <script setup>

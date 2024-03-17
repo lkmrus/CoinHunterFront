@@ -1,67 +1,67 @@
 <template>
-    <div class="login">
-        <div class="login__info">
-            <h2 class="title">
-                {{ $t('auth_login_title') }}
-            </h2>
-            <span class="subtitle">
-                {{ $t('auth_login_subtitle_text') }}
-                <nuxt-link to="?type=registration">
-                    {{ $t('auth_login_subtitle_link') }}
-                </nuxt-link>
-            </span>
-        </div>
-        <div class="login__input">
-            <input-custom
-                v-model="loginForm.email"
-                title="Email"
-                placeholder="name@example.com"
-                :i-error="v$.email.$error"
-                :i-error-name="v$.email.email.$message"
-                @change="v$.email.$touch"
-            />
-        </div>
-        <div class="login__input">
-            <input-custom
-                v-model="loginForm.password"
-                password-type
-                :title="$t('form_password_title')"
-                placeholder="example_password"
-                :i-error="v$.password.$error"
-                :i-error-name="v$.password.minLength.$message"
-                @change="v$.password.$touch"
-            />
-        </div>
-        <div class="login__options">
-            <checkbox-custom
-                default-type
-                :text="$t('auth_login_form_checkbox')"
-                :checked="isRememberMe"
-                @click="isRememberSwitch()"
-            />
-
-            <nuxt-link
-                class="forget-password-link"
-                to="?type=forget-password"
-            >
-                {{ $t('auth_login_form_forget_passsword') }}
-            </nuxt-link>
-        </div>
-        <div class="login__button">
-            <button-custom
-                class="big-h"
-                :value="$t('auth_login_form_button')"
-                @click="authLogin()"
-            />
-        </div>
-        <notification-unit
-            v-if="notificationSettings.isOpen"
-            error
-            :title="notificationSettings.title"
-            :description="notificationSettings.description"
-            @close="notificationSettings.isOpen = false"
-        />
+  <div class="login">
+    <div class="login__info">
+      <h2 class="title">
+        {{ $t('auth_login_title') }}
+      </h2>
+      <span class="subtitle">
+        {{ $t('auth_login_subtitle_text') }}
+        <nuxt-link to="?type=registration">
+          {{ $t('auth_login_subtitle_link') }}
+        </nuxt-link>
+      </span>
     </div>
+    <div class="login__input">
+      <input-custom
+        v-model="loginForm.email"
+        title="Email"
+        placeholder="name@example.com"
+        :i-error="v$.email.$error"
+        :i-error-name="v$.email.email.$message"
+        @change="v$.email.$touch"
+      />
+    </div>
+    <div class="login__input">
+      <input-custom
+        v-model="loginForm.password"
+        password-type
+        :title="$t('form_password_title')"
+        placeholder="example_password"
+        :i-error="v$.password.$error"
+        :i-error-name="v$.password.minLength.$message"
+        @change="v$.password.$touch"
+      />
+    </div>
+    <div class="login__options">
+      <checkbox-custom
+        default-type
+        :text="$t('auth_login_form_checkbox')"
+        :checked="isRememberMe"
+        @click="isRememberSwitch()"
+      />
+
+      <nuxt-link
+        class="forget-password-link"
+        to="?type=forget-password"
+      >
+        {{ $t('auth_login_form_forget_passsword') }}
+      </nuxt-link>
+    </div>
+    <div class="login__button">
+      <button-custom
+        class="big-h"
+        :value="$t('auth_login_form_button')"
+        @click="authLogin()"
+      />
+    </div>
+    <notification-unit
+      v-if="notificationSettings.isOpen"
+      error
+      :title="notificationSettings.title"
+      :description="notificationSettings.description"
+      @close="notificationSettings.isOpen = false"
+    />
+  </div>
 </template>
 
 <script setup>

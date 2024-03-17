@@ -1,56 +1,56 @@
 <template>
-    <h5
-        v-if="title"
-        class="input-label"
-    >
-        {{ title }}
-    </h5>
-    <div
-        class="input-custom"
-        :class="[{'disabled': disabled}]"
-    >
-        <input
-            v-model="proxyValue"
-            class="input input_default"
-            :class="[
-                {'error': iError },
-                {'focused': focused },
-                {'active': proxyValue },
-            ]"
-            :autocomplete="autocomplete"
-            :disabled="disabled"
-            :form="form"
-            :max="max"
-            :maxlength="maxlength"
-            :name="name"
-            :pattern="pattern"
-            :placeholder="placeholder"
-            :readonly="readonly"
-            :required="required"
-            :size="size"
-            :step="step"
-            :type="localType"
+  <h5
+    v-if="title"
+    class="input-label"
+  >
+    {{ title }}
+  </h5>
+  <div
+    class="input-custom"
+    :class="[{'disabled': disabled}]"
+  >
+    <input
+      v-model="proxyValue"
+      class="input input_default"
+      :class="[
+        {'error': iError },
+        {'focused': focused },
+        {'active': proxyValue },
+      ]"
+      :autocomplete="autocomplete"
+      :disabled="disabled"
+      :form="form"
+      :max="max"
+      :maxlength="maxlength"
+      :name="name"
+      :pattern="pattern"
+      :placeholder="placeholder"
+      :readonly="readonly"
+      :required="required"
+      :size="size"
+      :step="step"
+      :type="localType"
 
-            @input="onInput($event)"
-            @change="onChange($event)"
-            @focus="focused = true"
-            @blur="focused = false"
-        >
-        <svg-icon
-            v-if="passwordType"
-            class="password-icon"
-            :icon="localType === 'password' ? 'eye-hide' : 'eye-show'"
-            width="32"
-            height="32"
-            @click="localType === 'password' ? localType = 'text' : localType = 'password'"
-        />
-    </div>
-    <div
-        v-if="iError"
-        class="input-error"
+      @input="onInput($event)"
+      @change="onChange($event)"
+      @focus="focused = true"
+      @blur="focused = false"
     >
-        {{ iErrorName }}
-    </div>
+    <svg-icon
+      v-if="passwordType"
+      class="password-icon"
+      :icon="localType === 'password' ? 'eye-hide' : 'eye-show'"
+      width="32"
+      height="32"
+      @click="localType === 'password' ? localType = 'text' : localType = 'password'"
+    />
+  </div>
+  <div
+    v-if="iError"
+    class="input-error"
+  >
+    {{ iErrorName }}
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -1,75 +1,75 @@
 <template>
-    <form @submit.prevent="submit">
-        <div class="forget-password">
-            <div class="forget-password__info">
-                <h2 class="title">
-                    {{ $t('auth_forget_password_title') }}
-                </h2>
-                <span class="subtitle">{{ $t('auth_forget_password_subtitle') }}</span>
-            </div>
-            <div class="forget-password__input">
-                <input-custom
-                    v-model="emailPrimary"
-                    title="Email"
-                    :disabled="codeSent"
-                    placeholder="name@example.com"
-                />
-            </div>
-            <div
-                v-if="codeSent"
-                class="forget-password__input"
-            >
-                <input-custom
-                    v-model="renewPasswordPayload.code"
-                    :title="$t('auth_forget_form_code_title')"
-                    placeholder="1234"
-                />
-            </div>
-            <div
-                v-if="codeSent"
-                class="forget-password__input"
-            >
-                <input-custom
-                    v-model="renewPasswordPayload.password"
-                    :title="$t('auth_forget_form_password_title')"
-                    password-type
-                    :i-error="v$.password.$error"
-                    :i-error-name="v$.password.minLength.$message"
-                    type="password"
-                />
-            </div>
-            <div class="forget-password__button">
-                <button-custom
-                    v-if="!codeSent"
-                    class="big-h"
-                    :value="$t('auth_forget_button')"
-                    :disabled="codeSent"
-                    @click="requestCode"
-                />
-                <button-custom
-                    v-else
-                    class="big-h"
-                    :value="$t('auth_confirm_button')"
-                    type="submit"
-                    @click="renewPassword"
-                />
-            </div>
-            <notification-unit
-                v-if="notificationEmailSettings.isOpen"
-                error
-                :title="notificationEmailSettings.title"
-                :description="notificationEmailSettings.description"
-                @close="notificationEmailSettings.isOpen = false"
-            />
-            <notification-unit
-                v-if="notificationCodeSettings.isOpen"
-                error
-                :title="notificationCodeSettings.title"
-                :description="notificationCodeSettings.description"
-                @close="notificationCodeSettings.isOpen = false"
-            />
-        </div>
-    </form>
+  <form @submit.prevent="submit">
+    <div class="forget-password">
+      <div class="forget-password__info">
+        <h2 class="title">
+          {{ $t('auth_forget_password_title') }}
+        </h2>
+        <span class="subtitle">{{ $t('auth_forget_password_subtitle') }}</span>
+      </div>
+      <div class="forget-password__input">
+        <input-custom
+          v-model="emailPrimary"
+          title="Email"
+          :disabled="codeSent"
+          placeholder="name@example.com"
+        />
+      </div>
+      <div
+        v-if="codeSent"
+        class="forget-password__input"
+      >
+        <input-custom
+          v-model="renewPasswordPayload.code"
+          :title="$t('auth_forget_form_code_title')"
+          placeholder="1234"
+        />
+      </div>
+      <div
+        v-if="codeSent"
+        class="forget-password__input"
+      >
+        <input-custom
+          v-model="renewPasswordPayload.password"
+          :title="$t('auth_forget_form_password_title')"
+          password-type
+          :i-error="v$.password.$error"
+          :i-error-name="v$.password.minLength.$message"
+          type="password"
+        />
+      </div>
+      <div class="forget-password__button">
+        <button-custom
+          v-if="!codeSent"
+          class="big-h"
+          :value="$t('auth_forget_button')"
+          :disabled="codeSent"
+          @click="requestCode"
+        />
+        <button-custom
+          v-else
+          class="big-h"
+          :value="$t('auth_confirm_button')"
+          type="submit"
+          @click="renewPassword"
+        />
+      </div>
+      <notification-unit
+        v-if="notificationEmailSettings.isOpen"
+        error
+        :title="notificationEmailSettings.title"
+        :description="notificationEmailSettings.description"
+        @close="notificationEmailSettings.isOpen = false"
+      />
+      <notification-unit
+        v-if="notificationCodeSettings.isOpen"
+        error
+        :title="notificationCodeSettings.title"
+        :description="notificationCodeSettings.description"
+        @close="notificationCodeSettings.isOpen = false"
+      />
+    </div>
+  </form>
 </template>
 
 <script setup>

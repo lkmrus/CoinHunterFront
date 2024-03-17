@@ -1,22 +1,22 @@
 <template>
-    <div class="page-layout">
-        <NuxtPwaManifest />
-        <meta
-            name="cryptomus"
-            content="8650a1e1"
-        >
-        <div class="page-layout__header">
-            <hint-unit />
-            <layout-header />
-            <install-promotion
-                v-if="showButton"
-                @close="closePromotion"
-                @click="$pwa.install()"
-            />
-        </div>
-        <slot />
-        <layout-footer />
+  <div class="page-layout">
+    <NuxtPwaManifest />
+    <meta
+      name="cryptomus"
+      content="8650a1e1"
+    >
+    <div class="page-layout__header">
+      <hint-unit />
+      <layout-header />
+      <install-promotion
+        v-if="showButton"
+        @close="closePromotion"
+        @click="$pwa.install()"
+      />
     </div>
+    <slot />
+    <layout-footer />
+  </div>
 </template>
 
 <script setup>

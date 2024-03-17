@@ -1,25 +1,25 @@
 <template>
-    <section class="install">
-        <div class="install__wrapper">
-            <button-custom
-                class="big-h"
-                :value="$t('install_app_button_text')"
-                @click="$emit(`click`, $event)"
-            />
-            <div
-                class="install__close"
-                @click="$emit(`close`, $event)"
-            >
-                <svg-icon
-                    icon="close"
-                    class="button__icon"
-                    stroke="#FFFFFF"
-                    :width="24"
-                    :height="24"
-                />
-            </div>
-        </div>
-    </section>
+  <section class="install">
+    <div class="install__wrapper">
+      <button-custom
+        class="big-h"
+        :value="$t('install_app_button_text')"
+        @click="$emit(`click`, $event)"
+      />
+      <div
+        class="install__close"
+        @click="$emit(`close`, $event)"
+      >
+        <svg-icon
+          icon="close"
+          class="button__icon"
+          stroke="#FFFFFF"
+          :width="24"
+          :height="24"
+        />
+      </div>
+    </div>
+  </section>
 </template>
 <script setup>
 defineEmits(['close', 'click'])

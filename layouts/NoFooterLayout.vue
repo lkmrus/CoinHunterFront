@@ -1,12 +1,12 @@
 <template>
-    <div class="page-layout">
-        <NuxtPwaManifest />
-        <div class="page-layout__header">
-            <hint-unit />
-            <layout-header />
-        </div>
-        <slot />
+  <div class="page-layout">
+    <NuxtPwaManifest />
+    <div class="page-layout__header">
+      <hint-unit />
+      <layout-header />
     </div>
+    <slot />
+  </div>
 </template>
 
 <script setup>

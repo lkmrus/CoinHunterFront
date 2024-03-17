@@ -96,6 +96,7 @@
     "layout_nav_3_menu_1": "Guides",
     "layout_nav_3_menu_2": "Tutorial videos",
     "layout_nav_support": "Support",
+    "layout_nav_spreads_history": "Spreads history",
     "layout_header_account_menu_lk": "Profile",
     "layout_header_account_menu_logout": "Log out",
     "layout_header_registration": "Sign up",
@@ -187,6 +188,8 @@
     "table_unit_taker_commision": "Takeer",
     "table_unit_maker_commision": "Commission",
     "table_unit_foundation": "Active since",
+
+    "spreads_history_title": "Spreads history",
 
     "form_password_title": "Password",
     "form_repeat_password_title": "Repeat password",

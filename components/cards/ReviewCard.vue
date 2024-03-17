@@ -1,30 +1,30 @@
 <template>
-    <div class="review-card">
-        <div class="review-card__user">
-            <div class="icon">
-                <img
-                    width="44"
-                    height="44"
-                    alt="user picture"
-                    :src="avatar"
-                >
-            </div>
-            <div class="name">
-                {{ name }}
-            </div>
-        </div>
-        <div class="review-card__rating">
-            <svg-icon
-                v-for="(star, starIndex) in 5"
-                :key="`star-${starIndex}`"
-                icon="star"
-                :fill="fillWithColor(star)"
-            />
-        </div>
-        <div class="review-card__review">
-            {{ text }}
-        </div>
+  <div class="review-card">
+    <div class="review-card__user">
+      <div class="icon">
+        <img
+          width="44"
+          height="44"
+          alt="user picture"
+          :src="avatar"
+        >
+      </div>
+      <div class="name">
+        {{ name }}
+      </div>
     </div>
+    <div class="review-card__rating">
+      <svg-icon
+        v-for="(star, starIndex) in 5"
+        :key="`star-${starIndex}`"
+        icon="star"
+        :fill="fillWithColor(star)"
+      />
+    </div>
+    <div class="review-card__review">
+      {{ text }}
+    </div>
+  </div>
 </template>
 
 <script setup>

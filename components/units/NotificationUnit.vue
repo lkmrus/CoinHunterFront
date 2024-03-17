@@ -1,41 +1,41 @@
 <template>
-    <div
-        class="notification-widget"
-        :style="[
-            {'animation-delay': timer + 's'},
-            {'bottom': bottomPosition + 'px'}
-        ]"
-    >
-        <div class="notification-widget__timer">
-            <div
-                class="timer"
-                :class="{
-                    'timer_successfull': successfull,
-                    'timer_warning': warning,
-                    'timer_error': error
-                }"
-                :style="{'animation-duration': timer + 's'}"
-            />
-        </div>
-        <div class="notification-widget__content">
-            <div class="title">
-                {{ title }}
-            </div>
-            <div class="description">
-                {{ description }}
-            </div>
-        </div>
-        <div
-            class="notification-widget__close"
-            @click="closeNotification()"
-        >
-            <svg-icon
-                icon="cancel"
-                width="24"
-                height="24"
-            />
-        </div>
+  <div
+    class="notification-widget"
+    :style="[
+      {'animation-delay': timer + 's'},
+      {'bottom': bottomPosition + 'px'}
+    ]"
+  >
+    <div class="notification-widget__timer">
+      <div
+        class="timer"
+        :class="{
+          'timer_successfull': successfull,
+          'timer_warning': warning,
+          'timer_error': error
+        }"
+        :style="{'animation-duration': timer + 's'}"
+      />
     </div>
+    <div class="notification-widget__content">
+      <div class="title">
+        {{ title }}
+      </div>
+      <div class="description">
+        {{ description }}
+      </div>
+    </div>
+    <div
+      class="notification-widget__close"
+      @click="closeNotification()"
+    >
+      <svg-icon
+        icon="cancel"
+        width="24"
+        height="24"
+      />
+    </div>
+  </div>
 </template>
 
 <script setup>

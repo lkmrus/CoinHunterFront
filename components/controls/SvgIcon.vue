@@ -1,22 +1,22 @@
 <!-- eslint-disable vue/no-v-html -->
 <template>
-    <i
-        :fill="fill"
-        :stroke="stroke"
-        :rect="rect"
-        :width="width"
-        :height="height"
-        class="svg svg-content"
-        :style="{
-            '--svg-width': `${width}px`,
-            '--svg-height': `${height}px`,
-            '--svg-fill-color': fill,
-            '--svg-stroke-color': stroke,
-            '--svg-rect-color': rect,
-        }"
-        @click="handleClick($event)"
-        v-html="svg"
-    />
+  <i
+    :fill="fill"
+    :stroke="stroke"
+    :rect="rect"
+    :width="width"
+    :height="height"
+    class="svg svg-content"
+    :style="{
+      '--svg-width': `${width}px`,
+      '--svg-height': `${height}px`,
+      '--svg-fill-color': fill,
+      '--svg-stroke-color': stroke,
+      '--svg-rect-color': rect,
+    }"
+    @click="handleClick($event)"
+    v-html="svg"
+  />
 </template>
 
 <script lang="ts" setup>

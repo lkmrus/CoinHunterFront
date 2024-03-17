@@ -1,101 +1,101 @@
 <template>
+  <div
+    v-click-outside="() => menuOpen = false"
+    class="selection-custom"
+    :class="[setType, {'inactive': inactive}]"
+  >
     <div
-        v-click-outside="() => menuOpen = false"
-        class="selection-custom"
-        :class="[setType, {'inactive': inactive}]"
+      v-if="title"
+      class="input-label"
     >
-        <div
-            v-if="title"
-            class="input-label"
-        >
-            {{ title }}
-        </div>
-        <div
-            class="selection-custom__content"
-            @click="openMenu()"
-        >
-            <div
-                v-if="localActiveOptions.length === 0"
-                class="placeholder"
-            >
-                {{ placeholder }}
-            </div>
-            <div
-                v-else
-                :key="activeOptionsKey"
-                class="active-options"
-            >
-                <TransitionGroup
-                    :css="false"
-                    @enter="activeOptionOnEnter"
-                >
-                    <div
-                        v-for="(active_option, activeOptionIndex) in localActiveOptions"
-                        :id="`active-option-${componentID}-${activeOptionIndex}`"
-                        :key="`active-option-${activeOptionIndex}`"
-                        class="active-option"
-                        :class="[
-                            {'multiple': multipleType},
-                            {'active-option_solo': !multipleType}
-                        ]"
-                    >
-                        <svg-icon
-                            v-if="active_option.icon && showActiveOptionIcon"
-                            :icon="active_option.icon"
-                            class="active-option__icon"
-                            :stroke="bIconColor"
-                            :fill="bIconColor"
-                            width="18"
-                            height="18"
-                        />
-                        <div class="active-option__name">
-                            {{ active_option.name }}
-                        </div>
-                    </div>
-                </TransitionGroup>
-            </div>
-            <svg-icon
-                icon="down-arrow"
-                class="menu-switcher"
-                :class="{'menu-switcher_open': menuOpen}"
-                stroke="#A7A7A7"
-                fill="#A7A7A7"
-                width="24"
-                height="24"
-            />
-        </div>
-        <transition>
-            <div
-                v-if="menuOpen"
-                class="selection-custom__menu"
-                :class="[{ 'menu-enter': menuOpen, 'menu-leave': !menuOpen }]"
-            >
-                <TransitionGroup
-                    :css="false"
-                    @enter="activeOptionOnEnter"
-                >
-                    <div class="options">
-                        <div
-                            v-for="(option, optionIndex) in localOptions"
-                            :id="`menu-option-${componentID}-${optionIndex}`"
-                            :key="`option-item-${optionIndex}`"
-                            class="option-item"
-                            @click="menuOptionOnLeave(optionIndex)"
-                        >
-                            <checkbox-custom
-                                v-if="multipleType"
-                                default-type
-                                :checked="option.is_active"
-                            />
-                            <div class="option-item__name">
-                                {{ option.name }}
-                            </div>
-                        </div>
-                    </div>
-                </TransitionGroup>
-            </div>
-        </transition>
+      {{ title }}
     </div>
+    <div
+      class="selection-custom__content"
+      @click="openMenu()"
+    >
+      <div
+        v-if="localActiveOptions.length === 0"
+        class="placeholder"
+      >
+        {{ placeholder }}
+      </div>
+      <div
+        v-else
+        :key="activeOptionsKey"
+        class="active-options"
+      >
+        <TransitionGroup
+          :css="false"
+          @enter="activeOptionOnEnter"
+        >
+          <div
+            v-for="(active_option, activeOptionIndex) in localActiveOptions"
+            :id="`active-option-${componentID}-${activeOptionIndex}`"
+            :key="`active-option-${activeOptionIndex}`"
+            class="active-option"
+            :class="[
+              {'multiple': multipleType},
+              {'active-option_solo': !multipleType}
+            ]"
+          >
+            <svg-icon
+              v-if="active_option.icon && showActiveOptionIcon"
+              :icon="active_option.icon"
+              class="active-option__icon"
+              :stroke="bIconColor"
+              :fill="bIconColor"
+              width="18"
+              height="18"
+            />
+            <div class="active-option__name">
+              {{ active_option.name }}
+            </div>
+          </div>
+        </TransitionGroup>
+      </div>
+      <svg-icon
+        icon="down-arrow"
+        class="menu-switcher"
+        :class="{'menu-switcher_open': menuOpen}"
+        stroke="#A7A7A7"
+        fill="#A7A7A7"
+        width="24"
+        height="24"
+      />
+    </div>
+    <transition>
+      <div
+        v-if="menuOpen"
+        class="selection-custom__menu"
+        :class="[{ 'menu-enter': menuOpen, 'menu-leave': !menuOpen }]"
+      >
+        <TransitionGroup
+          :css="false"
+          @enter="activeOptionOnEnter"
+        >
+          <div class="options">
+            <div
+              v-for="(option, optionIndex) in localOptions"
+              :id="`menu-option-${componentID}-${optionIndex}`"
+              :key="`option-item-${optionIndex}`"
+              class="option-item"
+              @click="menuOptionOnLeave(optionIndex)"
+            >
+              <checkbox-custom
+                v-if="multipleType"
+                default-type
+                :checked="option.is_active"
+              />
+              <div class="option-item__name">
+                {{ option.name }}
+              </div>
+            </div>
+          </div>
+        </TransitionGroup>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -1,72 +1,72 @@
 <template>
-    <div class="payment-page">
-        <div class="blurs">
-            <div class="blurs__content">
-                <div class="blur blur-1" />
-                <div class="blur blur-2" />
-                <div class="blur blur-3" />
-            </div>
-        </div>
-        <div class="payment-page__info">
-            <div class="title">
-                <svg-icon
-                    width="56"
-                    height="56"
-                    icon="usdt"
-                />
-                <h2>{{ $t('payment_title') }}</h2>
-            </div>
-            <!--            <h2 class="subtitle">-->
-            <!--                $20 USDT TRC20-->
-            <!--            </h2>-->
-        </div>
-        <div class="payment-page__description">
-            {{ $t('payment_description') }}
-        </div>
-        <!--        <div class="payment-page__player">-->
-        <!--            <iframe-->
-        <!--                width="550"-->
-        <!--                height="304"-->
-        <!--                :src="`https://www.youtube.com/embed/d49zddgOF_c?si=o7GrM4pqHT_k-cj9`"-->
-        <!--                title="YouTube video player"-->
-        <!--                frameborder="0"-->
-        <!--                allow="accelerometer; autoplay; clipboard-write;-->
-        <!--                encrypted-media; gyroscope; picture-in-picture; web-share"-->
-        <!--                allowfullscreen-->
-        <!--            />-->
-        <!--        </div>-->
-        <!--        <div class="payment-page__button">-->
-        <!--            <button-custom-->
-        <!--                class="big-h"-->
-        <!--                :value="$t('payment_button')"-->
-        <!--                b-icon="usdt"-->
-        <!--                b-icon-size="24"-->
-        <!--                @click="switchPopup()"-->
-        <!--            />-->
-        <!--        </div>-->
-        <iframe
-            src="https://pay.cryptomus.com/widget/5b142efc-230d-4d19-9ce1-3da50689db49"
-            height="320px"
-            width="440px"
-        />
-
-        <div class="payment-page__vpn">
-            {{ $t('payment_vpn') }}
-        </div>
-        <img
-            class="bitcoin"
-            src="@/assets/img/bitcoin.png"
-            alt="bitcoin"
-        >
-        <popup-notification
-            id="popup-notification"
-            type="success"
-            :title="$t('payment_success_notification_title')"
-            :description="`${$t('payment_success_notification_description')} 😊`"
-            :b-name="$t('payment_success_notification_button_name')"
-            b-link="/account"
-        />
+  <div class="payment-page">
+    <div class="blurs">
+      <div class="blurs__content">
+        <div class="blur blur-1" />
+        <div class="blur blur-2" />
+        <div class="blur blur-3" />
+      </div>
     </div>
+    <div class="payment-page__info">
+      <div class="title">
+        <svg-icon
+          width="56"
+          height="56"
+          icon="usdt"
+        />
+        <h2>{{ $t('payment_title') }}</h2>
+      </div>
+      <!--            <h2 class="subtitle">-->
+      <!--                $20 USDT TRC20-->
+      <!--            </h2>-->
+    </div>
+    <div class="payment-page__description">
+      {{ $t('payment_description') }}
+    </div>
+    <!--        <div class="payment-page__player">-->
+    <!--            <iframe-->
+    <!--                width="550"-->
+    <!--                height="304"-->
+    <!--                :src="`https://www.youtube.com/embed/d49zddgOF_c?si=o7GrM4pqHT_k-cj9`"-->
+    <!--                title="YouTube video player"-->
+    <!--                frameborder="0"-->
+    <!--                allow="accelerometer; autoplay; clipboard-write;-->
+    <!--                encrypted-media; gyroscope; picture-in-picture; web-share"-->
+    <!--                allowfullscreen-->
+    <!--            />-->
+    <!--        </div>-->
+    <!--        <div class="payment-page__button">-->
+    <!--            <button-custom-->
+    <!--                class="big-h"-->
+    <!--                :value="$t('payment_button')"-->
+    <!--                b-icon="usdt"-->
+    <!--                b-icon-size="24"-->
+    <!--                @click="switchPopup()"-->
+    <!--            />-->
+    <!--        </div>-->
+    <iframe
+      src="https://pay.cryptomus.com/widget/5b142efc-230d-4d19-9ce1-3da50689db49"
+      height="320px"
+      width="440px"
+    />
+
+    <div class="payment-page__vpn">
+      {{ $t('payment_vpn') }}
+    </div>
+    <img
+      class="bitcoin"
+      src="@/assets/img/bitcoin.png"
+      alt="bitcoin"
+    >
+    <popup-notification
+      id="popup-notification"
+      type="success"
+      :title="$t('payment_success_notification_title')"
+      :description="`${$t('payment_success_notification_description')} 😊`"
+      :b-name="$t('payment_success_notification_button_name')"
+      b-link="/account"
+    />
+  </div>
 </template>
 
 <script setup>
