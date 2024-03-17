@@ -1,16 +1,18 @@
-export class SpreadData {
-  constructor (arbitrageRecord) {
-    this.id = arbitrageRecord.id
+import { TimeFormatter } from '~/formatters/TimeFormatter.js'
 
-    this.pair = arbitrageRecord.pair
-    this.profit = arbitrageRecord.spread
-    this.askExchange = arbitrageRecord['ask-exchange']
-    this.askPrice = arbitrageRecord['ask-price']
-    this.askSize = arbitrageRecord['ask-size']
-    this.bidExchange = arbitrageRecord['bid-exchange']
-    this.bidPrice = arbitrageRecord['bid-price']
-    this.lifeTime = this.getLifeTime(arbitrageRecord.finishedAt, arbitrageRecord.createdAt)
-    this.createdDate = String(new Date(arbitrageRecord.createdAt)).split('(')[0]
+export class SpreadData {
+  constructor (spreadRecord) {
+    this.id = spreadRecord.id
+
+    this.pair = spreadRecord.pair
+    this.profit = spreadRecord.spread
+    this.askExchange = spreadRecord['ask-exchange']
+    this.askPrice = spreadRecord['ask-price']
+    this.askSize = spreadRecord['ask-size']
+    this.bidExchange = spreadRecord['bid-exchange']
+    this.bidPrice = spreadRecord['bid-price']
+    this.lifeTime = this.getLifeTime(spreadRecord.finishedAt, spreadRecord.createdAt)
+    this.createdDate = TimeFormatter.formatTime('yy.mm.dd hh:ii (GMT +3)', spreadRecord.createdAt)
   }
 
   getLifeTime (finishedAt = null, createdAt) {
