@@ -20,6 +20,8 @@
           <td
             v-for="column in tableColumns"
             :key="`column-${column}`"
+            class="table_column"
+            :class="`table_column-${column}`"
           >
             {{ row[column] }}
           </td>
@@ -50,6 +52,12 @@ const props = defineProps({
 .table{
   max-width: 100%;
   overflow-x: auto;
+  &_column {
+    &-createdDate {
+      white-space: nowrap;
+      font-size: 12px;
+    }
+  }
   &__content{
     width: 100%;
     thead{
@@ -79,7 +87,6 @@ const props = defineProps({
       }
       td{
         text-align: center;
-        //min-width: 160px;
         padding: 16px 20px;
       }
       .wide{
