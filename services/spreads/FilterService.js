@@ -24,25 +24,15 @@ export class FilterService {
   }
 
   setOffset (pageNumber = 1) {
-    this.filter.setOffset(this.filter.limit * (pageNumber - 1))
+    this.filter.setOffset(this.filter.limit * pageNumber)
   }
 
   fillPair (filterValue, splittedPairIndex) {
-    // if (
-    //   splittedPairIndex === SPLITTED_PAIR_FIRST_INDEX &&
-    //   filterValue === ''
-    // ) {
-    //   this.splittedPair[splittedPairIndex] = ''
-    //
-    //   this.filter.fillFilter('pair', this.splittedPair.join(''))
-    //
-    //   return true
-    // }
     if (
       splittedPairIndex === SPLITTED_PAIR_SECOND_INDEX &&
       !FilterConfig.pair.right.find(filterElem => filterElem === filterValue)
     ) {
-      this.splittedPair[splittedPairIndex] = ''
+      this.splittedPair[SPLITTED_PAIR_SECOND_INDEX] = ''
 
       this.filter.fillFilter('pair', this.splittedPair.join(''))
 
@@ -51,9 +41,9 @@ export class FilterService {
 
     this.splittedPair[splittedPairIndex] = filterValue
 
-    // if (!this.splittedPair[SPLITTED_PAIR_FIRST_INDEX] && !this.splittedPair[SPLITTED_PAIR_SECOND_INDEX]) {
-    //   return false
-    // }
+    if (!this.splittedPair[SPLITTED_PAIR_FIRST_INDEX] && !this.splittedPair[SPLITTED_PAIR_SECOND_INDEX]) {
+      return false
+    }
 
     this.filter.fillFilter('pair', this.splittedPair.join(''))
 
