@@ -1,80 +1,80 @@
 <template>
-    <div
-        class="registration"
-    >
-        <div class="registration__info">
-            <h2 class="title">
-                {{ $t('auth_registration_title') }}
-            </h2>
-            <span class="subtitle">
-                {{ $t('auth_registration_subtitle_text') }}
-                <nuxt-link to="?type=login">
-                    {{ $t('auth_registration_subtitle_link') }}
-                </nuxt-link>
-            </span>
-        </div>
-        <div class="registration__input">
-            <input-custom
-                v-model="regitrationForm.fullname"
-                :title="$t('form_name_title')"
-                :placeholder="$t('form_name_placeholder')"
-            />
-        </div>
-        <div class="registration__input">
-            <input-custom
-                v-model="regitrationForm.email"
-                title="Email"
-                placeholder="name@example.com"
-                :i-error="v$.email.$error"
-                :i-error-name="v$.email.email.$message"
-                @change="v$.email.$touch"
-            />
-        </div>
-        <div class="registration__input">
-            <input-custom
-                v-model="regitrationForm.password"
-                password-type
-                :title="$t('auth_registration_create_password_title')"
-                placeholder="example_password"
-                :i-error="v$.password.$error"
-                :i-error-name="v$.password.minLength.$message"
-                @change="v$.password.$touch"
-            />
-        </div>
-        <!--        <div class="registration__input">-->
-        <!--            <input-custom-->
-        <!--                v-model="regitrationForm.login"-->
-        <!--                title="Telegram ID"-->
-        <!--                placeholder="@example"-->
-        <!--            />-->
-        <!--        </div>-->
-        <div class="registration__button">
-            <button-custom
-                class="big-h"
-                :value="$t('auth_registration_button')"
-                @click="authRegister()"
-            />
-        </div>
-        <span class="registration__privacy-policy">
-            {{ $t('auth_registration_privacy_policy_text') }}
-            <nuxt-link to="#">
-                {{ $t('auth_registration_privacy_policy_link') }}
-            </nuxt-link>
-        </span>
+  <div
+    class="registration"
+  >
+    <div class="registration__info">
+      <h2 class="title">
+        {{ $t('auth_registration_title') }}
+      </h2>
+      <span class="subtitle">
+        {{ $t('auth_registration_subtitle_text') }}
+        <nuxt-link to="?type=login">
+          {{ $t('auth_registration_subtitle_link') }}
+        </nuxt-link>
+      </span>
     </div>
-    <notification-unit
-        v-if="notificationSettings.isOpen"
-        error
-        :title="notificationSettings.title"
-        :description="notificationSettings.description"
-        @close="notificationSettings.isOpen = false"
-    />
-    <popup-notification
-        id="popup-notification"
-        type="success"
-        :title="$t('auth_registration_popup_success_title')"
-        :description="$t('auth_registration_popup_success_description')"
-    />
+    <div class="registration__input">
+      <input-custom
+        v-model="regitrationForm.fullname"
+        :title="$t('form_name_title')"
+        :placeholder="$t('form_name_placeholder')"
+      />
+    </div>
+    <div class="registration__input">
+      <input-custom
+        v-model="regitrationForm.email"
+        title="Email"
+        placeholder="name@example.com"
+        :i-error="v$.email.$error"
+        :i-error-name="v$.email.email.$message"
+        @change="v$.email.$touch"
+      />
+    </div>
+    <div class="registration__input">
+      <input-custom
+        v-model="regitrationForm.password"
+        password-type
+        :title="$t('auth_registration_create_password_title')"
+        placeholder="example_password"
+        :i-error="v$.password.$error"
+        :i-error-name="v$.password.minLength.$message"
+        @change="v$.password.$touch"
+      />
+    </div>
+    <!--        <div class="registration__input">-->
+    <!--            <input-custom-->
+    <!--                v-model="regitrationForm.login"-->
+    <!--                title="Telegram ID"-->
+    <!--                placeholder="@example"-->
+    <!--            />-->
+    <!--        </div>-->
+    <div class="registration__button">
+      <button-custom
+        class="big-h"
+        :value="$t('auth_registration_button')"
+        @click="authRegister()"
+      />
+    </div>
+    <span class="registration__privacy-policy">
+      {{ $t('auth_registration_privacy_policy_text') }}
+      <nuxt-link to="#">
+        {{ $t('auth_registration_privacy_policy_link') }}
+      </nuxt-link>
+    </span>
+  </div>
+  <notification-unit
+    v-if="notificationSettings.isOpen"
+    error
+    :title="notificationSettings.title"
+    :description="notificationSettings.description"
+    @close="notificationSettings.isOpen = false"
+  />
+  <popup-notification
+    id="popup-notification"
+    type="success"
+    :title="$t('auth_registration_popup_success_title')"
+    :description="$t('auth_registration_popup_success_description')"
+  />
 </template>
 
 <script setup>

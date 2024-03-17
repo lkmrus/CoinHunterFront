@@ -1,50 +1,50 @@
 <template>
-    <div class="popup-notification">
-        <div class="blurs blurs-1">
-            <div class="blurs__content">
-                <div class="blur blur-1" />
-                <div class="blur blur-2" />
-                <div class="blur blur-3" />
-            </div>
-        </div>
-        <div class="blurs blurs-2">
-            <div class="blurs__content">
-                <div class="blur blur-1" />
-                <div class="blur blur-2" />
-                <div class="blur blur-3" />
-            </div>
-        </div>
-        <div class="popup-notification__content">
-            <div class="icon">
-                <svg-icon
-                    v-if="type == 'success'"
-                    icon="approve-circle"
-                    fill="#12B76A"
-                />
-                <svg-icon
-                    v-if="type == 'error'"
-                    icon="error"
-                    fill="#F04438"
-                />
-            </div>
-            <h4 class="title">
-                {{ title }}
-            </h4>
-            <div class="description">
-                {{ description }}
-            </div>
-            <nuxt-link
-                v-if="bName"
-                class="button"
-                :to="bLink"
-            >
-                <button-custom
-                    class="big-h"
-                    :value="bName"
-                />
-            </nuxt-link>
-        </div>
+  <div class="popup-notification">
+    <div class="blurs blurs-1">
+      <div class="blurs__content">
+        <div class="blur blur-1" />
+        <div class="blur blur-2" />
+        <div class="blur blur-3" />
+      </div>
     </div>
+    <div class="blurs blurs-2">
+      <div class="blurs__content">
+        <div class="blur blur-1" />
+        <div class="blur blur-2" />
+        <div class="blur blur-3" />
+      </div>
+    </div>
+    <div class="popup-notification__content">
+      <div class="icon">
+        <svg-icon
+          v-if="type == 'success'"
+          icon="approve-circle"
+          fill="#12B76A"
+        />
+        <svg-icon
+          v-if="type == 'error'"
+          icon="error"
+          fill="#F04438"
+        />
+      </div>
+      <h4 class="title">
+        {{ title }}
+      </h4>
+      <div class="description">
+        {{ description }}
+      </div>
+      <nuxt-link
+        v-if="bName"
+        class="button"
+        :to="bLink"
+      >
+        <button-custom
+          class="big-h"
+          :value="bName"
+        />
+      </nuxt-link>
+    </div>
+  </div>
 </template>
 
 <script setup>

@@ -1,61 +1,61 @@
 <template>
-    <footer class="layout-footer">
-        <div class="layout-footer__content">
-            <div class="left-content">
-                <svg-icon
-                    class="logo"
-                    icon="logo"
-                    @click="goToAuthPage('/')"
-                />
-                <div
-                    class="lang"
-                    @mouseleave="langOpen = false"
-                >
-                    <div
-                        class="lang__name"
-                        @click="langOpen = !langOpen"
-                    >
-                        {{ activeLocaleName.name }}
-                        <div class="down-arrow">
-                            <svg-icon
-                                :class="{'down-arrow_open': langOpen}"
-                                icon="down-arrow"
-                            />
-                        </div>
-                    </div>
-                    <div
-                        class="menu"
-                        :class="{'menu_open' : langOpen}"
-                    >
-                        <div
-                            v-for="lang in locales"
-                            :key="lang.code"
-                            class="menu__item"
-                            :class="{'menu__item_active': activeLocaleName.code === lang.code}"
-                            @click="setLang(lang.code)"
-                        >
-                            {{ lang.name }}
-                        </div>
-                    </div>
-                </div>
+  <footer class="layout-footer">
+    <div class="layout-footer__content">
+      <div class="left-content">
+        <svg-icon
+          class="logo"
+          icon="logo"
+          @click="goToAuthPage('/')"
+        />
+        <div
+          class="lang"
+          @mouseleave="langOpen = false"
+        >
+          <div
+            class="lang__name"
+            @click="langOpen = !langOpen"
+          >
+            {{ activeLocaleName.name }}
+            <div class="down-arrow">
+              <svg-icon
+                :class="{'down-arrow_open': langOpen}"
+                icon="down-arrow"
+              />
             </div>
-            <nav class="navigation">
-                <ol class="navigation__items">
-                    <li
-                        v-for="(navItem, itemIndex) in navItems"
-                        :key="`footer-item-${itemIndex}`"
-                    >
-                        <NuxtLink
-                            :class="`nav-${itemIndex + 1}`"
-                            :to="navItem.link"
-                        >
-                            {{ navItem.name }}
-                        </NuxtLink>
-                    </li>
-                </ol>
-            </nav>
+          </div>
+          <div
+            class="menu"
+            :class="{'menu_open' : langOpen}"
+          >
+            <div
+              v-for="lang in locales"
+              :key="lang.code"
+              class="menu__item"
+              :class="{'menu__item_active': activeLocaleName.code === lang.code}"
+              @click="setLang(lang.code)"
+            >
+              {{ lang.name }}
+            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+      <nav class="navigation">
+        <ol class="navigation__items">
+          <li
+            v-for="(navItem, itemIndex) in navItems"
+            :key="`footer-item-${itemIndex}`"
+          >
+            <NuxtLink
+              :class="`nav-${itemIndex + 1}`"
+              :to="navItem.link"
+            >
+              {{ navItem.name }}
+            </NuxtLink>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </footer>
 </template>
 
 <script setup>
@@ -74,7 +74,8 @@ const navItems = reactive([
   //   { name: t('layout_nav_1_menu_2'), link: '#' },
   //   { name: t('layout_nav_3_menu_2'), link: '#' },
   { name: t('layout_nav_2_menu_3'), link: '/exchanges' },
-  { name: t('layout_nav_support'), link: '/support' }
+  { name: t('layout_nav_support'), link: '/support' },
+  { name: t('layout_nav_spreads_history'), link: '/spreads-history' }
 ])
 
 const setLang = async (langCode) => {

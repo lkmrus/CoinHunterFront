@@ -1,27 +1,27 @@
 <template>
-    <button
-        class="button"
-        :class="[setColor, {'disabled': disabled}]"
-        :autofocus="autofocus"
-        :disabled="disabled"
-        :form="form"
-        :name="name"
-        :type="type"
+  <button
+    class="button"
+    :class="[setColor, {'disabled': disabled}]"
+    :autofocus="autofocus"
+    :disabled="disabled"
+    :form="form"
+    :name="name"
+    :type="type"
 
-        @click="handleClick($event)"
-    >
-        <slot>
-            {{ value }}
-        </slot>
-        <svg-icon
-            v-if="bIcon"
-            :icon="bIcon"
-            class="button__icon"
-            :stroke="bIconColor"
-            :width="bIconSize"
-            :height="bIconSize"
-        />
-    </button>
+    @click="handleClick($event)"
+  >
+    <slot>
+      {{ value }}
+    </slot>
+    <svg-icon
+      v-if="bIcon"
+      :icon="bIcon"
+      class="button__icon"
+      :stroke="bIconColor"
+      :width="bIconSize"
+      :height="bIconSize"
+    />
+  </button>
 </template>
 
 <script setup lang="ts">

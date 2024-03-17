@@ -1,595 +1,595 @@
 <template>
-    <div class="home-page">
-        <section class="service-section">
-            <div class="blurs">
-                <div class="blurs__content">
-                    <div class="blur blur-1" />
-                    <div class="blur blur-2" />
-                    <div class="blur blur-3" />
-                </div>
-            </div>
-            <h1>{{ $t('index_service_title') }}</h1>
-            <h2>{{ $t('index_service_subtitle') }}</h2>
-            <nuxt-link to="#tarifs">
-                <button-custom
-                    class="big-h"
-                    :value="$t('index_service_tariff_btn')"
-                />
-            </nuxt-link>
+  <div class="home-page">
+    <section class="service-section">
+      <div class="blurs">
+        <div class="blurs__content">
+          <div class="blur blur-1" />
+          <div class="blur blur-2" />
+          <div class="blur blur-3" />
+        </div>
+      </div>
+      <h1>{{ $t('index_service_title') }}</h1>
+      <h2>{{ $t('index_service_subtitle') }}</h2>
+      <nuxt-link to="#tarifs">
+        <button-custom
+          class="big-h"
+          :value="$t('index_service_tariff_btn')"
+        />
+      </nuxt-link>
 
-            <div class="progress">
-                <div class="progress__item">
-                    <p class="big-text">
-                        30
-                    </p>
-                    <p class="description">
-                        {{ $t('index_service_progress_item_1_description_1') }}
-                    </p>
-                </div>
-                <div class="progress__item">
-                    <p class="big-text">
-                        10
-                    </p>
-                    <p class="description">
-                        {{ $t('index_service_progress_item_2_description_1') }} <br>
-                        {{ $t('index_service_progress_item_2_description_2') }}
-                    </p>
-                </div>
+      <div class="progress">
+        <div class="progress__item">
+          <p class="big-text">
+            30
+          </p>
+          <p class="description">
+            {{ $t('index_service_progress_item_1_description_1') }}
+          </p>
+        </div>
+        <div class="progress__item">
+          <p class="big-text">
+            10
+          </p>
+          <p class="description">
+            {{ $t('index_service_progress_item_2_description_1') }} <br>
+            {{ $t('index_service_progress_item_2_description_2') }}
+          </p>
+        </div>
+      </div>
+      <img
+        class="bitcoin"
+        src="@/assets/img/bitcoin.png"
+        alt="bitcoin"
+      >
+    </section>
+    <section class="about-arbitration">
+      <h1>
+        {{ $t('index_arbitration_title_1') }} <br>
+        {{ $t('index_arbitration_title_2') }}
+      </h1>
+      <h2>{{ $t('index_arbitration_subtitle') }}</h2>
+      <div class="why-us">
+        <div class="why-us__cripto">
+          <div class="cripto-item">
+            <div class="cripto-item__icons">
+              <div class="icon icon-ethereum">
+                <svg-icon icon="ethereum" />
+              </div>
+              <div class="icon icon-btc">
+                <svg-icon icon="btc" />
+              </div>
             </div>
-            <img
-                class="bitcoin"
-                src="@/assets/img/bitcoin.png"
-                alt="bitcoin"
-            >
-        </section>
-        <section class="about-arbitration">
-            <h1>
-                {{ $t('index_arbitration_title_1') }} <br>
-                {{ $t('index_arbitration_title_2') }}
-            </h1>
-            <h2>{{ $t('index_arbitration_subtitle') }}</h2>
-            <div class="why-us">
-                <div class="why-us__cripto">
-                    <div class="cripto-item">
-                        <div class="cripto-item__icons">
-                            <div class="icon icon-ethereum">
-                                <svg-icon icon="ethereum" />
-                            </div>
-                            <div class="icon icon-btc">
-                                <svg-icon icon="btc" />
-                            </div>
-                        </div>
-                        <div class="cripto-item__text">
-                            <div class="currency">
-                                ETH/<span>BTC</span>
-                            </div>
-                            <div class="name">
-                                CoinHunterBot
-                            </div>
-                        </div>
-                        <div class="cripto-item__success">
-                            <svg-icon
-                                class="line"
-                                icon="success-line"
-                            />
-                            <div class="percentage">
-                                15.8%
-                            </div>
-                            <div class="sum">
-                                $376.87
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cripto-item">
-                        <div class="cripto-item__icons">
-                            <div class="icon icon-btc">
-                                <svg-icon icon="btc" />
-                            </div>
-                            <div class="icon icon-ton">
-                                <svg-icon icon="ton-coin" />
-                            </div>
-                        </div>
-                        <div class="cripto-item__text">
-                            <div class="currency">
-                                BTC/<span>USDT</span>
-                            </div>
-                            <div class="name">
-                                CoinHunterBot
-                            </div>
-                        </div>
-                        <div class="cripto-item__success">
-                            <svg-icon
-                                class="line"
-                                icon="success-line"
-                            />
-                            <div class="percentage">
-                                11.2%
-                            </div>
-                            <div class="sum">
-                                $123.45
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="why-us__text">
-                    <h4>
-                        {{ $t('index_arbitration_why_us_title_1') }} <br>
-                        {{ $t('index_arbitration_why_us_title_2') }}
-                    </h4>
-                    <p>
-                        {{ $t('index_arbitration_why_us_description') }}
-                    </p>
-                </div>
+            <div class="cripto-item__text">
+              <div class="currency">
+                ETH/<span>BTC</span>
+              </div>
+              <div class="name">
+                CoinHunterBot
+              </div>
             </div>
-            <div class="key-benefits">
-                <h2>{{ $t('index_arbitration_key_benefits_title') }}</h2>
-                <p>
-                    {{ $t('index_arbitration_key_benefits_description_1') }} <br>
-                    {{ $t('index_arbitration_key_benefits_description_2') }}
-                </p>
-                <img
-                    class="robot"
-                    src="@/assets/img/robot.png"
-                    alt="robot"
-                >
+            <div class="cripto-item__success">
+              <svg-icon
+                class="line"
+                icon="success-line"
+              />
+              <div class="percentage">
+                15.8%
+              </div>
+              <div class="sum">
+                $376.87
+              </div>
             </div>
-        </section>
-        <section class="all-on-telegram">
-            <div class="blurs">
-                <div class="blurs__content">
-                    <div class="blur blur-1" />
-                    <div class="blur blur-2" />
-                    <div class="blur blur-3" />
-                </div>
+          </div>
+          <div class="cripto-item">
+            <div class="cripto-item__icons">
+              <div class="icon icon-btc">
+                <svg-icon icon="btc" />
+              </div>
+              <div class="icon icon-ton">
+                <svg-icon icon="ton-coin" />
+              </div>
             </div>
-            <h1>{{ $t('index_all_in_telegram_title') }}</h1>
-            <h2>{{ $t('index_all_in_telegram_subtitle') }}</h2>
-            <div class="grid">
-                <div class="grid-item exchanges">
-                    <div class="grid-item__name">
-                        {{ $t('index_all_in_telegram_exchanges_title') }}
-                    </div>
-                    <div class="grid-item__description">
-                        {{ $t('index_all_in_telegram_exchanges_subtitle') }}
-                    </div>
-                    <div class="exchanges__items">
-                        <svg-icon
-                            v-for="exchangesitem in exchangesItems"
-                            :key="`exchangesitem-${exchangesitem}`"
-                            class="exchange-icon"
-                            :icon="exchangesitem"
-                            additional-folder="exchanges"
-                        />
-                    </div>
-                </div>
-                <div class="grid-item grid-item_blue filters">
-                    <div class="grid-item__name">
-                        {{ $t('index_all_in_telegram_card_1_title') }}
-                    </div>
-                    <div class="grid-item__description">
-                        {{ $t('index_all_in_telegram_card_1_subtitle_1') }} <br>
-                        {{ $t('index_all_in_telegram_card_1_subtitle_2') }}
-                    </div>
-                    <img
-                        src="@/assets/img/setting-iso.png"
-                        alt="setting-iso"
-                    >
-                </div>
-                <div class="grid-item speed">
-                    <div class="grid-item__name">
-                        {{ $t('index_all_in_telegram_card_2_title') }}
-                    </div>
-                    <div class="grid-item__description">
-                        {{ $t('index_all_in_telegram_card_2_subtitle_1') }}
-                    </div>
-                    <img
-                        src="@/assets/img/speed-all-on-telegram.png"
-                        alt="setting-iso"
-                    >
-                </div>
-                <div class="grid-item adaptability">
-                    <div class="grid-item__name">
-                        {{ $t('index_all_in_telegram_card_3_title') }}
-                    </div>
-                    <div class="grid-item__description">
-                        {{ $t('index_all_in_telegram_card_3_subtitle_1') }} <br>
-                        {{ $t('index_all_in_telegram_card_3_subtitle_2') }}
-                    </div>
-                    <div class="adaptability__items">
-                        <img
-                            src="@/assets/img/stack.png"
-                            alt="stack"
-                        >
-                        <img
-                            src="@/assets/img/stack2.png"
-                            alt="stack2"
-                        >
-                    </div>
-                </div>
-                <div class="grid-item guide">
-                    <div class="grid-item__name">
-                        {{ $t('index_all_in_telegram_card_4_title') }}
-                    </div>
-                    <div class="grid-item__description">
-                        {{ $t('index_all_in_telegram_card_4_subtitle_1') }}
-                    </div>
-                    <img
-                        src="@/assets/img/guide-all-on-telegram.png"
-                        alt="setting-iso"
-                    >
-                </div>
-                <div class="grid-item grid-item_blue connection">
-                    <div class="grid-item__name">
-                        {{ $t('index_all_in_telegram_card_5_title') }}
-                    </div>
-                    <div class="grid-item__description">
-                        {{ $t('index_all_in_telegram_card_5_subtitle_1') }} <br>
-                        {{ $t('index_all_in_telegram_card_5_subtitle_2') }}
-                    </div>
-                </div>
+            <div class="cripto-item__text">
+              <div class="currency">
+                BTC/<span>USDT</span>
+              </div>
+              <div class="name">
+                CoinHunterBot
+              </div>
             </div>
-        </section>
-        <section
-            id="tarifs"
-            class="access-to-arbitrage"
+            <div class="cripto-item__success">
+              <svg-icon
+                class="line"
+                icon="success-line"
+              />
+              <div class="percentage">
+                11.2%
+              </div>
+              <div class="sum">
+                $123.45
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="why-us__text">
+          <h4>
+            {{ $t('index_arbitration_why_us_title_1') }} <br>
+            {{ $t('index_arbitration_why_us_title_2') }}
+          </h4>
+          <p>
+            {{ $t('index_arbitration_why_us_description') }}
+          </p>
+        </div>
+      </div>
+      <div class="key-benefits">
+        <h2>{{ $t('index_arbitration_key_benefits_title') }}</h2>
+        <p>
+          {{ $t('index_arbitration_key_benefits_description_1') }} <br>
+          {{ $t('index_arbitration_key_benefits_description_2') }}
+        </p>
+        <img
+          class="robot"
+          src="@/assets/img/robot.png"
+          alt="robot"
         >
-            <div class="blurs blurs-1">
-                <div class="blurs__content">
-                    <div class="blur blur-1" />
-                    <div class="blur blur-2" />
-                    <div class="blur blur-3" />
-                </div>
-            </div>
-            <div class="blurs blurs-2">
-                <div class="blurs__content">
-                    <div class="blur blur-1" />
-                    <div class="blur blur-2" />
-                    <div class="blur blur-3" />
-                </div>
-            </div>
-            <div class="blurs blurs-3">
-                <div class="blurs__content">
-                    <div class="blur blur-1" />
-                    <div class="blur blur-2" />
-                    <div class="blur blur-3" />
-                </div>
-            </div>
-            <div class="blurs blurs-4">
-                <div class="blurs__content">
-                    <div class="blur blur-1" />
-                    <div class="blur blur-2" />
-                    <div class="blur blur-3" />
-                </div>
-            </div>
-            <h1>{{ $t('index_access_arbitrage_title') }}</h1>
-            <h2>{{ $t('index_access_arbitrage_subtitle') }}</h2>
-            <div class="tarifs">
-                <div class="tarif start-tarif">
-                    <div class="tarif__heading">
-                        <div class="tarif__name">
-                            {{ $t('index_access_arbitrage_tarif_1_name') }}
-                        </div>
-                    </div>
-                    <div class="tarif__price">
-                        {{ $t('index_access_arbitrage_tarif_1_price') }}
-                    </div>
-                    <div class="tarif__provides">
-                        <div class="include-item provide-item">
-                            <svg-icon icon="approve" />
-                            {{ $t('index_access_arbitrage_tarif_1_provide_1_1') }}
-                            <span>30</span>
-                            {{ $t('index_access_arbitrage_tarif_1_provide_1_2') }}
-                        </div>
-                        <div class="include-item provide-item">
-                            <svg-icon icon="approve" />
-                            {{ $t('index_access_arbitrage_tarif_provide_2') }}
-                        </div>
-                        <div class="include-item provide-item">
-                            <svg-icon icon="approve" />
-                            {{ $t('index_access_arbitrage_tarif_provide_3') }}
-                        </div>
-                        <div class="include-item provide-item">
-                            <svg-icon icon="approve" />
-                            {{ $t('index_access_arbitrage_tarif_provide_4') }}
-                        </div>
-                        <div class="include-item provide-item">
-                            <svg-icon icon="approve" />
-                            {{ $t('index_access_arbitrage_tarif_provide_5') }}
-                        </div>
-                        <div class="exclude-item provide-item">
-                            <svg-icon icon="exclude" />
-                            {{ $t('index_access_arbitrage_tarif_provide_6') }}
-                        </div>
-                        <div class="exclude-item provide-item">
-                            <svg-icon icon="exclude" />
-                            {{ $t('index_access_arbitrage_tarif_provide_7') }}
-                        </div>
-                        <div class="exclude-item provide-item">
-                            <svg-icon icon="exclude" />
-                            {{ $t('index_access_arbitrage_tarif_provide_8') }}
-                        </div>
-                        <div class="exclude-item provide-item">
-                            <svg-icon icon="exclude" />
-                            {{ $t('index_access_arbitrage_tarif_provide_9') }}
-                        </div>
-                    </div>
-                    <nuxt-link to="/auth?type=registration">
-                        <button-custom
-                            class="big-h"
-                            :value="$t('index_access_arbitrage_tarif_1_button')"
-                        />
-                    </nuxt-link>
-                </div>
-                <div class="tarif premium-tarif">
-                    <div class="tarif__heading">
-                        <div class="tarif__name">
-                            {{ $t('index_access_arbitrage_tarif_2_name') }}
-                        </div>
-                        <div class="tarif__badge">
-                            {{ $t('index_access_arbitrage_tarif_2_badge') }}
-                        </div>
-                    </div>
-                    <div class="tarif__price">
-                        <span class="big">$20 </span>
-                        <span class="small"> {{ $t('index_access_arbitrage_tarif_2_price') }}</span>
-                    </div>
-                    <div class="tarif__provides">
-                        <div class="include-item provide-item provide-item_blue">
-                            <svg-icon
-                                icon="approve"
-                                fill="#0065FF"
-                            />
-                            {{ $t('index_access_arbitrage_tarif_2_provide_1') }}
-                        </div>
-                        <div class="include-item provide-item">
-                            <svg-icon
-                                icon="approve"
-                                fill="#101127"
-                            />
-                            {{ $t('index_access_arbitrage_tarif_provide_2') }}
-                        </div>
-                        <div class="include-item provide-item">
-                            <svg-icon
-                                icon="approve"
-                                fill="#101127"
-                            />
-                            {{ $t('index_access_arbitrage_tarif_provide_3') }}
-                        </div>
-                        <div class="include-item provide-item">
-                            <svg-icon
-                                icon="approve"
-                                fill="#101127"
-                            />
-                            {{ $t('index_access_arbitrage_tarif_provide_4') }}
-                        </div>
-                        <div class="include-item provide-item">
-                            <svg-icon
-                                icon="approve"
-                                fill="#101127"
-                            />
-                            {{ $t('index_access_arbitrage_tarif_provide_5') }}
-                        </div>
-                        <div class="include-item provide-item">
-                            <svg-icon
-                                icon="approve"
-                                fill="#101127"
-                            />
-                            {{ $t('index_access_arbitrage_tarif_provide_6') }}
-                        </div>
-                        <div class="include-item provide-item">
-                            <svg-icon
-                                icon="approve"
-                                fill="#101127"
-                            />
-                            {{ $t('index_access_arbitrage_tarif_provide_7') }}
-                        </div>
-                        <div class="include-item provide-item">
-                            <svg-icon
-                                icon="approve"
-                                fill="#101127"
-                            />
-                            {{ $t('index_access_arbitrage_tarif_provide_8') }}
-                        </div>
-                        <div class="include-item provide-item">
-                            <svg-icon
-                                icon="approve"
-                                fill="#101127"
-                            />
-                            {{ $t('index_access_arbitrage_tarif_provide_9') }}
-                        </div>
-                    </div>
-                    <nuxt-link to="/payment">
-                        <button-custom
-                            dark-blue
-                            class="big-h"
-                            :value="$t('index_access_arbitrage_tarif_2_button')"
-                        />
-                    </nuxt-link>
-                </div>
-            </div>
-        </section>
-        <section class="how-bot-works">
-            <div class="blurs">
-                <div class="blurs__content">
-                    <div class="blur blur-1" />
-                    <div class="blur blur-2" />
-                    <div class="blur blur-3" />
-                </div>
-            </div>
-            <h1>{{ $t('index_how_bot_works_title') }}</h1>
-            <h2>{{ $t('index_how_bot_works_subtitle') }}</h2>
-            <div class="grid">
-                <div class="grid-item grid-item_blue security">
-                    <div class="grid-item__name">
-                        {{ $t('index_how_bot_works_card_1_title') }}
-                    </div>
-                    <div class="grid-item__description">
-                        {{ $t('index_how_bot_works_card_1_description_1') }} <br>
-                        {{ $t('index_how_bot_works_card_1_description_2') }}
-                    </div>
-                </div>
-                <div class="grid-item example">
-                    <div class="grid-item__name">
-                        {{ $t('index_how_bot_works_card_2_title') }}
-                    </div>
-                    <div class="grid-item__description">
-                        {{ $t('index_how_bot_works_card_2_description_1') }}
-                        <br><br>
-                        {{ $t('index_how_bot_works_card_2_description_2') }}
-                    </div>
-                    <img
-                        src="@/assets/img/example-change.png"
-                        alt="example-change"
-                    >
-                </div>
-                <div class="grid-item opportunities">
-                    <div class="grid-item__name">
-                        {{ $t('index_how_bot_works_card_3_title') }}
-                    </div>
-                    <div class="grid-item__description">
-                        {{ $t('index_how_bot_works_card_3_description_1') }}
-                    </div>
-                </div>
-                <div class="grid-item grid-item_blue advantages">
-                    <div class="grid-item__name">
-                        {{ $t('index_how_bot_works_card_4_title') }}
-                    </div>
-                    <div class="grid-item__description">
-                        {{ $t('index_how_bot_works_card_4_description_1') }}
-                    </div>
-                    <button-custom
-                        dark-blue
-                        class="big-h"
-                        :value="$t('index_how_bot_works_card_4_button')"
-                        @click="startUsing()"
-                    />
-                    <img
-                        class="star"
-                        src="@/assets/img/star-silver.png"
-                        alt="example-change"
-                    >
-                    <img
-                        class="heart"
-                        src="@/assets/img/heart-silver.png"
-                        alt="example-change"
-                    >
-                    <img
-                        class="chat"
-                        src="@/assets/img/guide-all-on-telegram.png"
-                        alt="example-change"
-                    >
-                </div>
-            </div>
-        </section>
-        <section class="any-questions">
-            <div class="blurs">
-                <div class="blurs__content">
-                    <div class="blur blur-1" />
-                    <div class="blur blur-2" />
-                    <div class="blur blur-3" />
-                </div>
-            </div>
-            <h1>{{ $t('index_any_questions_title') }}</h1>
-            <h2>{{ $t('index_any_questions_subtitle') }}</h2>
-            <form
-                class="form"
-            >
-                <div class="form-item">
-                    <input-custom
-                        v-model="questionForm.name"
-                        :title="$t('index_any_questions_name')"
-                        :placeholder="$t('index_any_questions_name_placeholder')"
-                        :i-error="v$.name.$error"
-                        :i-error-name="v$.name.minLength.$message"
-                    />
-                </div>
-                <div class="form-item">
-                    <input-custom
-                        v-model="questionForm.email"
-                        title="Email"
-                        placeholder="name@example.com"
-                        :i-error="v$.email.$error"
-                        :i-error-name="v$.email.email.$message"
-                        @change="v$.email.$touch"
-                    />
-                </div>
-                <div class="textarea form-item">
-                    <div class="textarea__title">
-                        {{ $t('index_any_questions_question') }}
-                    </div>
-                    <textarea
-                        v-model="questionForm.question"
-                        :class="{'error': v$.question.$error }"
-                        :placeholder="$t('index_any_questions_question_placeholder')"
-                    />
-                    <div
-                        v-if="v$.question.$error"
-                        class="input-error"
-                    >
-                        {{ v$.question.required.$message }}
-                    </div>
-                </div>
-                <button-custom
-                    class="big-h"
-                    :value="$t('index_any_questions_button')"
-                    @click="sendMail()"
-                />
-            </form>
+      </div>
+    </section>
+    <section class="all-on-telegram">
+      <div class="blurs">
+        <div class="blurs__content">
+          <div class="blur blur-1" />
+          <div class="blur blur-2" />
+          <div class="blur blur-3" />
+        </div>
+      </div>
+      <h1>{{ $t('index_all_in_telegram_title') }}</h1>
+      <h2>{{ $t('index_all_in_telegram_subtitle') }}</h2>
+      <div class="grid">
+        <div class="grid-item exchanges">
+          <div class="grid-item__name">
+            {{ $t('index_all_in_telegram_exchanges_title') }}
+          </div>
+          <div class="grid-item__description">
+            {{ $t('index_all_in_telegram_exchanges_subtitle') }}
+          </div>
+          <div class="exchanges__items">
+            <svg-icon
+              v-for="exchangesitem in exchangesItems"
+              :key="`exchangesitem-${exchangesitem}`"
+              class="exchange-icon"
+              :icon="exchangesitem"
+              additional-folder="exchanges"
+            />
+          </div>
+        </div>
+        <div class="grid-item grid-item_blue filters">
+          <div class="grid-item__name">
+            {{ $t('index_all_in_telegram_card_1_title') }}
+          </div>
+          <div class="grid-item__description">
+            {{ $t('index_all_in_telegram_card_1_subtitle_1') }} <br>
+            {{ $t('index_all_in_telegram_card_1_subtitle_2') }}
+          </div>
+          <img
+            src="@/assets/img/setting-iso.png"
+            alt="setting-iso"
+          >
+        </div>
+        <div class="grid-item speed">
+          <div class="grid-item__name">
+            {{ $t('index_all_in_telegram_card_2_title') }}
+          </div>
+          <div class="grid-item__description">
+            {{ $t('index_all_in_telegram_card_2_subtitle_1') }}
+          </div>
+          <img
+            src="@/assets/img/speed-all-on-telegram.png"
+            alt="setting-iso"
+          >
+        </div>
+        <div class="grid-item adaptability">
+          <div class="grid-item__name">
+            {{ $t('index_all_in_telegram_card_3_title') }}
+          </div>
+          <div class="grid-item__description">
+            {{ $t('index_all_in_telegram_card_3_subtitle_1') }} <br>
+            {{ $t('index_all_in_telegram_card_3_subtitle_2') }}
+          </div>
+          <div class="adaptability__items">
             <img
-                class="question-robot"
-                src="@/assets/img/question-robot.png"
-                alt="question-robot"
+              src="@/assets/img/stack.png"
+              alt="stack"
             >
-        </section>
-        <section class="review-section">
-            <div class="blurs">
-                <div class="blurs__content">
-                    <div class="blur blur-1" />
-                    <div class="blur blur-2" />
-                    <div class="blur blur-3" />
-                </div>
+            <img
+              src="@/assets/img/stack2.png"
+              alt="stack2"
+            >
+          </div>
+        </div>
+        <div class="grid-item guide">
+          <div class="grid-item__name">
+            {{ $t('index_all_in_telegram_card_4_title') }}
+          </div>
+          <div class="grid-item__description">
+            {{ $t('index_all_in_telegram_card_4_subtitle_1') }}
+          </div>
+          <img
+            src="@/assets/img/guide-all-on-telegram.png"
+            alt="setting-iso"
+          >
+        </div>
+        <div class="grid-item grid-item_blue connection">
+          <div class="grid-item__name">
+            {{ $t('index_all_in_telegram_card_5_title') }}
+          </div>
+          <div class="grid-item__description">
+            {{ $t('index_all_in_telegram_card_5_subtitle_1') }} <br>
+            {{ $t('index_all_in_telegram_card_5_subtitle_2') }}
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      id="tarifs"
+      class="access-to-arbitrage"
+    >
+      <div class="blurs blurs-1">
+        <div class="blurs__content">
+          <div class="blur blur-1" />
+          <div class="blur blur-2" />
+          <div class="blur blur-3" />
+        </div>
+      </div>
+      <div class="blurs blurs-2">
+        <div class="blurs__content">
+          <div class="blur blur-1" />
+          <div class="blur blur-2" />
+          <div class="blur blur-3" />
+        </div>
+      </div>
+      <div class="blurs blurs-3">
+        <div class="blurs__content">
+          <div class="blur blur-1" />
+          <div class="blur blur-2" />
+          <div class="blur blur-3" />
+        </div>
+      </div>
+      <div class="blurs blurs-4">
+        <div class="blurs__content">
+          <div class="blur blur-1" />
+          <div class="blur blur-2" />
+          <div class="blur blur-3" />
+        </div>
+      </div>
+      <h1>{{ $t('index_access_arbitrage_title') }}</h1>
+      <h2>{{ $t('index_access_arbitrage_subtitle') }}</h2>
+      <div class="tarifs">
+        <div class="tarif start-tarif">
+          <div class="tarif__heading">
+            <div class="tarif__name">
+              {{ $t('index_access_arbitrage_tarif_1_name') }}
             </div>
-            <h1>{{ $t('index_review_title') }}</h1>
-            <h2>{{ $t('index_review_subtitle') }}</h2>
-            <swiper
-                :modules="[SwiperAutoplay, SwiperEffectCreative]"
-                :autoplay="{
-                    delay: 1500,
-                    disableOnInteraction: true,
-                }"
-                class="reviews"
-                slides-per-view="auto"
-                :loop="true"
-                space-between="25"
-            >
-                <swiper-slide
-                    v-for="(review, index) in reviews"
-                    ref="swiperSlide"
-                    :key="`${index}-${review.name}`"
-                >
-                    <review-card
-                        :name="review.name"
-                        :avatar="review.avatar"
-                        :rating="review.rating"
-                        :text="review.text"
-                    />
-                </swiper-slide>
-            </swiper>
-        </section>
-        <popup-sending
-            id="popup-sending"
-            :title="$t('index_success_form_title')"
-            :description="$t('index_success_form_description')"
-            @close="switchPopup(false)"
+          </div>
+          <div class="tarif__price">
+            {{ $t('index_access_arbitrage_tarif_1_price') }}
+          </div>
+          <div class="tarif__provides">
+            <div class="include-item provide-item">
+              <svg-icon icon="approve" />
+              {{ $t('index_access_arbitrage_tarif_1_provide_1_1') }}
+              <span>30</span>
+              {{ $t('index_access_arbitrage_tarif_1_provide_1_2') }}
+            </div>
+            <div class="include-item provide-item">
+              <svg-icon icon="approve" />
+              {{ $t('index_access_arbitrage_tarif_provide_2') }}
+            </div>
+            <div class="include-item provide-item">
+              <svg-icon icon="approve" />
+              {{ $t('index_access_arbitrage_tarif_provide_3') }}
+            </div>
+            <div class="include-item provide-item">
+              <svg-icon icon="approve" />
+              {{ $t('index_access_arbitrage_tarif_provide_4') }}
+            </div>
+            <div class="include-item provide-item">
+              <svg-icon icon="approve" />
+              {{ $t('index_access_arbitrage_tarif_provide_5') }}
+            </div>
+            <div class="exclude-item provide-item">
+              <svg-icon icon="exclude" />
+              {{ $t('index_access_arbitrage_tarif_provide_6') }}
+            </div>
+            <div class="exclude-item provide-item">
+              <svg-icon icon="exclude" />
+              {{ $t('index_access_arbitrage_tarif_provide_7') }}
+            </div>
+            <div class="exclude-item provide-item">
+              <svg-icon icon="exclude" />
+              {{ $t('index_access_arbitrage_tarif_provide_8') }}
+            </div>
+            <div class="exclude-item provide-item">
+              <svg-icon icon="exclude" />
+              {{ $t('index_access_arbitrage_tarif_provide_9') }}
+            </div>
+          </div>
+          <nuxt-link to="/auth?type=registration">
+            <button-custom
+              class="big-h"
+              :value="$t('index_access_arbitrage_tarif_1_button')"
+            />
+          </nuxt-link>
+        </div>
+        <div class="tarif premium-tarif">
+          <div class="tarif__heading">
+            <div class="tarif__name">
+              {{ $t('index_access_arbitrage_tarif_2_name') }}
+            </div>
+            <div class="tarif__badge">
+              {{ $t('index_access_arbitrage_tarif_2_badge') }}
+            </div>
+          </div>
+          <div class="tarif__price">
+            <span class="big">$20 </span>
+            <span class="small"> {{ $t('index_access_arbitrage_tarif_2_price') }}</span>
+          </div>
+          <div class="tarif__provides">
+            <div class="include-item provide-item provide-item_blue">
+              <svg-icon
+                icon="approve"
+                fill="#0065FF"
+              />
+              {{ $t('index_access_arbitrage_tarif_2_provide_1') }}
+            </div>
+            <div class="include-item provide-item">
+              <svg-icon
+                icon="approve"
+                fill="#101127"
+              />
+              {{ $t('index_access_arbitrage_tarif_provide_2') }}
+            </div>
+            <div class="include-item provide-item">
+              <svg-icon
+                icon="approve"
+                fill="#101127"
+              />
+              {{ $t('index_access_arbitrage_tarif_provide_3') }}
+            </div>
+            <div class="include-item provide-item">
+              <svg-icon
+                icon="approve"
+                fill="#101127"
+              />
+              {{ $t('index_access_arbitrage_tarif_provide_4') }}
+            </div>
+            <div class="include-item provide-item">
+              <svg-icon
+                icon="approve"
+                fill="#101127"
+              />
+              {{ $t('index_access_arbitrage_tarif_provide_5') }}
+            </div>
+            <div class="include-item provide-item">
+              <svg-icon
+                icon="approve"
+                fill="#101127"
+              />
+              {{ $t('index_access_arbitrage_tarif_provide_6') }}
+            </div>
+            <div class="include-item provide-item">
+              <svg-icon
+                icon="approve"
+                fill="#101127"
+              />
+              {{ $t('index_access_arbitrage_tarif_provide_7') }}
+            </div>
+            <div class="include-item provide-item">
+              <svg-icon
+                icon="approve"
+                fill="#101127"
+              />
+              {{ $t('index_access_arbitrage_tarif_provide_8') }}
+            </div>
+            <div class="include-item provide-item">
+              <svg-icon
+                icon="approve"
+                fill="#101127"
+              />
+              {{ $t('index_access_arbitrage_tarif_provide_9') }}
+            </div>
+          </div>
+          <nuxt-link to="/payment">
+            <button-custom
+              dark-blue
+              class="big-h"
+              :value="$t('index_access_arbitrage_tarif_2_button')"
+            />
+          </nuxt-link>
+        </div>
+      </div>
+    </section>
+    <section class="how-bot-works">
+      <div class="blurs">
+        <div class="blurs__content">
+          <div class="blur blur-1" />
+          <div class="blur blur-2" />
+          <div class="blur blur-3" />
+        </div>
+      </div>
+      <h1>{{ $t('index_how_bot_works_title') }}</h1>
+      <h2>{{ $t('index_how_bot_works_subtitle') }}</h2>
+      <div class="grid">
+        <div class="grid-item grid-item_blue security">
+          <div class="grid-item__name">
+            {{ $t('index_how_bot_works_card_1_title') }}
+          </div>
+          <div class="grid-item__description">
+            {{ $t('index_how_bot_works_card_1_description_1') }} <br>
+            {{ $t('index_how_bot_works_card_1_description_2') }}
+          </div>
+        </div>
+        <div class="grid-item example">
+          <div class="grid-item__name">
+            {{ $t('index_how_bot_works_card_2_title') }}
+          </div>
+          <div class="grid-item__description">
+            {{ $t('index_how_bot_works_card_2_description_1') }}
+            <br><br>
+            {{ $t('index_how_bot_works_card_2_description_2') }}
+          </div>
+          <img
+            src="@/assets/img/example-change.png"
+            alt="example-change"
+          >
+        </div>
+        <div class="grid-item opportunities">
+          <div class="grid-item__name">
+            {{ $t('index_how_bot_works_card_3_title') }}
+          </div>
+          <div class="grid-item__description">
+            {{ $t('index_how_bot_works_card_3_description_1') }}
+          </div>
+        </div>
+        <div class="grid-item grid-item_blue advantages">
+          <div class="grid-item__name">
+            {{ $t('index_how_bot_works_card_4_title') }}
+          </div>
+          <div class="grid-item__description">
+            {{ $t('index_how_bot_works_card_4_description_1') }}
+          </div>
+          <button-custom
+            dark-blue
+            class="big-h"
+            :value="$t('index_how_bot_works_card_4_button')"
+            @click="startUsing()"
+          />
+          <img
+            class="star"
+            src="@/assets/img/star-silver.png"
+            alt="example-change"
+          >
+          <img
+            class="heart"
+            src="@/assets/img/heart-silver.png"
+            alt="example-change"
+          >
+          <img
+            class="chat"
+            src="@/assets/img/guide-all-on-telegram.png"
+            alt="example-change"
+          >
+        </div>
+      </div>
+    </section>
+    <section class="any-questions">
+      <div class="blurs">
+        <div class="blurs__content">
+          <div class="blur blur-1" />
+          <div class="blur blur-2" />
+          <div class="blur blur-3" />
+        </div>
+      </div>
+      <h1>{{ $t('index_any_questions_title') }}</h1>
+      <h2>{{ $t('index_any_questions_subtitle') }}</h2>
+      <form
+        class="form"
+      >
+        <div class="form-item">
+          <input-custom
+            v-model="questionForm.name"
+            :title="$t('index_any_questions_name')"
+            :placeholder="$t('index_any_questions_name_placeholder')"
+            :i-error="v$.name.$error"
+            :i-error-name="v$.name.minLength.$message"
+          />
+        </div>
+        <div class="form-item">
+          <input-custom
+            v-model="questionForm.email"
+            title="Email"
+            placeholder="name@example.com"
+            :i-error="v$.email.$error"
+            :i-error-name="v$.email.email.$message"
+            @change="v$.email.$touch"
+          />
+        </div>
+        <div class="textarea form-item">
+          <div class="textarea__title">
+            {{ $t('index_any_questions_question') }}
+          </div>
+          <textarea
+            v-model="questionForm.question"
+            :class="{'error': v$.question.$error }"
+            :placeholder="$t('index_any_questions_question_placeholder')"
+          />
+          <div
+            v-if="v$.question.$error"
+            class="input-error"
+          >
+            {{ v$.question.required.$message }}
+          </div>
+        </div>
+        <button-custom
+          class="big-h"
+          :value="$t('index_any_questions_button')"
+          @click="sendMail()"
         />
-        <notification-unit
-            v-if="notificationSettings.isOpen"
-            error
-            :title="notificationSettings.title"
-            :description="notificationSettings.description"
-            @close="notificationSettings.isOpen = false"
-        />
-    </div>
+      </form>
+      <img
+        class="question-robot"
+        src="@/assets/img/question-robot.png"
+        alt="question-robot"
+      >
+    </section>
+    <section class="review-section">
+      <div class="blurs">
+        <div class="blurs__content">
+          <div class="blur blur-1" />
+          <div class="blur blur-2" />
+          <div class="blur blur-3" />
+        </div>
+      </div>
+      <h1>{{ $t('index_review_title') }}</h1>
+      <h2>{{ $t('index_review_subtitle') }}</h2>
+      <swiper
+        :modules="[SwiperAutoplay, SwiperEffectCreative]"
+        :autoplay="{
+          delay: 1500,
+          disableOnInteraction: true,
+        }"
+        class="reviews"
+        slides-per-view="auto"
+        :loop="true"
+        space-between="25"
+      >
+        <swiper-slide
+          v-for="(review, index) in reviews"
+          ref="swiperSlide"
+          :key="`${index}-${review.name}`"
+        >
+          <review-card
+            :name="review.name"
+            :avatar="review.avatar"
+            :rating="review.rating"
+            :text="review.text"
+          />
+        </swiper-slide>
+      </swiper>
+    </section>
+    <popup-sending
+      id="popup-sending"
+      :title="$t('index_success_form_title')"
+      :description="$t('index_success_form_description')"
+      @close="switchPopup(false)"
+    />
+    <notification-unit
+      v-if="notificationSettings.isOpen"
+      error
+      :title="notificationSettings.title"
+      :description="notificationSettings.description"
+      @close="notificationSettings.isOpen = false"
+    />
+  </div>
 </template>
 
 <script setup>

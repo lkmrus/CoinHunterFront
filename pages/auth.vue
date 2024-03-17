@@ -1,27 +1,27 @@
 <template>
-    <div>
-        <NuxtLayout :name="activePageLayout">
-            <div class="auth-page">
-                <div class="auth-page__left-content">
-                    <img
-                        src="@/assets/img/auth-background-high.png"
-                        alt="user1"
-                    >
-                </div>
-                <div class="auth-page__right-content">
-                    <registration-auth
-                        v-if="queryValue == 'registration'"
-                    />
-                    <forget-password-auth
-                        v-else-if="queryValue == 'forget-password'"
-                    />
-                    <login-auth
-                        v-else
-                    />
-                </div>
-            </div>
-        </NuxtLayout>
-    </div>
+  <div>
+    <NuxtLayout :name="activePageLayout">
+      <div class="auth-page">
+        <div class="auth-page__left-content">
+          <img
+            src="@/assets/img/auth-background-high.png"
+            alt="user1"
+          >
+        </div>
+        <div class="auth-page__right-content">
+          <registration-auth
+            v-if="queryValue == 'registration'"
+          />
+          <forget-password-auth
+            v-else-if="queryValue == 'forget-password'"
+          />
+          <login-auth
+            v-else
+          />
+        </div>
+      </div>
+    </NuxtLayout>
+  </div>
 </template>
 
 <script setup>

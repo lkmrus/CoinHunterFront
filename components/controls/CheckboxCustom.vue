@@ -1,33 +1,33 @@
 <template>
-    <div
-        class="checkbox checkbox_default"
-    >
-        <input
-            :id="id"
-            :name="name"
-            :checked="checked"
-            type="checkbox"
-            class="custom-checkbox"
+  <div
+    class="checkbox checkbox_default"
+  >
+    <input
+      :id="id"
+      :name="name"
+      :checked="checked"
+      type="checkbox"
+      class="custom-checkbox"
 
-            @click="handleClick($event)"
-        >
-        <label
-            :for="id || name"
-            class="checkbox__label"
-        >
-            <svg-icon
-                v-if="checked"
-                icon="checkmark"
-                width="18"
-                height="18"
-                stroke="#0065FF"
-                fill="#0065FF"
-            />
-            <slot>
-                {{ text }}
-            </slot>
-        </label>
-    </div>
+      @click="handleClick($event)"
+    >
+    <label
+      :for="id || name"
+      class="checkbox__label"
+    >
+      <svg-icon
+        v-if="checked"
+        icon="checkmark"
+        width="18"
+        height="18"
+        stroke="#0065FF"
+        fill="#0065FF"
+      />
+      <slot>
+        {{ text }}
+      </slot>
+    </label>
+  </div>
 </template>
 
 <script setup lang="ts">
