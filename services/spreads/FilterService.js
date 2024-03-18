@@ -5,7 +5,7 @@ const SPLITTED_PAIR_SECOND_INDEX = 1
 
 export class FilterService {
   splittedPair = []
-  splittedAskExchange = []
+  askExchange = ''
 
   spreadsCount = 0
 
@@ -50,25 +50,17 @@ export class FilterService {
     return true
   }
 
-  fillAskExchange (filterValue, event = 'change') {
+  fillAskExchange (filterValue) {
     if (!FilterConfig.exchanges.find(filterElem => filterElem === filterValue)) {
-      this.splittedAskExchange = []
+      this.askExchange = ''
 
-      this.filter.fillFilter('askExchange', this.splittedAskExchange.join(''))
+      this.filter.fillFilter('askExchange', this.askExchange)
 
       return this
     }
-    if (event === 'change') {
-      this.splittedAskExchange.push(filterValue)
-    }
-    if (event === 'remove') {
-      const exchangeToDropIndex = this.splittedAskExchange.indexOf(filterValue)
 
-      if (exchangeToDropIndex !== -1) {
-        this.splittedAskExchange.splice(exchangeToDropIndex, 1)
-      }
-    }
+    this.askExchange = filterValue
 
-    this.filter.fillFilter('askExchange', this.splittedAskExchange.join(''))
+    this.filter.fillFilter('askExchange', this.askExchange)
   }
 }

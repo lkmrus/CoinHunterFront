@@ -124,12 +124,7 @@ const fillFilterPair = async (filterValue, splittedPairIndex) => {
 }
 const fillFilterAskExchange = (askExchangeItem) => {
   clearTimeout(timeOutAskExchange)
-  filterService.fillAskExchange(
-    askExchangeItem.name,
-    askExchangeItem.is_active
-      ? 'remove'
-      : 'change'
-  )
+  filterService.fillAskExchange(askExchangeItem.name)
 
   timeOutAskExchange = setTimeout(async () => {
     await getSpreadsList()
