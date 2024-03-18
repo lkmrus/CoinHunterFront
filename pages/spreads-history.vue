@@ -40,7 +40,6 @@
             <selection-custom
               :class="{'selected-tab_small': !isOpen}"
               :inactive="!authenticated"
-              :multiple-type="true"
               :options="[
                 { name: $t('arbitrage_filter_element_2_selection_placeholder'), is_active: false},
                 ...exchangesOptions
@@ -48,7 +47,6 @@
               :placeholder="$t('arbitrage_filter_element_2_selection_placeholder')"
               :active-options="[]"
               @change="fillFilterAskExchange($event.new_item)"
-              @remove="console.log($event)"
             />
           </div>
         </div>
@@ -112,7 +110,7 @@ const fillFilterPair = async (filterValue, splittedPairIndex) => {
   if (splittedPairIndex === SPLITTED_PAIR_FIRST_INDEX) {
     clearTimeout(timeOutPair)
     timeOutPair = setTimeout(async () => {
-      if (filterService.fillPair(filterValue, splittedPairIndex)) {
+      if (filterService.fillPair(filterValue.toUpperCase(), splittedPairIndex)) {
         await getSpreadsList()
       }
     }, 1000)
@@ -124,14 +122,9 @@ const fillFilterPair = async (filterValue, splittedPairIndex) => {
     await getSpreadsList()
   }
 }
-const fillFilterAskExchange = async (askExchangeItem) => {
+const fillFilterAskExchange = (askExchangeItem) => {
   clearTimeout(timeOutAskExchange)
-  filterService.fillAskExchange(
-    askExchangeItem.name,
-    askExchangeItem.is_active
-      ? 'remove'
-      : 'change'
-  )
+  filterService.fillAskExchange(askExchangeItem.name)
 
   timeOutAskExchange = setTimeout(async () => {
     await getSpreadsList()
@@ -143,9 +136,11 @@ const getSpreadsList = async () => {
     spreadsList.value = await spreadsService.getSpreadList(filterService.filter)
     spreadsCount.value = await spreadsService.getSpreadsCount(filterService.filter)
 
+    spreadsCount.value = Number(spreadsCount.value)
+
     filterService.setSpreadsCount(spreadsCount.value)
   } catch (err) {
-    console.error(`Error with: ${err}`)
+	  // TODO: Добавить логирование ошибок
   }
 }
 getSpreadsList()

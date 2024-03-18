@@ -1,19 +1,5 @@
 export const FilterConfig = {
   pair: {
-    left: [
-      'ETH',
-      'BTC',
-      'LTC',
-      'DOGE',
-      'SOL',
-      'ADA',
-      'LINK',
-      'XRP',
-      'EOS',
-      'XLM',
-      'BNB',
-      'BCH'
-    ],
     right: [
       'USDT',
       'BTC',
@@ -21,10 +7,9 @@ export const FilterConfig = {
     ]
   },
   exchanges: [
-    'Binance',
-    'Bybit',
-    'Hitbtc',
-    'KuCoin',
-    'Huobi'
+    'binance',
+    'bybit',
+    'okx',
+    'bitget'
   ]
 }

@@ -5,7 +5,7 @@ const SPLITTED_PAIR_SECOND_INDEX = 1
 
 export class FilterService {
   splittedPair = []
-  splittedAskExchange = []
+  askExchange = ''
 
   spreadsCount = 0
 
@@ -18,7 +18,7 @@ export class FilterService {
   }
 
   setSpreadsCount (newSpreadsCount) {
-    this.spreadsCount = newSpreadsCount
+    this.spreadsCount = Number(newSpreadsCount)
 
     return this
   }
@@ -28,16 +28,8 @@ export class FilterService {
   }
 
   fillPair (filterValue, splittedPairIndex) {
-    // if (
-    //   splittedPairIndex === SPLITTED_PAIR_FIRST_INDEX &&
-    //   filterValue === ''
-    // ) {
-    //   this.splittedPair[splittedPairIndex] = ''
-    //
-    //   this.filter.fillFilter('pair', this.splittedPair.join(''))
-    //
-    //   return true
-    // }
+    this.splittedPair[splittedPairIndex] = filterValue
+
     if (
       splittedPairIndex === SPLITTED_PAIR_SECOND_INDEX &&
       !FilterConfig.pair.right.find(filterElem => filterElem === filterValue)
@@ -45,40 +37,30 @@ export class FilterService {
       this.splittedPair[splittedPairIndex] = ''
 
       this.filter.fillFilter('pair', this.splittedPair.join(''))
+    }
+
+    if (!this.splittedPair[SPLITTED_PAIR_FIRST_INDEX] || !this.splittedPair[SPLITTED_PAIR_SECOND_INDEX]) {
+      this.filter.fillFilter('pair', '')
 
       return true
     }
-
-    this.splittedPair[splittedPairIndex] = filterValue
-
-    // if (!this.splittedPair[SPLITTED_PAIR_FIRST_INDEX] && !this.splittedPair[SPLITTED_PAIR_SECOND_INDEX]) {
-    //   return false
-    // }
 
     this.filter.fillFilter('pair', this.splittedPair.join(''))
 
     return true
   }
 
-  fillAskExchange (filterValue, event = 'change') {
+  fillAskExchange (filterValue) {
     if (!FilterConfig.exchanges.find(filterElem => filterElem === filterValue)) {
-      this.splittedAskExchange = []
+      this.askExchange = ''
 
-      this.filter.fillFilter('ask-exchange', this.splittedAskExchange.join(''))
+      this.filter.fillFilter('askExchange', this.askExchange)
 
       return this
     }
-    if (event === 'change') {
-      this.splittedAskExchange.push(filterValue)
-    }
-    if (event === 'remove') {
-      const exchangeToDropIndex = this.splittedAskExchange.indexOf(filterValue)
 
-      if (exchangeToDropIndex !== -1) {
-        this.splittedAskExchange.splice(exchangeToDropIndex, 1)
-      }
-    }
+    this.askExchange = filterValue
 
-    this.filter.fillFilter('ask-exchange', this.splittedAskExchange.join(''))
+    this.filter.fillFilter('askExchange', this.askExchange)
   }
 }
