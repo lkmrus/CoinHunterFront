@@ -18,7 +18,7 @@ export class FilterService {
   }
 
   setSpreadsCount (newSpreadsCount) {
-    this.spreadsCount = newSpreadsCount
+    this.spreadsCount = Number(newSpreadsCount)
 
     return this
   }
@@ -28,16 +28,8 @@ export class FilterService {
   }
 
   fillPair (filterValue, splittedPairIndex) {
-    // if (
-    //   splittedPairIndex === SPLITTED_PAIR_FIRST_INDEX &&
-    //   filterValue === ''
-    // ) {
-    //   this.splittedPair[splittedPairIndex] = ''
-    //
-    //   this.filter.fillFilter('pair', this.splittedPair.join(''))
-    //
-    //   return true
-    // }
+    this.splittedPair[splittedPairIndex] = filterValue
+
     if (
       splittedPairIndex === SPLITTED_PAIR_SECOND_INDEX &&
       !FilterConfig.pair.right.find(filterElem => filterElem === filterValue)
@@ -45,15 +37,13 @@ export class FilterService {
       this.splittedPair[splittedPairIndex] = ''
 
       this.filter.fillFilter('pair', this.splittedPair.join(''))
+    }
+
+    if (!this.splittedPair[SPLITTED_PAIR_FIRST_INDEX] || !this.splittedPair[SPLITTED_PAIR_SECOND_INDEX]) {
+      this.filter.fillFilter('pair', '')
 
       return true
     }
-
-    this.splittedPair[splittedPairIndex] = filterValue
-
-    // if (!this.splittedPair[SPLITTED_PAIR_FIRST_INDEX] && !this.splittedPair[SPLITTED_PAIR_SECOND_INDEX]) {
-    //   return false
-    // }
 
     this.filter.fillFilter('pair', this.splittedPair.join(''))
 
