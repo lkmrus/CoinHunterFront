@@ -54,7 +54,7 @@ export class FilterService {
     if (!FilterConfig.exchanges.find(filterElem => filterElem === filterValue)) {
       this.splittedAskExchange = []
 
-      this.filter.fillFilter('ask-exchange', this.splittedAskExchange.join(''))
+      this.filter.fillFilter('askExchange', this.splittedAskExchange.join(''))
 
       return this
     }
@@ -69,6 +69,6 @@ export class FilterService {
       }
     }
 
-    this.filter.fillFilter('ask-exchange', this.splittedAskExchange.join(''))
+    this.filter.fillFilter('askExchange', this.splittedAskExchange.join(''))
   }
 }

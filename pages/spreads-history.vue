@@ -40,7 +40,6 @@
             <selection-custom
               :class="{'selected-tab_small': !isOpen}"
               :inactive="!authenticated"
-              :multiple-type="true"
               :options="[
                 { name: $t('arbitrage_filter_element_2_selection_placeholder'), is_active: false},
                 ...exchangesOptions
