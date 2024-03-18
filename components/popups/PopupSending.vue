@@ -1,37 +1,37 @@
 <template>
-    <div class="popup-sending">
-        <div class="popup-sending__content">
-            <div
-                class="close"
-                @click="emit('close')"
-            >
-                <svg-icon
-                    icon="close-popup"
-                    fill="#A3A3C1"
-                />
-            </div>
-            <div class="icon">
-                <svg-icon
-                    icon="approve-circle"
-                    fill="#12B76A"
-                />
-            </div>
-            <h4 class="title">
-                {{ title }}
-            </h4>
-            <div class="description">
-                {{ description }}
-            </div>
-            <div
-                class="button"
-            >
-                <button-custom
-                    :value="$t('popup_sending_button')"
-                    @click="emit('close')"
-                />
-            </div>
-        </div>
+  <div class="popup-sending">
+    <div class="popup-sending__content">
+      <div
+        class="close"
+        @click="emit('close')"
+      >
+        <svg-icon
+          icon="close-popup"
+          fill="#A3A3C1"
+        />
+      </div>
+      <div class="icon">
+        <svg-icon
+          icon="approve-circle"
+          fill="#12B76A"
+        />
+      </div>
+      <h4 class="title">
+        {{ title }}
+      </h4>
+      <div class="description">
+        {{ description }}
+      </div>
+      <div
+        class="button"
+      >
+        <button-custom
+          :value="$t('popup_sending_button')"
+          @click="emit('close')"
+        />
+      </div>
     </div>
+  </div>
 </template>
 
 <script setup>

@@ -96,6 +96,7 @@
     "layout_nav_3_menu_1": "Гайды",
     "layout_nav_3_menu_2": "Обучающие видео",
     "layout_nav_support": "Поддержка",
+    "layout_nav_spreads_history": "История спредов",
     "layout_header_account_menu_lk": "Личный кабинет",
     "layout_header_account_menu_logout": "Выйти",
     "layout_header_registration": "Регистрация",
@@ -188,6 +189,8 @@
     "table_unit_taker_commision": "Комиссия тейкера",
     "table_unit_maker_commision": "Комиссия мейкера",
     "table_unit_foundation": "Год основания",
+
+    "spreads_history_title": "История спредов",
     
     "form_password_title": "Пароль",
     "form_repeat_password_title": "Повторите пароль",

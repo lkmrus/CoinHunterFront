@@ -1,7 +1,7 @@
 <template>
-    <div class="exchanges-page">
-        <table-unit />
-    </div>
+  <div class="exchanges-page">
+    <table-unit />
+  </div>
 </template>
 
 <style lang="scss">

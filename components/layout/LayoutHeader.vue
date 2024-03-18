@@ -1,162 +1,162 @@
 <template>
-    <header
-        :key="headerKey"
-        class="layout-header"
+  <header
+    :key="headerKey"
+    class="layout-header"
+  >
+    <svg-icon
+      class="logo"
+      icon="logo"
+      @click="goToAuthPage('/')"
+    />
+    <div
+      class="layout-header__content"
+      :class="{'active': hamburgerOpen}"
     >
-        <svg-icon
-            class="logo"
-            icon="logo"
-            @click="goToAuthPage('/')"
-        />
-        <div
-            class="layout-header__content"
-            :class="{'active': hamburgerOpen}"
-        >
-            <nav class="nav">
-                <ol class="nav__items">
-                    <li
-                        v-for="(nav, navIndex) in navs"
-                        :key="`nav-item-${navIndex}`"
-                        @mouseenter="nav.isActive = true"
-                        @mouseleave="nav.isActive = false"
-                    >
-                        <div
-                            class="name"
-                            :class="{'active': nav.isActive}"
-                        >
-                            {{ nav.name }}
-                        </div>
-                        <svg-icon
-                            class="down-arrow"
-                            :class="{'down-arrow_active': nav.isActive}"
-                            icon="down-arrow"
-                            :fill="getArrowColor(nav.isActive)"
-                        />
-                        <div
-                            class="menu"
-                            :class="{'menu_open': nav.isActive}"
-                        >
-                            <NuxtLink
-                                v-for="(menu, menuIndex) in nav.menu"
-                                :key="`nav-menu-item-${menuIndex}`"
-                                class="menu__item"
-                                :to="menu.link"
-                            >
-                                {{ menu.name }}
-                            </NuxtLink>
-                        </div>
-                    </li>
-                </ol>
-            </nav>
-            <div class="right-content">
-                <div
-                    class="lang"
-                    @mouseleave="langOpen = false"
-                >
-                    <div
-                        class="lang__name"
-                        @click="langOpen = !langOpen"
-                    >
-                        {{ activeLocaleName.name }}
-                        <div
-                            class="lang-drop-down"
-                            :class="{'lang-drop-down_open': langOpen}"
-                        >
-                            <svg-icon icon="down-arrow" />
-                        </div>
-                    </div>
-                    <div
-                        class="menu"
-                        :class="{'menu_open' : langOpen}"
-                    >
-                        <div
-                            v-for="lang in locales"
-                            :key="lang.code"
-                            class="menu__item"
-                            :class="{'menu__item_active': activeLocaleName.code === lang.code}"
-                            @click="setLang(lang.code)"
-                        >
-                            {{ lang.name }}
-                        </div>
-                    </div>
-                </div>
-                <div
-                    v-if="!isAuthenticated"
-                    class="buttons"
-                >
-                    <button-custom
-                        :value="$t('layout_header_registration')"
-                        @click="goToAuthPage('/auth', {type: 'registration'})"
-                    />
-                    <button-custom
-                        dark-blue
-                        :value="$t('layout_header_login')"
-                        @click="goToAuthPage('/auth')"
-                    />
-                </div>
-                <div
-                    v-else
-                    class="account"
-                    @mouseleave="accountMenuOpen = false"
-                >
-                    <div
-                        class="account__profile"
-                        @click="accountMenuOpen = !accountMenuOpen"
-                    >
-                        <div class="avatar">
-                            <svg-icon icon="account" />
-                        </div>
-                        <div
-                            class="dropwdown"
-                            :class="{'dropwdown_open': accountMenuOpen}"
-                        >
-                            <svg-icon icon="down-arrow" />
-                        </div>
-                    </div>
-
-                    <div
-                        class="lang__name lang__name_mobile"
-                        @click="accountMenuOpen = !accountMenuOpen"
-                    >
-                        {{ $t("layout_header_account_menu_lk") }}
-                        <div
-                            class="lang-drop-down"
-                            :class="{'lang-drop-down_open': accountMenuOpen}"
-                        >
-                            <svg-icon icon="down-arrow" />
-                        </div>
-                    </div>
-
-                    <div
-                        class="menu menu_mobile"
-                        :class="{'menu_open' : accountMenuOpen}"
-                    >
-                        <div
-                            class="menu__item"
-                            @click="goToAuthPage('/account')"
-                        >
-                            {{ $t('layout_header_account_menu_lk') }}
-                        </div>
-                        <div
-                            class="menu__item"
-                            @click="logout()"
-                        >
-                            {{ $t('layout_header_account_menu_logout') }}
-                        </div>
-                    </div>
-                </div>
+      <nav class="nav">
+        <ol class="nav__items">
+          <li
+            v-for="(nav, navIndex) in navs"
+            :key="`nav-item-${navIndex}`"
+            @mouseenter="nav.isActive = true"
+            @mouseleave="nav.isActive = false"
+          >
+            <div
+              class="name"
+              :class="{'active': nav.isActive}"
+            >
+              {{ nav.name }}
             </div>
+            <svg-icon
+              class="down-arrow"
+              :class="{'down-arrow_active': nav.isActive}"
+              icon="down-arrow"
+              :fill="getArrowColor(nav.isActive)"
+            />
+            <div
+              class="menu"
+              :class="{'menu_open': nav.isActive}"
+            >
+              <NuxtLink
+                v-for="(menu, menuIndex) in nav.menu"
+                :key="`nav-menu-item-${menuIndex}`"
+                class="menu__item"
+                :to="menu.link"
+              >
+                {{ menu.name }}
+              </NuxtLink>
+            </div>
+          </li>
+        </ol>
+      </nav>
+      <div class="right-content">
+        <div
+          class="lang"
+          @mouseleave="langOpen = false"
+        >
+          <div
+            class="lang__name"
+            @click="langOpen = !langOpen"
+          >
+            {{ activeLocaleName.name }}
+            <div
+              class="lang-drop-down"
+              :class="{'lang-drop-down_open': langOpen}"
+            >
+              <svg-icon icon="down-arrow" />
+            </div>
+          </div>
+          <div
+            class="menu"
+            :class="{'menu_open' : langOpen}"
+          >
+            <div
+              v-for="lang in locales"
+              :key="lang.code"
+              class="menu__item"
+              :class="{'menu__item_active': activeLocaleName.code === lang.code}"
+              @click="setLang(lang.code)"
+            >
+              {{ lang.name }}
+            </div>
+          </div>
         </div>
         <div
-            class="hamburger"
-            :class="{'active': hamburgerOpen}"
-            @click="hamburgerOpen = !hamburgerOpen"
+          v-if="!isAuthenticated"
+          class="buttons"
         >
-            <span class="bar" />
-            <span class="bar" />
-            <span class="bar" />
+          <button-custom
+            :value="$t('layout_header_registration')"
+            @click="goToAuthPage('/auth', {type: 'registration'})"
+          />
+          <button-custom
+            dark-blue
+            :value="$t('layout_header_login')"
+            @click="goToAuthPage('/auth')"
+          />
         </div>
-    </header>
+        <div
+          v-else
+          class="account"
+          @mouseleave="accountMenuOpen = false"
+        >
+          <div
+            class="account__profile"
+            @click="accountMenuOpen = !accountMenuOpen"
+          >
+            <div class="avatar">
+              <svg-icon icon="account" />
+            </div>
+            <div
+              class="dropwdown"
+              :class="{'dropwdown_open': accountMenuOpen}"
+            >
+              <svg-icon icon="down-arrow" />
+            </div>
+          </div>
+
+          <div
+            class="lang__name lang__name_mobile"
+            @click="accountMenuOpen = !accountMenuOpen"
+          >
+            {{ $t("layout_header_account_menu_lk") }}
+            <div
+              class="lang-drop-down"
+              :class="{'lang-drop-down_open': accountMenuOpen}"
+            >
+              <svg-icon icon="down-arrow" />
+            </div>
+          </div>
+
+          <div
+            class="menu menu_mobile"
+            :class="{'menu_open' : accountMenuOpen}"
+          >
+            <div
+              class="menu__item"
+              @click="goToAuthPage('/account')"
+            >
+              {{ $t('layout_header_account_menu_lk') }}
+            </div>
+            <div
+              class="menu__item"
+              @click="logout()"
+            >
+              {{ $t('layout_header_account_menu_logout') }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="hamburger"
+      :class="{'active': hamburgerOpen}"
+      @click="hamburgerOpen = !hamburgerOpen"
+    >
+      <span class="bar" />
+      <span class="bar" />
+      <span class="bar" />
+    </div>
+  </header>
 </template>
 
 <script setup>
@@ -190,7 +190,8 @@ const navs = reactive([
     menu: [
       { name: t('layout_nav_2_menu_1'), link: '/arbitrage' },
       //   { name: t('layout_nav_2_menu_2'), link: '#' },
-      { name: t('layout_nav_2_menu_3'), link: '/exchanges' }
+      { name: t('layout_nav_2_menu_3'), link: '/exchanges' },
+      { name: t('layout_nav_spreads_history'), link: '/spreads-history' }
     ],
     isActive: false
   }

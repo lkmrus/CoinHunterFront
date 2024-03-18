@@ -1,79 +1,79 @@
 <template>
-    <div class="support">
-        <section class="any-questions">
-            <div class="blurs">
-                <div class="blurs__content">
-                    <div class="blur blur-1" />
-                    <div class="blur blur-2" />
-                    <div class="blur blur-3" />
-                </div>
-            </div>
-            <h1>{{ $t('index_any_questions_title') }}</h1>
-            <h2>{{ $t('index_any_questions_subtitle') }}</h2>
-            <form
-                class="form"
-            >
-                <div class="form-item">
-                    <input-custom
-                        v-model="questionForm.name"
-                        :title="$t('index_any_questions_name')"
-                        :placeholder="$t('index_any_questions_name_placeholder')"
-                        :i-error="v$.name.$error"
-                        :i-error-name="v$.name.minLength.$message"
-                    />
-                </div>
-                <div class="form-item">
-                    <input-custom
-                        v-model="questionForm.email"
-                        title="Email"
-                        placeholder="name@example.com"
-                        :i-error="v$.email.$error"
-                        :i-error-name="v$.email.email.$message"
-                        @change="v$.email.$touch"
-                    />
-                </div>
-                <div class="textarea form-item">
-                    <div class="textarea__title">
-                        {{ $t('index_any_questions_question') }}
-                    </div>
-                    <textarea
-                        v-model="questionForm.question"
-                        :class="{'error': v$.question.$error }"
-                        :placeholder="$t('index_any_questions_question_placeholder')"
-                    />
-                    <div
-                        v-if="v$.question.$error"
-                        class="input-error"
-                    >
-                        {{ v$.question.required.$message }}
-                    </div>
-                </div>
-                <button-custom
-                    class="big-h"
-                    :value="$t('index_any_questions_button')"
-                    @click="sendMail()"
-                />
-            </form>
-            <img
-                class="question-robot"
-                src="@/assets/img/question-robot.png"
-                alt="question-robot"
-            >
-        </section>
-        <popup-sending
-            id="popup-sending"
-            :title="$t('index_success_form_title')"
-            :description="$t('index_success_form_description')"
-            @close="switchPopup(false)"
+  <div class="support">
+    <section class="any-questions">
+      <div class="blurs">
+        <div class="blurs__content">
+          <div class="blur blur-1" />
+          <div class="blur blur-2" />
+          <div class="blur blur-3" />
+        </div>
+      </div>
+      <h1>{{ $t('index_any_questions_title') }}</h1>
+      <h2>{{ $t('index_any_questions_subtitle') }}</h2>
+      <form
+        class="form"
+      >
+        <div class="form-item">
+          <input-custom
+            v-model="questionForm.name"
+            :title="$t('index_any_questions_name')"
+            :placeholder="$t('index_any_questions_name_placeholder')"
+            :i-error="v$.name.$error"
+            :i-error-name="v$.name.minLength.$message"
+          />
+        </div>
+        <div class="form-item">
+          <input-custom
+            v-model="questionForm.email"
+            title="Email"
+            placeholder="name@example.com"
+            :i-error="v$.email.$error"
+            :i-error-name="v$.email.email.$message"
+            @change="v$.email.$touch"
+          />
+        </div>
+        <div class="textarea form-item">
+          <div class="textarea__title">
+            {{ $t('index_any_questions_question') }}
+          </div>
+          <textarea
+            v-model="questionForm.question"
+            :class="{'error': v$.question.$error }"
+            :placeholder="$t('index_any_questions_question_placeholder')"
+          />
+          <div
+            v-if="v$.question.$error"
+            class="input-error"
+          >
+            {{ v$.question.required.$message }}
+          </div>
+        </div>
+        <button-custom
+          class="big-h"
+          :value="$t('index_any_questions_button')"
+          @click="sendMail()"
         />
-        <notification-unit
-            v-if="notificationSettings.isOpen"
-            error
-            :title="notificationSettings.title"
-            :description="notificationSettings.description"
-            @close="notificationSettings.isOpen = false"
-        />
-    </div>
+      </form>
+      <img
+        class="question-robot"
+        src="@/assets/img/question-robot.png"
+        alt="question-robot"
+      >
+    </section>
+    <popup-sending
+      id="popup-sending"
+      :title="$t('index_success_form_title')"
+      :description="$t('index_success_form_description')"
+      @close="switchPopup(false)"
+    />
+    <notification-unit
+      v-if="notificationSettings.isOpen"
+      error
+      :title="notificationSettings.title"
+      :description="notificationSettings.description"
+      @close="notificationSettings.isOpen = false"
+    />
+  </div>
 </template>
 
 <script setup>

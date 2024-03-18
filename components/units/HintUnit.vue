@@ -1,22 +1,22 @@
 <template>
-    <div
-        v-if="token && !attached"
-        class="hint-unit"
-        @click="goToUrl(`https://t.me/CurrencyScanner3000Bot${userParam}`)"
-    >
-        <div class="hint-unit__text">
-            {{ $t('hint_unit_text') }}
-        </div>
-        <div class="hint-unit__telegram">
-            <svg-icon icon="telegram" />
-            <div class="desktop">
-                {{ $t('hint_unit_tg_desktop') }}
-            </div>
-            <div class="mobile">
-                {{ $t('hint_unit_tg_mobile') }}
-            </div>
-        </div>
+  <div
+    v-if="token && !attached"
+    class="hint-unit"
+    @click="goToUrl(`https://t.me/CurrencyScanner3000Bot${userParam}`)"
+  >
+    <div class="hint-unit__text">
+      {{ $t('hint_unit_text') }}
     </div>
+    <div class="hint-unit__telegram">
+      <svg-icon icon="telegram" />
+      <div class="desktop">
+        {{ $t('hint_unit_tg_desktop') }}
+      </div>
+      <div class="mobile">
+        {{ $t('hint_unit_tg_mobile') }}
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>

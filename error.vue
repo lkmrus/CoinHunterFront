@@ -1,16 +1,16 @@
 <template>
-    <NuxtLayout name="no-footer-layout">
-        <div class="error">
-            <div class="error__content">
-                <div class="error__code">
-                    404
-                </div>
-                <div class="error__text">
-                    {{ $t('404_error_text') }}
-                </div>
-            </div>
+  <NuxtLayout name="no-footer-layout">
+    <div class="error">
+      <div class="error__content">
+        <div class="error__code">
+          404
         </div>
-    </NuxtLayout>
+        <div class="error__text">
+          {{ $t('404_error_text') }}
+        </div>
+      </div>
+    </div>
+  </NuxtLayout>
 </template>
 <script setup>
 definePageMeta({
