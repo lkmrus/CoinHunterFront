@@ -21,10 +21,9 @@ export const FilterConfig = {
     ]
   },
   exchanges: [
-    'Binance',
-    'Bybit',
-    'Hitbtc',
-    'KuCoin',
-    'Huobi'
+    'binance',
+    'bybit',
+    'okx',
+    'bitget'
   ]
 }

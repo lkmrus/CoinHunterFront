@@ -13,7 +13,7 @@ export class SpreadsService {
       return data.value.map(arbitrageRecord => new SpreadData(arbitrageRecord))
     }
 
-    throw new Error(`Fetch error with: ${error}`)
+    // TODO: Добавить логирование ошибок
   }
 
   async getSpreadsCount (filter) {
@@ -27,6 +27,6 @@ export class SpreadsService {
       return data.value.count
     }
 
-    throw new Error(`Fetch error with: ${error}`)
+    // TODO: Добавить логирование ошибок
   }
 }
