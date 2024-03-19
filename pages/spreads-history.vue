@@ -35,7 +35,7 @@
           </div>
           <div class="filter-cryptoexchanges filter-item">
             <div class="filter-item__name">
-              {{ $t('arbitrage_filter_element_2_name') }}
+              {{ $t('spreads_filter_element_2_name') }}
             </div>
             <selection-custom
               :class="{'selected-tab_small': !isOpen}"
@@ -61,7 +61,7 @@
     <table-pagination
       v-if="spreadsCount > filterService.filter.limit"
       :limit="filterService.filter.limit"
-      :count="spreadsCount"
+      :count="70"
       @page-change="filterService.setOffset($event); getSpreadsList()"
     />
   </section>
