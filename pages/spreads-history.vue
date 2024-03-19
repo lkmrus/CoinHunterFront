@@ -61,7 +61,7 @@
     <table-pagination
       v-if="spreadsCount > filterService.filter.limit"
       :limit="filterService.filter.limit"
-      :count="70"
+      :count="spreadsCount"
       @page-change="filterService.setOffset($event); getSpreadsList()"
     />
   </section>
