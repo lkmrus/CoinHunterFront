@@ -289,7 +289,6 @@ const tableHeader = reactive([
     border-radius: 16px;
   }
   .filter {
-    margin-bottom: 175px;
     position: relative;
 
     &__content {
