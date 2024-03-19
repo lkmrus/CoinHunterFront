@@ -1,9 +1,10 @@
 export const TimeFormatEnum = {
-  yy: 'getUTCFullYear',
-  yyyy: 'getUTCFullYear',
-  mm: 'getUTCMonth',
-  dd: 'getUTCDate',
-  hh: 'getUTCHours',
-  ii: 'getUTCMinutes',
-  ss: 'getUTCSeconds'
+  yyyy: 'getFullYear',
+  yy: 'getFullYearShort',
+  mm: 'getMonth',
+  dd: 'getDate',
+  hh: 'getHours',
+  ii: 'getMinutes',
+  ss: 'getSeconds',
+  gmt: 'getGmt'
 }

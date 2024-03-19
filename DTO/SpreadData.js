@@ -12,7 +12,7 @@ export class SpreadData {
     this.bidExchange = spreadRecord['bid-exchange']
     this.bidPrice = spreadRecord['bid-price']
     this.lifeTime = this.getLifeTime(spreadRecord.finishedAt, spreadRecord.createdAt)
-    this.createdDate = TimeFormatter.formatTime('yy.mm.dd hh:ii (GMT)', spreadRecord.createdAt)
+    this.createdDate = TimeFormatter.formatTime('yyyy.mm.dd hh:ii (gmt)', spreadRecord.createdAt)
   }
 
   getLifeTime (finishedAt = null, createdAt) {
