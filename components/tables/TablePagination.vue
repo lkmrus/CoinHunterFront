@@ -80,8 +80,11 @@ const emitPageChange = (pageNumber) => {
 const pageArray = computed(() => {
   const pageArray = []
 
-  if (window?.innerWidth <= 320) {
-    for (let i = Math.max(1, currentPage.value - 1); i <= Math.max(3, currentPage.value + 1); i++) {
+  if (window?.innerWidth <= 400) {
+    const customPageStartLimit = totalPages.value > currentPage.value + 1 ? currentPage.value - 1 : Math.min(totalPages.value, Math.min(totalPages.value - 2, currentPage.value - 1))
+    const customPageEndLimit = totalPages.value > currentPage.value + 1 ? currentPage.value + 1 : Math.min(totalPages.value, currentPage.value + 1)
+
+    for (let i = Math.max(1, customPageStartLimit); i <= Math.max(3, customPageEndLimit); i++) {
       pageArray.push(i)
     }
 
@@ -89,8 +92,19 @@ const pageArray = computed(() => {
   }
 
   if (window?.innerWidth <= 600) {
-    for (let i = Math.max(1, currentPage.value - 2); i <= Math.max(5, currentPage.value + 2); i++) {
+    const customPageStartLimit = totalPages.value > currentPage.value + 1 ? currentPage.value - 2 : Math.min(totalPages.value, Math.min(totalPages.value - 4, currentPage.value - 3))
+    const customPageEndLimit = totalPages.value > currentPage.value + 1 ? currentPage.value + 2 : Math.min(totalPages.value, currentPage.value + 1)
+
+    for (let i = Math.max(1, customPageStartLimit); i <= Math.max(5, customPageEndLimit); i++) {
       pageArray.push(i)
+    }
+
+    return pageArray
+  }
+
+  if (totalPages.value <= 7) {
+    for (let i = 1; i <= totalPages.value; i++) {
+	  pageArray.push(i)
     }
 
     return pageArray

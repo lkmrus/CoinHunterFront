@@ -35,7 +35,7 @@
           </div>
           <div class="filter-cryptoexchanges filter-item">
             <div class="filter-item__name">
-              {{ $t('arbitrage_filter_element_2_name') }}
+              {{ $t('spreads_filter_element_2_name') }}
             </div>
             <selection-custom
               :class="{'selected-tab_small': !isOpen}"
@@ -154,7 +154,7 @@ const tableHeader = reactive([
   { name: 'Ask Size', is_wide: false },
   { name: 'Bid Exchange', is_wide: false },
   { name: 'Bid Price', is_wide: false },
-  { name: 'Life time (min)', is_wide: false },
+  { name: 'Life time (sec)', is_wide: false },
   { name: 'Date', is_wide: false }
 ])
 
@@ -289,7 +289,6 @@ const tableHeader = reactive([
     border-radius: 16px;
   }
   .filter {
-    margin-bottom: 175px;
     position: relative;
 
     &__content {
