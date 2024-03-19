@@ -61,7 +61,7 @@
     <table-pagination
       v-if="spreadsCount > filterService.filter.limit"
       :limit="filterService.filter.limit"
-      :count="70"
+      :count="spreadsCount"
       @page-change="filterService.setOffset($event); getSpreadsList()"
     />
   </section>
@@ -154,7 +154,7 @@ const tableHeader = reactive([
   { name: 'Ask Size', is_wide: false },
   { name: 'Bid Exchange', is_wide: false },
   { name: 'Bid Price', is_wide: false },
-  { name: 'Life time (min)', is_wide: false },
+  { name: 'Life time (sec)', is_wide: false },
   { name: 'Date', is_wide: false }
 ])
 
