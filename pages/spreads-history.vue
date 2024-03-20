@@ -53,17 +53,37 @@
       </div>
     </div>
     <main-table
+      v-if="authenticated"
       class="spread-history__table"
       :table-header="tableHeader"
       :table-columns="tableColumns"
       :table-body="spreadsList"
     />
     <table-pagination
-      v-if="spreadsCount > filterService.filter.limit"
+      v-if="spreadsCount > filterService.filter.limit && authenticated"
       :limit="filterService.filter.limit"
       :count="spreadsCount"
       @page-change="filterService.setOffset($event); getSpreadsList()"
     />
+    <div
+      v-if="!authenticated"
+      class="arbitrage-page__text"
+    >
+      <div class="content">
+        <h4>{{ pageText.heading }}</h4>
+        <p>{{ pageText.text }}</p>
+        <div
+          v-if="pageText.button_text"
+          class="button-content"
+        >
+          <button-custom
+            id="table"
+            :value="pageText.button_text"
+            @click="goToPage(pageText.button_method.page, pageText.button_method.query)"
+          />
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -87,6 +107,19 @@ useHead(() => {
     title: t('spreads_history_title')
   }
 })
+
+const pageText = reactive({
+  heading: t(('arbitrage_inactive_text_heading')),
+  text: t('arbitrage_inactive_text_description'),
+  button_text: t('arbitrage_inactive_text_button'),
+  button_method: { page: '/auth', query: { type: 'registration' } }
+})
+const goToPage = async (page, query = {}) => {
+  await navigateTo({
+    path: page,
+    query
+  })
+}
 
 const getPairOptions = position => FilterConfig.pair[position].map(pairElem => new SelectionCustomData(pairElem))
 const exchangesOptions = computed(() => FilterConfig.exchanges.map((exchangeElem) => {
