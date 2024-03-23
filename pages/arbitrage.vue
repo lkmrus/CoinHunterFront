@@ -178,6 +178,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '~/store/auth'
+import { ArbitrageService } from '~/services/arbitrage/ArbitrageService.js'
 
 const { t } = useI18n({ useScope: 'global' })
 const { authenticated } = storeToRefs(useAuthStore())
@@ -223,6 +224,8 @@ const goToPage = async (page, query = {}) => {
     query
   })
 }
+
+const arbitrageService = new ArbitrageService()
 </script>
 
 <style lang="scss">

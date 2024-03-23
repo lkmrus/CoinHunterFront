@@ -1,8 +1,6 @@
 import { Filter } from '~/models/Filter.js'
 
 export class FilterPagination extends Filter {
-  filter = {}
-
   limit = 10
   offset = 0
 
