@@ -1,13 +1,18 @@
 import { ArbitrageData } from '~/DTO/ArbitrageData.js'
+import { CookieTrait } from '~/traits/CookieTrait.js'
 
 export class ArbitrageService {
   arbitrageList = []
 
   constructor () {
-    this.socket = new WebSocket('ws://78.140.137.106:8080')
+    this.socket = new WebSocket('ws://78.140.137.106:8080', null, {
+      headers: {
+        Authorization: `Bearer ${CookieTrait.getCookie('coinht')}`
+      }
+    })
 
-    this.addWebsocketListener()
-    this.listenWebsocket()
+    // this.addWebsocketListener()
+    // this.listenWebsocket()
   }
 
   addWebsocketListener () {

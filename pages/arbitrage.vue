@@ -225,7 +225,11 @@ const goToPage = async (page, query = {}) => {
   })
 }
 
-const arbitrageService = new ArbitrageService()
+let arbitrageService
+
+onMounted(() => {
+  arbitrageService = new ArbitrageService()
+})
 </script>
 
 <style lang="scss">
