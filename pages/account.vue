@@ -278,7 +278,7 @@ const saveSettings = async () => {
   ) {
     isSavedData = await userSettings({
       email: editableUser.email,
-      login: editableUser.login.replace(/^@/, ''),
+      login: editableUser.login ? editableUser.login?.replace(/^@/, '') : editableUser.login,
       fullname: editableUser.fullname,
       token: token.value
     })
