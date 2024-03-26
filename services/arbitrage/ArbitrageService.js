@@ -5,7 +5,7 @@ export class ArbitrageService {
   arbitrageList = []
 
   constructor () {
-    this.socket = new WebSocket('ws://78.140.137.106:8080', null, {
+    this.socket = new WebSocket('ws://coin-hunter.trade:8080', undefined, {
       headers: {
         Authorization: `Bearer ${CookieTrait.getCookie('coinht')}`
       }
