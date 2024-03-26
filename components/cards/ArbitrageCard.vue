@@ -68,6 +68,13 @@
 </template>
 
 <script setup>
+defineProps({
+  card: {
+    type: Object,
+    required: true,
+    default: {}
+  }
+})
 </script>
 
 <style lang="scss" scoped>

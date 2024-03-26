@@ -2,7 +2,7 @@ import { ArbitrageData } from '~/DTO/ArbitrageData.js'
 import { CookieTrait } from '~/traits/CookieTrait.js'
 
 export class ArbitrageService {
-  arbitrageList = []
+  arbitrageList = ref([])
 
   constructor () {
     this.socket = new WebSocket('ws://coin-hunter.trade:8080', undefined, {
@@ -11,8 +11,8 @@ export class ArbitrageService {
       }
     })
 
-    // this.addWebsocketListener()
-    // this.listenWebsocket()
+    this.addWebsocketListener()
+    this.listenWebsocket()
   }
 
   addWebsocketListener () {
@@ -20,7 +20,7 @@ export class ArbitrageService {
       const filter = {
         authorization: 'Bearer DEV_TOKEN',
         // Фильтрация по парам на которые пользователь подписался
-        // subscriptions: ['BTC-USDT', 'ETH-USDT'],
+        subscriptions: ['ETH-USDT'],
         // Фильтрация по биржам
         // exchanges: ['binance', 'bybit'], // binance, okx, bybit, bitget
         sorting: {
@@ -29,11 +29,9 @@ export class ArbitrageService {
         },
         timeInterval: 1000,
         // Для пагинации
-        limit: 1000,
+        limit: 2,
         skip: 0
       }
-
-      console.log(filter)
 
       this.sendWebsocket(filter)
     })
@@ -48,8 +46,21 @@ export class ArbitrageService {
   }
 
   updateArbitrageList (response) {
-    this.arbitrageList = response.map(arbitrageRecord => new ArbitrageData(arbitrageRecord))
+    this.arbitrageList.value.length = 0
 
-    console.log(this.arbitrageList)
+    console.log(response)
+
+    response.map((arbitrageRecord) => {
+      const transformedData = []
+
+      arbitrageRecord.events.forEach((event) => {
+        transformedData.push(new ArbitrageData(event, arbitrageRecord.pair, arbitrageRecord.spread))
+      })
+
+      this.arbitrageList.value = [
+        ...this.arbitrageList.value,
+        ...transformedData
+      ]
+    })
   }
 }

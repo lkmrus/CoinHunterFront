@@ -146,11 +146,11 @@
         v-if="authenticated"
         class="cards"
       >
-        <arbitrage-card />
-        <arbitrage-card />
-        <arbitrage-card />
-        <arbitrage-card />
-        <arbitrage-card />
+        <arbitrage-card
+          v-for="card in arbitrageService?.arbitrageList"
+          :key="card.volume"
+          :card="card"
+        />
       </div>
       <div
         v-else
@@ -225,10 +225,10 @@ const goToPage = async (page, query = {}) => {
   })
 }
 
-let arbitrageService
+const arbitrageService = ref(null)
 
 onMounted(() => {
-  arbitrageService = new ArbitrageService()
+  arbitrageService.value = new ArbitrageService()
 })
 </script>
 
