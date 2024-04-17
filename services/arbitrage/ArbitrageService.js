@@ -5,22 +5,24 @@ export class ArbitrageService {
   arbitrageList = ref([])
 
   constructor () {
-    this.socket = new WebSocket('ws://coin-hunter.trade:8080', undefined, {
+    const authToken = `Bearer ${CookieTrait.getCookie('coinht')}`
+    this.socket = new WebSocket('wss://coin-hunter.trade:8080', undefined, {
       headers: {
-        Authorization: `Bearer ${CookieTrait.getCookie('coinht')}`
+        Authorization: authToken
       }
     })
 
-    this.addWebsocketListener()
+    // Временно подключаемся при входе на страницу
+    this.addWebsocketListener(authToken)
     this.listenWebsocket()
   }
 
-  addWebsocketListener () {
+  addWebsocketListener (authToken, filter = {}) {
     this.socket.addEventListener('open', () => {
-      const filter = {
-        authorization: 'Bearer DEV_TOKEN',
+      const filterData = {
+        authorization: authToken,
         // Фильтрация по парам на которые пользователь подписался
-        subscriptions: ['ETH-USDT'],
+        // subscriptions: ['BTC-USDT', 'ETH-USDT'],
         // Фильтрация по биржам
         // exchanges: ['binance', 'bybit'], // binance, okx, bybit, bitget
         sorting: {
@@ -29,12 +31,17 @@ export class ArbitrageService {
         },
         timeInterval: 1000,
         // Для пагинации
-        limit: 2,
-        skip: 0
+        limit: 1000,
+        skip: 0,
+        ...filter
       }
 
-      this.sendWebsocket(filter)
+      this.sendWebsocket(filterData)
     })
+  }
+
+  unsubscribeFromListening () {
+    this.socket.close()
   }
 
   sendWebsocket (filter) {
@@ -47,8 +54,6 @@ export class ArbitrageService {
 
   updateArbitrageList (response) {
     this.arbitrageList.value.length = 0
-
-    console.log(response)
 
     response.map((arbitrageRecord) => {
       const transformedData = []
