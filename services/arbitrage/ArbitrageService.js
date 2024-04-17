@@ -9,24 +9,24 @@ export class ArbitrageService {
 
 
     // Временно подключаемся при входе на страницу
-    this.addWebsocketListener(this.authToken)
+    this.addWebsocketListener()
     this.listenWebsocket()
   }
 
-  subscribeToListening (authToken) {
+  subscribeToListening () {
     if (this.socket) {
         this.unsubscribeFromListening()
     }
     this.socket = new WebSocket('wss://coin-hunter.trade:8080', undefined, {
       headers: {
-        Authorization: authToken
+        Authorization: this.authToken
       }
     })
   }
 
   addWebsocketListener(filter = {}) {
     // reconnect
-    this.subscribeToListening(this.authToken)
+    this.subscribeToListening()
 
     this.socket.addEventListener('open', () => {
       const filterData = {
