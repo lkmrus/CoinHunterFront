@@ -5,22 +5,32 @@ export class ArbitrageService {
   arbitrageList = ref([])
 
   constructor () {
-    const authToken = `Bearer ${CookieTrait.getCookie('coinht')}`
+    this.authToken = `Bearer ${CookieTrait.getCookie('coinht')}`
+
+
+    // Временно подключаемся при входе на страницу
+    this.addWebsocketListener(this.authToken)
+    this.listenWebsocket()
+  }
+
+  subscribeToListening (authToken) {
+    if (this.socket) {
+        this.unsubscribeFromListening()
+    }
     this.socket = new WebSocket('wss://coin-hunter.trade:8080', undefined, {
       headers: {
         Authorization: authToken
       }
     })
-
-    // Временно подключаемся при входе на страницу
-    this.addWebsocketListener(authToken)
-    this.listenWebsocket()
   }
 
-  addWebsocketListener (authToken, filter = {}) {
+  addWebsocketListener(filter = {}) {
+    // reconnect
+    this.subscribeToListening(this.authToken)
+
     this.socket.addEventListener('open', () => {
       const filterData = {
-        authorization: authToken,
+        authorization: this.authToken,
         // Фильтрация по парам на которые пользователь подписался
         // subscriptions: ['BTC-USDT', 'ETH-USDT'],
         // Фильтрация по биржам
@@ -42,6 +52,7 @@ export class ArbitrageService {
 
   unsubscribeFromListening () {
     this.socket.close()
+    this.socket = null
   }
 
   sendWebsocket (filter) {
