@@ -13,27 +13,10 @@
                 {{ $t('arbitrage_filter_element_1_name') }}
               </div>
               <div class="selections">
-                <selection-custom
-                  class="selection-first"
-                  :inactive="!authenticated"
-                  :class="{'selected-tab_small': !isOpen}"
-                  :options="[
-                    { name: $t('arbitrage_filter_element_1_selection_placeholder') },
-                    { name: 'ETH'},
-                    { name: 'BTC'},
-                    { name: 'LTC'},
-                    { name: 'DOGE'},
-                    { name: 'SOL'},
-                    { name: 'ADA'},
-                    { name: 'LINK'},
-                    { name: 'XRP'},
-                    { name: 'EOS'},
-                    { name: 'XLM'},
-                    { name: 'BNB'},
-                    { name: 'BCH'},
-                  ]"
-                  :placeholder="$t('arbitrage_filter_element_1_selection_placeholder')"
-                  :active-options="[]"
+                <input-custom
+                    :disabled="!authenticated"
+                    :placeholder="$t('arbitrage_filter_element_1_selection_placeholder')"
+                    @input="fillFilterPair($event, 0)"
                 />
                 <selection-custom
                   class="selection-second"
@@ -42,6 +25,8 @@
                   :options="[
                     { name: $t('arbitrage_filter_element_1_selection_placeholder') },
                     { name: 'USDT'},
+                    { name: 'BTC' },
+                    { name: 'ETH' },
                   ]"
                   :placeholder="$t('arbitrage_filter_element_1_selection_placeholder')"
                   :active-options="[]"
@@ -57,12 +42,11 @@
                 :inactive="!authenticated"
                 :multiple-type="true"
                 :options="[
-                  { name: $t('arbitrage_filter_element_2_selection_placeholder'), is_active: false},
-                  { name: 'Binance', is_active: false},
-                  { name: 'Bybit', is_active: false},
-                  { name: 'Hitbtc', is_active: false},
-                  { name: 'KuCoin', is_active: false},
-                  { name: 'Huobi', is_active: false},
+                  { name: $t('arbitrage_filter_element_2_selection_placeholder'), is_active: false },
+                  { name: 'binance', is_active: false },
+                  { name: 'bybit', is_active: false },
+                  { name: 'bitget', is_active: false },
+                  { name: 'okx', is_active: false },
                 ]"
                 :placeholder="$t('arbitrage_filter_element_2_selection_placeholder')"
                 :active-options="[]"
@@ -179,6 +163,9 @@
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '~/store/auth'
 import { ArbitrageService } from '~/services/arbitrage/ArbitrageService.js'
+import { FilterService } from '~/services/spreads/FilterService.js'
+import { FilterPagination } from "~/models/FilterPagination.js";
+import { SpreadsService } from "~/services/spreads/SpreadsService.js";
 
 const { t } = useI18n({ useScope: 'global' })
 const { authenticated } = storeToRefs(useAuthStore())
@@ -230,6 +217,45 @@ const arbitrageService = ref(null)
 onMounted(() => {
   arbitrageService.value = new ArbitrageService()
 })
+
+let timeOutPair = null
+const spreadsService = new SpreadsService()
+const spreadsList = ref([])
+const spreadsCount = ref(0)
+const filterService = new FilterService(FilterPagination)
+filterService.setDefaultLimit(10)
+const SPLITTED_PAIR_FIRST_INDEX = 0
+
+const fillFilterPair = async (filterValue, splittedPairIndex) => {
+  if (splittedPairIndex === SPLITTED_PAIR_FIRST_INDEX) {
+    clearTimeout(timeOutPair)
+    timeOutPair = setTimeout(async () => {
+      if (filterService.fillPair(filterValue.toUpperCase(), splittedPairIndex)) {
+        await getSpreadsList()
+      }
+    }, 1000)
+
+    return this
+  }
+
+  if (filterService.fillPair(filterValue, splittedPairIndex)) {
+    await getSpreadsList()
+  }
+}
+const getSpreadsList = async () => {
+  try {
+    spreadsList.value = await spreadsService.getSpreadList(filterService.filter)
+    spreadsCount.value = await spreadsService.getSpreadsCount(filterService.filter)
+
+    spreadsCount.value = Number(spreadsCount.value)
+
+    filterService.setSpreadsCount(spreadsCount.value)
+  } catch (err) {
+    // TODO: Добавить логирование ошибок
+  }
+}
+getSpreadsList()
+
 </script>
 
 <style lang="scss">
