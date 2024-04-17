@@ -75,7 +75,7 @@
             class="title"
             style="color:#ffd700;"
           >
-            &#9733; {{ $t('account_subscription_title') }} &#9733;
+            {{ $t('account_subscription_title') }}
           </h5>
           <div
             v-if="isSubscriptionActive"
@@ -219,11 +219,7 @@ const passwordForm = reactive({
 const attachClicked = ref(false)
 
 const subscription = computed(() => {
-  for (const chat of editableUser.chats) {
-    if (chat.paidUpToDate) {
-      return chat.paidUpToDate
-    }
-  }
+  return editableUser.paidUpToDate
 })
 
 const subscriptionDate = computed(() => subscription.value
@@ -235,7 +231,7 @@ const isSubscriptionActive = computed(() => {
     return false
   }
 
-  return subscription.value > Date.now()
+  return new Date(subscription.value).getTime() > new Date().getTime()
 })
 
 const userRules = computed(() => {
