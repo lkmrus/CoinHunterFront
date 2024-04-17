@@ -146,11 +146,11 @@
         v-if="authenticated"
         class="cards"
       >
-        <arbitrage-card />
-        <arbitrage-card />
-        <arbitrage-card />
-        <arbitrage-card />
-        <arbitrage-card />
+        <arbitrage-card
+          v-for="card in arbitrageService?.arbitrageList"
+          :key="card.volume"
+          :card="card"
+        />
       </div>
       <div
         v-else
@@ -178,6 +178,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '~/store/auth'
+import { ArbitrageService } from '~/services/arbitrage/ArbitrageService.js'
 
 const { t } = useI18n({ useScope: 'global' })
 const { authenticated } = storeToRefs(useAuthStore())
@@ -223,6 +224,12 @@ const goToPage = async (page, query = {}) => {
     query
   })
 }
+
+const arbitrageService = ref(null)
+
+onMounted(() => {
+  arbitrageService.value = new ArbitrageService()
+})
 </script>
 
 <style lang="scss">

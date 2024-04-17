@@ -20,7 +20,7 @@ export class SpreadData {
     const timestampCreatedAt = new Date(createdAt).getTime()
 
     const dateDifference = Math.floor((timestampFinishedAt - timestampCreatedAt) / 1000)
-    const resultTimestamp = Math.max(0, dateDifference) <= 2 ? '< 2' : dateDifference
+    const resultTimestamp = Math.max(0, dateDifference) <= 2 ? '? < 120' : dateDifference
 
     return resultTimestamp
   }

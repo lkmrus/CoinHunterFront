@@ -16,6 +16,12 @@ class CustomDate extends Date {
 
     return `GMT ${gmtIndicator}`
   }
+
+  getMonth () {
+    const month = super.getMonth() + 1
+
+    return month <= 12 ? month : 1
+  }
 }
 
 export class TimeFormatter {
@@ -25,7 +31,7 @@ export class TimeFormatter {
 
     Object.keys(TimeFormatEnum).forEach((splitValue) => {
       const splitedFormat = formattedDateArray.split(splitValue)
-      // .getTimezoneOffset()
+
       if (splitedFormat.length > 1) {
         let timeChapter = dateTime[TimeFormatEnum[splitValue]]()
 
