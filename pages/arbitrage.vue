@@ -87,11 +87,11 @@
                   :inactive="!authenticated"
                   :options="[
                     { name: $t('arbitrage_filter_element_1_selection_placeholder') },
-                    { name: 'BTC'},
-                    { name: 'USDT'},
-                    { name: 'ETH'},
-                    { name: 'USDC'},
-                    { name: 'TRX'},
+                    { name: '1s'},
+                    { name: '5s'},
+                    { name: '30s'},
+                    { name: '1m'},
+                    { name: '10m'},
                   ]"
                   :placeholder="$t('arbitrage_filter_element_1_selection_placeholder')"
                   :active-options="[]"
@@ -105,24 +105,24 @@
             :b-icon="filterButtonText.icon"
           />
         </div>
-        <div
-          v-if="authenticated"
-          class="filter__checkbox"
-        >
-          <checkbox-custom
-            default-type
-            :checked="telegramNotifications"
-            :text="$t('arbitrage_filter_checkbox')"
-            @click="telegramNotifications = !telegramNotifications"
-          />
+<!--        <div-->
+<!--          v-if="authenticated"-->
+<!--          class="filter__checkbox"-->
+<!--        >-->
+<!--          <checkbox-custom-->
+<!--            default-type-->
+<!--            :checked="telegramNotifications"-->
+<!--            :text="$t('arbitrage_filter_checkbox')"-->
+<!--            @click="telegramNotifications = !telegramNotifications"-->
+<!--          />-->
 
-          <checkbox-custom
-            default-type
-            :checked="pushNotifications"
-            :text="$t('arbitrage_filter_checkbox_push')"
-            @click="pushNotifications = !pushNotifications"
-          />
-        </div>
+<!--          <checkbox-custom-->
+<!--            default-type-->
+<!--            :checked="pushNotifications"-->
+<!--            :text="$t('arbitrage_filter_checkbox_push')"-->
+<!--            @click="pushNotifications = !pushNotifications"-->
+<!--          />-->
+<!--        </div>-->
         <div
           v-if="authenticated"
           class="filter__checkbox filter__checkbox_mobile"
