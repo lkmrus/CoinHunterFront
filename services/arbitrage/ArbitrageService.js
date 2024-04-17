@@ -7,13 +7,10 @@ export class ArbitrageService {
   constructor () {
     this.authToken = `Bearer ${CookieTrait.getCookie('coinht')}`
 
-
-    // Временно подключаемся при входе на страницу
     this.addWebsocketListener()
-    this.listenWebsocket()
   }
 
-  subscribeToListening () {
+  #subscribeToListening () {
     if (this.socket) {
         this.unsubscribeFromListening()
     }
@@ -26,7 +23,7 @@ export class ArbitrageService {
 
   addWebsocketListener(filter = {}) {
     // reconnect
-    this.subscribeToListening()
+    this.#subscribeToListening()
 
     this.socket.addEventListener('open', () => {
       const filterData = {
@@ -46,7 +43,9 @@ export class ArbitrageService {
         ...filter
       }
 
-      this.sendWebsocket(filterData)
+      this.#sendWebsocket(filterData)
+      // TODO починить отрисовку и затем раскоментировать
+      // this.#listenWebsocket()
     })
   }
 
@@ -55,11 +54,11 @@ export class ArbitrageService {
     this.socket = null
   }
 
-  sendWebsocket (filter) {
+  #sendWebsocket (filter) {
     this.socket.send(JSON.stringify(filter))
   }
 
-  listenWebsocket () {
+  #listenWebsocket () {
     this.socket.addEventListener('message', event => this.updateArbitrageList.bind(this)(JSON.parse(event.data)))
   }
 
